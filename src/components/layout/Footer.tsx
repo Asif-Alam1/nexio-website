@@ -15,14 +15,14 @@ export default function Footer() {
               alt="Nexio Labs"
               className="h-8 w-auto"
             />
-            <p className="font-body text-sm text-slate">
+            <p className="font-body text-sm text-slate-light">
               Connect. Build. Grow.
             </p>
           </div>
 
           {/* Middle — navigation */}
           <div>
-            <p className="font-mono text-label uppercase text-slate tracking-[0.14em] mb-m">
+            <p className="font-mono text-label uppercase text-blue tracking-[0.14em] mb-m">
               NAVIGATION
             </p>
             <ul className="flex flex-col gap-s">
@@ -41,7 +41,7 @@ export default function Footer() {
 
           {/* Right — connect */}
           <div>
-            <p className="font-mono text-label uppercase text-slate tracking-[0.14em] mb-m">
+            <p className="font-mono text-label uppercase text-blue tracking-[0.14em] mb-m">
               CONNECT
             </p>
             <ul className="flex flex-col gap-s">
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#1a2235] mt-12 pt-6">
+        <div className="border-t border-midnight-deep mt-3xl pt-l">
           <p className="font-mono text-caption text-slate">
             © 2026 Nexio Labs. All rights reserved.
           </p>

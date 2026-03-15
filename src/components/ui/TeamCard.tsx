@@ -29,10 +29,7 @@ export default function TeamCard({ name, role, bio, initial, linkedinUrl }: Team
     >
       {/* Photo placeholder */}
       <div className="flex justify-center mb-l">
-        <div
-          className="bg-midnight rounded-full ring-2 ring-border flex items-center justify-center"
-          style={{ width: 120, height: 120 }}
-        >
+        <div className="bg-midnight rounded-full ring-2 ring-border flex items-center justify-center w-[120px] h-[120px]">
           <span className="font-display text-h1 text-white font-bold">{initial}</span>
         </div>
       </div>
@@ -41,7 +38,7 @@ export default function TeamCard({ name, role, bio, initial, linkedinUrl }: Team
       <h3 className="font-display text-h3 text-midnight font-semibold mb-xs">{name}</h3>
 
       {/* Role */}
-      <p className="text-sm text-blue font-body mb-m">{role}</p>
+      <p className="text-sm text-blue-dark font-body mb-m">{role}</p>
 
       {/* Bio */}
       <p className="text-body text-slate mb-l">{bio}</p>

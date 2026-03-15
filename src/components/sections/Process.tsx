@@ -91,9 +91,6 @@ export default function Process() {
 
     if (e.key === "ArrowRight" && activeIndex < steps.length - 1) {
       e.preventDefault();
-      const nextIndex = activeIndex + 1;
-      // Scroll the page by one panel-worth of scroll distance
-      const scrollAmount = (nextIndex / (steps.length - 1)) * panelWidth * (steps.length - 1);
       window.scrollBy({ top: panelWidth, behavior: "smooth" });
     }
 
@@ -115,7 +112,7 @@ export default function Process() {
   return (
     <section id="process" className="bg-midnight noise-overlay overflow-hidden">
       {/* Header — sits above the pinned scroll area */}
-      <div className="max-w-7xl mx-auto px-m lg:px-2xl pt-4xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-m lg:px-2xl pt-4xl">
         <SectionHeader
           label="HOW WE WORK"
           title="From Vision to Digital Reality."
@@ -127,7 +124,7 @@ export default function Process() {
       {/* ── Desktop horizontal scroll (md+) ── */}
       <div
         ref={wrapperRef}
-        className="hidden md:block relative overflow-hidden"
+        className="relative z-10 hidden md:block overflow-hidden"
         tabIndex={0}
         role="region"
         aria-roledescription="carousel"
@@ -172,7 +169,7 @@ export default function Process() {
       </div>
 
       {/* ── Mobile stacked cards (< md) ── */}
-      <div className="md:hidden px-m pb-4xl pt-l">
+      <div className="relative z-10 md:hidden px-m pb-4xl pt-l">
         {steps.map((s, i) => (
           <motion.div
             key={s.step}

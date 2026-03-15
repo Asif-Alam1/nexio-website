@@ -86,7 +86,7 @@ export default function ContactForm() {
             Your Name
           </label>
           {state.fieldErrors?.name && (
-            <p id="name-error" className="mt-xs text-red" style={{ fontSize: 13 }} role="alert">
+            <p id="name-error" className="mt-xs text-caption text-red" role="alert">
               {state.fieldErrors.name}
             </p>
           )}
@@ -115,7 +115,7 @@ export default function ContactForm() {
             Your Email
           </label>
           {state.fieldErrors?.email && (
-            <p id="email-error" className="mt-xs text-red" style={{ fontSize: 13 }} role="alert">
+            <p id="email-error" className="mt-xs text-caption text-red" role="alert">
               {state.fieldErrors.email}
             </p>
           )}
@@ -144,7 +144,7 @@ export default function ContactForm() {
             Your Message
           </label>
           {state.fieldErrors?.message && (
-            <p id="message-error" className="mt-xs text-red" style={{ fontSize: 13 }} role="alert">
+            <p id="message-error" className="mt-xs text-caption text-red" role="alert">
               {state.fieldErrors.message}
             </p>
           )}

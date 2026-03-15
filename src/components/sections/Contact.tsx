@@ -9,7 +9,7 @@ import { WHATSAPP_URL, CONTACT_EMAIL } from "@/lib/constants";
 
 export default function Contact() {
   return (
-    <section id="contact" className="noise-overlay bg-midnight py-4xl">
+    <section id="contact" className="noise-overlay bg-midnight py-4xl overflow-hidden">
       {/* Radial gradient orb — positioned LEFT */}
       <div
         className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-40 hidden md:block"

@@ -68,7 +68,7 @@ export default function CustomCursor() {
         width: isHovering ? 48 : 16,
         height: isHovering ? 48 : 16,
       }}
-      transition={{ duration: 0.25 / 1 }}
+      transition={{ duration: 0.25 }}
     />
   );
 }
