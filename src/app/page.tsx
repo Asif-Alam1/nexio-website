@@ -5,6 +5,8 @@ import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Process from "@/components/sections/Process";
+import Team from "@/components/sections/Team";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -16,12 +18,8 @@ export default function Home() {
         <Hero />
         <Services />
         <Process />
-        <section id="team" className="min-h-screen bg-cloud flex items-center justify-center">
-          <h2 className="font-display text-h1 text-midnight">Team</h2>
-        </section>
-        <section id="contact" className="min-h-screen bg-midnight flex items-center justify-center">
-          <h2 className="font-display text-h1 text-white">Contact</h2>
-        </section>
+        <Team />
+        <Contact />
       </main>
       <FloatingWhatsApp />
     </>
