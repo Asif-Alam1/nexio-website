@@ -25,6 +25,29 @@ const dmMono = DM_Mono({
   weight: ["400"],
 });
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Nexio Labs",
+  url: "https://nexiolabs.co",
+  logo: "https://nexiolabs.co/images/logo/nexio-monogram-blue-512.png",
+  description:
+    "Tech agency in Lebanon building websites, e-commerce, AI chatbots, and automations.",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "LB",
+  },
+  sameAs: [
+    "https://linkedin.com/company/nexiolabs",
+    "https://instagram.com/nexiolabs",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@nexiolabs.co",
+    contactType: "customer service",
+  },
+};
+
 export const metadata: Metadata = {
   title: "Nexio Labs — Your Digital Partner in Lebanon",
   description:
@@ -58,7 +81,21 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${lora.variable} ${dmMono.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-blue focus:text-white focus:px-4 focus:py-2 focus:rounded-button focus:outline-none"
+        >
+          Skip to content
+        </a>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
