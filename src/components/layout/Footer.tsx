@@ -6,7 +6,7 @@ import Logo from "@/components/ui/Logo";
 export default function Footer() {
   return (
     <footer className="bg-midnight-deep">
-      <div className="max-w-7xl mx-auto px-m lg:px-2xl py-3xl pb-xl">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-3xl pb-xl">
         {/* 3-column grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-xl">
           {/* Left — brand */}
@@ -80,7 +80,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-3xl pt-l">
+        <div className="border-t border-white/10 mt-4xl pt-l">
           <p className="font-mono text-caption text-slate">
             © 2026 Nexio Labs. All rights reserved.
           </p>

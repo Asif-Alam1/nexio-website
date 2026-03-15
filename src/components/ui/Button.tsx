@@ -27,7 +27,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = "primary", href, target, rel, className, children, ...props }, ref) => {
     const styles = cn(
-      "inline-flex items-center justify-center gap-2 transition-all duration-hover text-body font-display cursor-pointer",
+      "inline-flex items-center justify-center gap-2 transition-all duration-hover text-body font-display cursor-pointer active:translate-y-[1px]",
       variantStyles[variant],
       className
     );

@@ -112,7 +112,7 @@ export default function Process() {
   return (
     <section id="process" className="bg-midnight noise-overlay overflow-hidden pb-4xl md:pb-0">
       {/* Header — sits above the pinned scroll area */}
-      <div className="relative z-10 max-w-7xl mx-auto px-m lg:px-2xl pt-4xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-4xl">
         <SectionHeader
           label="HOW WE WORK"
           title="From Vision to Digital Reality."
@@ -124,7 +124,7 @@ export default function Process() {
       {/* ── Desktop horizontal scroll (md+) ── */}
       <div
         ref={wrapperRef}
-        className="relative z-10 hidden md:block overflow-hidden"
+        className="relative z-10 hidden md:block overflow-hidden min-h-[70vh]"
         tabIndex={0}
         role="region"
         aria-roledescription="carousel"
@@ -152,7 +152,7 @@ export default function Process() {
 
         {/* Progress dots */}
         <div
-          className="absolute bottom-8 left-0 right-0 flex items-center justify-center gap-s z-10"
+          className="absolute bottom-12 left-0 right-0 flex items-center justify-center gap-s z-10"
           aria-hidden="true"
         >
           {steps.map((s, i) => (

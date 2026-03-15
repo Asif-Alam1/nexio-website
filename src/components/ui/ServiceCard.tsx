@@ -54,7 +54,7 @@ export default function ServiceCard({
   return (
     <motion.div
       variants={cardVariants}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={cn("h-full", className)}
       style={{ perspective: "800px" }}
     >
@@ -69,7 +69,7 @@ export default function ServiceCard({
         }}
         className={cn(
           "relative h-full overflow-hidden rounded-card border bg-white p-xl",
-          "transition-shadow duration-hover",
+          "transition-shadow duration-hover active:translate-y-[1px]",
           isHovering
             ? "border-blue/30 shadow-lg"
             : "border-border shadow-sm"

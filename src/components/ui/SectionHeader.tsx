@@ -24,8 +24,11 @@ export default function SectionHeader({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20%" }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
+      {!centered && (
+        <div className="w-8 h-[2px] bg-blue mb-s" aria-hidden="true" />
+      )}
       <p
         className={cn(
           "font-mono text-label uppercase tracking-[0.14em] mb-s",

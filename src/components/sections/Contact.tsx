@@ -9,7 +9,7 @@ import { WHATSAPP_URL, CONTACT_EMAIL } from "@/lib/constants";
 
 export default function Contact() {
   return (
-    <section id="contact" className="noise-overlay bg-midnight py-4xl overflow-hidden">
+    <section id="contact" className="relative noise-overlay bg-midnight py-4xl overflow-hidden">
       {/* Radial gradient orb — positioned LEFT */}
       <div
         className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-40 hidden md:block"
@@ -19,7 +19,7 @@ export default function Contact() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-m lg:px-2xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3xl">
           {/* Left column */}
           <motion.div

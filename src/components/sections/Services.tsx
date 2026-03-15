@@ -52,7 +52,7 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="bg-cloud py-4xl">
-      <div className="max-w-7xl mx-auto px-m lg:px-2xl">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
           label="OUR SERVICES"
           title="What We Build"

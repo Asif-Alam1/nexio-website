@@ -18,16 +18,15 @@ export default function TeamCard({ name, role, bio, initial, image, linkedinUrl 
   return (
     <motion.div
       className={cn(
-        "glass-light",
-        "bg-white/70 backdrop-blur-xl rounded-panel border border-white/50 shadow-lg",
+        "bg-white rounded-panel border border-border shadow-sm",
         "p-xl text-center",
         "transition-all duration-hover",
-        "hover:ring-1 hover:ring-blue/20"
+        "hover:shadow-md"
       )}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Photo */}
       <div className="flex justify-center mb-l">
@@ -37,7 +36,7 @@ export default function TeamCard({ name, role, bio, initial, image, linkedinUrl 
             alt={name}
             width={120}
             height={120}
-            className="rounded-full ring-2 ring-border object-cover w-[120px] h-[120px]"
+            className="rounded-full ring-2 ring-border object-cover object-top w-[120px] h-[120px]"
             priority={false}
           />
         ) : (
