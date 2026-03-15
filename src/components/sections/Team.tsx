@@ -7,7 +7,7 @@ import TeamCard from "@/components/ui/TeamCard";
 const team = [
   {
     name: "Asif Alam",
-    role: "Co-Founder & Lead Developer",
+    role: "Co-Founder & Lead Engineer",
     bio: "Writes the code, architects the systems, and makes sure every pixel works. Believes great technology should feel invisible.",
     initial: "A",
     image: "/images/team/asif.jpeg",
