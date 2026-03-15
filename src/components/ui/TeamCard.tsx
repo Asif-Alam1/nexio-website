@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -9,10 +10,11 @@ interface TeamCardProps {
   role: string;
   bio: string;
   initial: string;
+  image?: string;
   linkedinUrl?: string;
 }
 
-export default function TeamCard({ name, role, bio, initial, linkedinUrl }: TeamCardProps) {
+export default function TeamCard({ name, role, bio, initial, image, linkedinUrl }: TeamCardProps) {
   return (
     <motion.div
       className={cn(
@@ -27,11 +29,22 @@ export default function TeamCard({ name, role, bio, initial, linkedinUrl }: Team
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      {/* Photo placeholder */}
+      {/* Photo */}
       <div className="flex justify-center mb-l">
-        <div className="bg-midnight rounded-full ring-2 ring-border flex items-center justify-center w-[120px] h-[120px]">
-          <span className="font-display text-h1 text-white font-bold">{initial}</span>
-        </div>
+        {image ? (
+          <Image
+            src={image}
+            alt={name}
+            width={120}
+            height={120}
+            className="rounded-full ring-2 ring-border object-cover w-[120px] h-[120px]"
+            priority={false}
+          />
+        ) : (
+          <div className="bg-midnight rounded-full ring-2 ring-border flex items-center justify-center w-[120px] h-[120px]">
+            <span className="font-display text-h1 text-white font-bold">{initial}</span>
+          </div>
+        )}
       </div>
 
       {/* Name */}

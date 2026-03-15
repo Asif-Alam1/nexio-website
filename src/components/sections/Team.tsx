@@ -10,12 +10,14 @@ const team = [
     role: "Co-Founder & Lead Developer",
     bio: "Writes the code, architects the systems, and makes sure every pixel works. Believes great technology should feel invisible.",
     initial: "A",
+    image: "/images/team/asif.jpeg",
   },
   {
     name: "Joseph Attieh",
     role: "Co-Founder & Business Development",
     bio: "Finds the right clients, shapes the right projects, and makes sure every partnership creates real value.",
     initial: "J",
+    image: "/images/team/joseph.jpeg",
   },
 ];
 
