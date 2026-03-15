@@ -1,13 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "@/components/ui/SectionHeader";
-import ProcessPanel from "@/components/ui/ProcessPanel";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -43,156 +37,65 @@ const steps = [
 ];
 
 export default function Process() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      const container = containerRef.current;
-      const wrapper = wrapperRef.current;
-
-      if (!container || !wrapper) return;
-
-      const totalWidth = container.scrollWidth - wrapper.clientWidth;
-
-      const st = gsap.to(container, {
-        x: -totalWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrapper,
-          pin: true,
-          scrub: 1,
-          end: () => `+=${totalWidth}`,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const index = Math.round(self.progress * (steps.length - 1));
-            setActiveIndex(index);
-          },
-        },
-      });
-
-      return () => {
-        st.scrollTrigger?.kill();
-        st.kill();
-      };
-    });
-
-    return () => mm.revert();
-  }, []);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    const panelWidth = window.innerWidth * 0.8;
-
-    if (e.key === "ArrowRight" && activeIndex < steps.length - 1) {
-      e.preventDefault();
-      window.scrollBy({ top: panelWidth, behavior: "smooth" });
-    }
-
-    if (e.key === "ArrowLeft" && activeIndex > 0) {
-      e.preventDefault();
-      window.scrollBy({ top: -panelWidth, behavior: "smooth" });
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 32 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, delay: i * 0.1 },
-    }),
-  };
-
   return (
-    <section id="process" className="bg-midnight noise-overlay overflow-hidden pb-4xl md:pb-0">
-      {/* Header — sits above the pinned scroll area */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-4xl">
+    <section id="process" className="noise-overlay relative bg-midnight py-4xl overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
           label="HOW WE WORK"
           title="From Vision to Digital Reality."
           dark
           centered={false}
         />
-      </div>
 
-      {/* ── Desktop horizontal scroll (md+) ── */}
-      <div
-        ref={wrapperRef}
-        className="relative z-10 hidden md:block overflow-hidden min-h-[70vh]"
-        tabIndex={0}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label="Our process"
-        onKeyDown={handleKeyDown}
-      >
-        {/* Flex strip of panels */}
-        <div
-          ref={containerRef}
-          className="flex flex-nowrap will-change-transform"
-          style={{ paddingLeft: "max(2rem, calc((100vw - 80vw) / 2))" }}
-        >
+        {/* Process grid */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
           {steps.map((s, i) => (
-            <ProcessPanel
+            <motion.div
               key={s.step}
-              step={s.step}
-              title={s.title}
-              description={s.description}
-              isActive={i === activeIndex}
-            />
-          ))}
-          {/* Trailing spacer so last panel can fully scroll into view */}
-          <div className="flex-shrink-0 w-[10vw]" aria-hidden="true" />
-        </div>
-
-        {/* Progress dots */}
-        <div
-          className="absolute bottom-12 left-0 right-0 flex items-center justify-center gap-s z-10"
-          aria-hidden="true"
-        >
-          {steps.map((s, i) => (
-            <div
-              key={s.step}
-              className="w-2 h-2 rounded-full transition-all duration-300"
-              style={{
-                backgroundColor: i === activeIndex ? "#2563EB" : "transparent",
-                border: i === activeIndex ? "none" : "1px solid rgba(37,99,235,0.3)",
+              className="relative group"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-5%" }}
+              transition={{
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+                delay: i * 0.08,
               }}
-            />
+            >
+              {/* Connector line — between cards on desktop, below on mobile */}
+              {i < steps.length - 1 && (
+                <>
+                  {/* Desktop: horizontal line to next card */}
+                  <div className="hidden md:block absolute top-6 right-0 w-full h-[1px] bg-white/[0.06] -z-0" />
+                  {/* Mobile: vertical line to next card */}
+                  <div className="md:hidden absolute left-[15px] top-12 bottom-0 w-[1px] bg-white/[0.06]" />
+                </>
+              )}
+
+              <div className="relative z-10 py-6 md:py-0 md:pr-8 lg:pr-10">
+                {/* Step number */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex-shrink-0 w-[32px] h-[32px] rounded-full border border-blue/30 flex items-center justify-center bg-midnight">
+                    <span className="font-mono text-[11px] text-blue font-medium">
+                      {s.step}
+                    </span>
+                  </div>
+                  <div className="hidden md:block flex-1 h-[1px] bg-white/[0.06]" />
+                </div>
+
+                {/* Title */}
+                <h3 className="font-display text-h3 text-white font-semibold mb-2 pl-0 md:pl-0">
+                  {s.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-light leading-relaxed pl-0 md:pl-0">
+                  {s.description}
+                </p>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* ── Mobile stacked cards (< md) ── */}
-      <div className="relative z-10 md:hidden px-m pb-4xl pt-l">
-        {steps.map((s, i) => (
-          <motion.div
-            key={s.step}
-            className="flex flex-col gap-m border border-blue/10 rounded-panel p-2xl mb-l last:mb-0 bg-midnight-deep/50"
-            custom={i}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-5%" }}
-          >
-            <span className="font-mono text-label uppercase tracking-[0.14em] text-blue">
-              STEP {s.step}
-            </span>
-            <div className="flex items-center gap-m">
-              <span className="font-display text-[56px] font-extrabold text-blue opacity-[0.08] leading-none select-none">
-                {s.step}
-              </span>
-              <div className="w-[2px] h-8 bg-blue flex-shrink-0" />
-              <h3 className="font-display text-h2 text-white font-bold">{s.title}</h3>
-            </div>
-            <p className="text-body text-slate-light leading-relaxed">{s.description}</p>
-          </motion.div>
-        ))}
       </div>
     </section>
   );
