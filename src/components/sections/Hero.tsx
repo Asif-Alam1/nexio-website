@@ -106,7 +106,7 @@ export default function Hero() {
             {/* The dot — Nexio's signature */}
             <span className="inline-block overflow-hidden">
               <motion.span
-                className="inline-block relative"
+                className="inline-block"
                 initial={{ y: "110%" }}
                 animate={isInView ? { y: "0%" } : {}}
                 transition={{
@@ -115,10 +115,19 @@ export default function Hero() {
                   delay: 0.3 + 4 * 0.06,
                 }}
               >
-                <span className="text-blue relative">
+                <span className="text-blue relative inline-block">
                   .
-                  {/* Glow behind the dot */}
-                  <span className="absolute inset-0 blur-xl bg-blue/30 rounded-full scale-[3]" />
+                  {/* Circular glow behind the dot — sized explicitly, not inset */}
+                  <span
+                    className="absolute rounded-full bg-blue/25 blur-2xl pointer-events-none"
+                    style={{
+                      width: "0.6em",
+                      height: "0.6em",
+                      bottom: "0.18em",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  />
                 </span>
               </motion.span>
             </span>
@@ -178,15 +187,18 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Scroll line indicator ── */}
+      {/* ── Scroll indicator — centered ── */}
       <motion.div
-        className="absolute bottom-10 left-6 md:left-10 lg:left-16 flex items-center gap-3 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ delay: 1.8, duration: 0.5 }}
       >
+        <span className="font-mono text-[10px] text-white/25 uppercase tracking-[0.2em]">
+          Scroll
+        </span>
         <motion.span
-          className="block w-[1px] h-8 bg-white/20 origin-top"
+          className="block w-[1px] h-6 bg-white/20 origin-top"
           animate={{ scaleY: [0, 1, 0] }}
           transition={{
             duration: 2,
@@ -194,9 +206,6 @@ export default function Hero() {
             ease: "easeInOut",
           }}
         />
-        <span className="font-mono text-[10px] text-white/30 uppercase tracking-[0.16em]">
-          Scroll
-        </span>
       </motion.div>
     </section>
   );
