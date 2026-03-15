@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import CustomCursor from "@/components/layout/CustomCursor";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
+import Hero from "@/components/sections/Hero";
 
 export default function Home() {
   return (
@@ -10,9 +11,7 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
       <main>
-        <section id="hero" className="min-h-screen bg-midnight flex items-center justify-center">
-          <h1 className="text-white font-display text-hero-mobile md:text-hero-tablet lg:text-hero">Nexio.</h1>
-        </section>
+        <Hero />
         <section id="services" className="min-h-screen bg-cloud flex items-center justify-center">
           <h2 className="font-display text-h1 text-midnight">Services</h2>
         </section>
