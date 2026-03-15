@@ -110,9 +110,9 @@ export default function Navbar() {
 
           {/* Hamburger button — mobile only */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none"
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] rounded focus:outline-none focus:ring-2 focus:ring-blue"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
             <span

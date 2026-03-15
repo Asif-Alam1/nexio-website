@@ -13,15 +13,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-orange text-white hover:brightness-[0.92] rounded-button py-3 px-6 font-semibold",
+    "bg-orange text-white hover:brightness-[0.92] rounded-button py-3 px-6 font-semibold focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2",
   secondary:
-    "border border-white/30 text-white hover:bg-white/10 rounded-button py-3 px-6 font-semibold",
+    "border border-white/30 text-white hover:bg-white/10 rounded-button py-3 px-6 font-semibold focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-midnight",
   ghost:
-    "border border-border text-midnight hover:bg-blue-tint rounded-button py-3 px-6 font-medium",
+    "border border-border text-midnight hover:bg-blue-tint rounded-button py-3 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2",
   whatsapp:
-    "bg-green text-white hover:brightness-[0.92] rounded-button py-3 px-6 font-semibold",
+    "bg-green text-white hover:brightness-[0.92] rounded-button py-3 px-6 font-semibold focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2",
   submit:
-    "bg-blue text-white hover:brightness-[0.92] rounded-button py-3 px-6 font-semibold w-full",
+    "bg-blue text-white hover:brightness-[0.92] rounded-button py-3 px-6 font-semibold w-full focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2",
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
