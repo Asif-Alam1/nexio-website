@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 120" width="580" height="120">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="580" height="120" rx="0" fill="#0B1120"/>
+  <text x="20" y="82" font-family="Outfit, 'Poppins', sans-serif" font-weight="800" font-size="72" letter-spacing="-3" fill="#FFFFFF">Nexio</text>
+  <text x="278" y="82" font-family="Outfit, 'Poppins', sans-serif" font-weight="800" font-size="72" fill="#2563EB">.</text>
+  
+</svg>
