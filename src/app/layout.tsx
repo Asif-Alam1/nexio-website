@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Lora, DM_Mono } from "next/font/google";
 import "./globals.css";
+import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -57,7 +58,9 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${lora.variable} ${dmMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+      </body>
     </html>
   );
 }

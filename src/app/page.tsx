@@ -1,32 +1,32 @@
-import Button from "@/components/ui/Button";
-import SectionHeader from "@/components/ui/SectionHeader";
+import Navbar from "@/components/layout/Navbar";
+import ScrollProgress from "@/components/layout/ScrollProgress";
+import CustomCursor from "@/components/layout/CustomCursor";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <section className="bg-midnight py-4xl noise-overlay">
-        <div className="relative z-10 max-w-5xl mx-auto px-m">
-          <SectionHeader
-            label="Tech Agency · Lebanon & MENA"
-            title="Connect Your Business Online."
-            subtitle="We build websites, e-commerce platforms, AI chatbots, and automations for Lebanese businesses ready to grow."
-            dark
-          />
-          <div className="flex gap-m justify-center">
-            <Button variant="primary" href="#">Book a Call</Button>
-            <Button variant="secondary">Our Services</Button>
-          </div>
-        </div>
-      </section>
-      <section className="bg-cloud py-4xl">
-        <div className="max-w-5xl mx-auto px-m">
-          <SectionHeader
-            label="Our Services"
-            title="What We Build"
-            subtitle="Everything your business needs online, built with care and precision."
-          />
-        </div>
-      </section>
-    </main>
+    <>
+      <CustomCursor />
+      <ScrollProgress />
+      <Navbar />
+      <main>
+        <section id="hero" className="min-h-screen bg-midnight flex items-center justify-center">
+          <h1 className="text-white font-display text-hero-mobile md:text-hero-tablet lg:text-hero">Nexio.</h1>
+        </section>
+        <section id="services" className="min-h-screen bg-cloud flex items-center justify-center">
+          <h2 className="font-display text-h1 text-midnight">Services</h2>
+        </section>
+        <section id="process" className="min-h-screen bg-midnight flex items-center justify-center">
+          <h2 className="font-display text-h1 text-white">Process</h2>
+        </section>
+        <section id="team" className="min-h-screen bg-cloud flex items-center justify-center">
+          <h2 className="font-display text-h1 text-midnight">Team</h2>
+        </section>
+        <section id="contact" className="min-h-screen bg-midnight flex items-center justify-center">
+          <h2 className="font-display text-h1 text-white">Contact</h2>
+        </section>
+      </main>
+      <FloatingWhatsApp />
+    </>
   );
 }
