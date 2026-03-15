@@ -34,37 +34,52 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="noise-overlay relative min-h-screen bg-midnight flex flex-col justify-center overflow-hidden pt-16"
+      className="noise-overlay relative min-h-screen bg-midnight flex flex-col justify-center overflow-hidden pt-20 pb-16"
     >
       {/* ── Atmosphere ── */}
       <motion.div
-        className="pointer-events-none absolute right-[-15%] top-[30%] -translate-y-1/2 w-[900px] h-[900px] hidden md:block"
+        className="pointer-events-none absolute right-[-10%] top-[35%] -translate-y-1/2 w-[800px] h-[800px] hidden md:block"
         style={{
           x: orbX,
           y: orbY,
           background:
-            "radial-gradient(circle at center, rgba(37,99,235,0.06) 0%, rgba(21,29,51,0.6) 30%, transparent 60%)",
+            "radial-gradient(circle at center, rgba(37,99,235,0.06) 0%, rgba(21,29,51,0.5) 30%, transparent 60%)",
         }}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
+      {/* ── Vertical accent text — right edge ── */}
+      <motion.div
+        className="pointer-events-none select-none absolute right-6 md:right-10 lg:right-16 top-1/2 -translate-y-1/2 hidden lg:block z-10"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span
+          className="font-mono text-[11px] text-white/[0.08] uppercase tracking-[0.3em] block"
+          style={{ writingMode: "vertical-rl" }}
+        >
+          Connect · Build · Grow
+        </span>
+      </motion.div>
+
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
         {/* Headline — the hero IS the type */}
-        <h1 className="font-display font-extrabold tracking-[-0.04em] leading-[0.92] text-white mb-10 md:mb-12">
+        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-12 md:mb-16">
           {WORDS_LINE1.map((word, i) => (
-            <span key={word} className="inline-block overflow-hidden mr-[0.22em]">
+            <span key={word} className="inline-block overflow-hidden mr-[0.2em] pr-[0.04em]">
               <motion.span
                 className="inline-block"
-                initial={{ y: "110%" }}
+                initial={{ y: "115%" }}
                 animate={isInView ? { y: "0%" } : {}}
                 transition={{
-                  duration: 0.8,
+                  duration: 0.9,
                   ease: [0.16, 1, 0.3, 1],
-                  delay: 0.2 + i * 0.06,
+                  delay: 0.15 + i * 0.07,
                 }}
               >
                 {word}
@@ -72,15 +87,15 @@ export default function Hero() {
             </span>
           ))}
           <br className="hidden md:block" />
-          <span className="inline-block overflow-hidden mr-[0.15em]">
+          <span className="inline-block overflow-hidden mr-[0.12em] pr-[0.04em]">
             <motion.span
               className="inline-block"
-              initial={{ y: "110%" }}
+              initial={{ y: "115%" }}
               animate={isInView ? { y: "0%" } : {}}
               transition={{
-                duration: 0.8,
+                duration: 0.9,
                 ease: [0.16, 1, 0.3, 1],
-                delay: 0.38,
+                delay: 0.36,
               }}
             >
               {WORD_LINE2}
@@ -89,12 +104,12 @@ export default function Hero() {
           <span className="inline-block overflow-hidden">
             <motion.span
               className="inline-block text-blue"
-              initial={{ y: "110%" }}
-              animate={isInView ? { y: "0%" } : {}}
+              initial={{ y: "115%", scale: 0.8 }}
+              animate={isInView ? { y: "0%", scale: 1 } : {}}
               transition={{
-                duration: 0.8,
+                duration: 0.9,
                 ease: [0.16, 1, 0.3, 1],
-                delay: 0.44,
+                delay: 0.43,
               }}
             >
               .
@@ -102,25 +117,49 @@ export default function Hero() {
           </span>
           <style jsx>{`
             h1 {
-              font-size: clamp(2.75rem, 7.5vw + 0.5rem, 6.5rem);
+              font-size: clamp(3rem, 8vw + 0.5rem, 7.5rem);
             }
           `}</style>
         </h1>
 
-        {/* Bottom row */}
+        {/* Stat strip — social proof, adds rhythm between headline and CTAs */}
         <motion.div
-          className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-12 pt-8 md:pt-10 border-t border-white/[0.06]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+          className="flex flex-wrap items-center gap-x-8 md:gap-x-12 gap-y-3 mb-10 md:mb-12"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
         >
-          {/* Subtext */}
+          {[
+            { value: "14+", label: "Projects Delivered" },
+            { value: "3 Wk", label: "Average Launch" },
+            { value: "100%", label: "Client Retention" },
+          ].map((stat, i) => (
+            <div key={stat.label} className="flex items-baseline gap-2.5">
+              {i > 0 && (
+                <span className="hidden md:block w-[1px] h-4 bg-white/10 -ml-4 md:-ml-6 mr-4 md:mr-6" />
+              )}
+              <span className="font-display font-bold text-xl md:text-2xl text-white">
+                {stat.value}
+              </span>
+              <span className="font-mono text-[10px] md:text-[11px] text-white/40 uppercase tracking-[0.1em]">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Bottom row — subtext + CTAs */}
+        <motion.div
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12 pt-8 border-t border-white/[0.06]"
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
+        >
           <p className="text-body-lg text-slate-light max-w-[420px] leading-relaxed">
             We build websites, e&#8209;commerce platforms, AI&nbsp;chatbots,
             and automations for Lebanese businesses ready to&nbsp;grow.
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-shrink-0">
             <a
               href={WHATSAPP_URL}
