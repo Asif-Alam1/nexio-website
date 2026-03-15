@@ -47,13 +47,16 @@ export default function Process() {
           centered={false}
         />
 
-        {/* Process grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
+        {/* Timeline */}
+        <div className="relative max-w-3xl">
+          {/* Vertical line */}
+          <div className="absolute left-[23px] md:left-[39px] top-0 bottom-0 w-[1px] bg-white/[0.06]" />
+
           {steps.map((s, i) => (
             <motion.div
               key={s.step}
-              className="relative group"
-              initial={{ opacity: 0, y: 24 }}
+              className="relative flex gap-6 md:gap-10 pb-12 last:pb-0"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-5%" }}
               transition={{
@@ -62,34 +65,21 @@ export default function Process() {
                 delay: i * 0.08,
               }}
             >
-              {/* Connector line — between cards on desktop, below on mobile */}
-              {i < steps.length - 1 && (
-                <>
-                  {/* Desktop: horizontal line to next card */}
-                  <div className="hidden md:block absolute top-6 right-0 w-full h-[1px] bg-white/[0.06] -z-0" />
-                  {/* Mobile: vertical line to next card */}
-                  <div className="md:hidden absolute left-[15px] top-12 bottom-0 w-[1px] bg-white/[0.06]" />
-                </>
-              )}
-
-              <div className="relative z-10 py-6 md:py-0 md:pr-8 lg:pr-10">
-                {/* Step number */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex-shrink-0 w-[32px] h-[32px] rounded-full border border-blue/30 flex items-center justify-center bg-midnight">
-                    <span className="font-mono text-[11px] text-blue font-medium">
-                      {s.step}
-                    </span>
-                  </div>
-                  <div className="hidden md:block flex-1 h-[1px] bg-white/[0.06]" />
+              {/* Step number */}
+              <div className="relative flex-shrink-0">
+                <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/10 bg-midnight flex items-center justify-center">
+                  <span className="font-display font-bold text-lg md:text-2xl text-white/20">
+                    {s.step}
+                  </span>
                 </div>
+              </div>
 
-                {/* Title */}
-                <h3 className="font-display text-h3 text-white font-semibold mb-2 pl-0 md:pl-0">
+              {/* Content */}
+              <div className="pt-1 md:pt-4">
+                <h3 className="font-display text-h2 text-white font-bold mb-2">
                   {s.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-sm text-slate-light leading-relaxed pl-0 md:pl-0">
+                <p className="text-body text-slate-light leading-relaxed max-w-md">
                   {s.description}
                 </p>
               </div>
