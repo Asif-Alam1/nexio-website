@@ -6,6 +6,9 @@ import { ArrowRight } from "lucide-react";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { WHATSAPP_URL } from "@/lib/constants";
 
+const WORDS_LINE1 = ["Connect", "Your", "Business"];
+const WORD_LINE2 = "Online";
+
 export default function Hero() {
   const { position, isTouch } = useMousePosition();
   const sectionRef = useRef<HTMLElement>(null);
@@ -31,7 +34,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="noise-overlay relative min-h-screen bg-midnight flex flex-col justify-center overflow-hidden"
+      className="noise-overlay relative min-h-screen bg-midnight flex flex-col justify-center overflow-hidden pt-16"
     >
       {/* ── Atmosphere ── */}
       <motion.div
@@ -49,47 +52,11 @@ export default function Hero() {
 
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
-        {/* Act 1: Label — wipes in from left */}
-      
 
-        {/* Act 2: Headline — full width, the type IS the design */}
-        <div className="mb-8 md:mb-14">
-          <h1 className="font-display font-extrabold tracking-[-0.04em] leading-[0.95] text-white">
-            {["Connect", "Your", "Business"].map((word, i) => (
-              <span key={word} className="inline-block overflow-hidden mr-[0.25em]">
-                <motion.span
-                  className="inline-block"
-                  initial={{ y: "110%" }}
-                  animate={isInView ? { y: "0%" } : {}}
-                  transition={{
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: 0.3 + i * 0.06,
-                  }}
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-            <br className="hidden md:block" />
-            {["Online"].map((word) => (
-              <span key={word} className="inline-block overflow-hidden mr-[0.2em]">
-                <motion.span
-                  className="inline-block"
-                  initial={{ y: "110%" }}
-                  animate={isInView ? { y: "0%" } : {}}
-                  transition={{
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: 0.3 + 3 * 0.06,
-                  }}
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-            {/* The dot — Nexio's signature */}
-            <span className="inline-block overflow-hidden">
+        {/* Headline — the hero IS the type */}
+        <h1 className="font-display font-extrabold tracking-[-0.04em] leading-[0.92] text-white mb-10 md:mb-12">
+          {WORDS_LINE1.map((word, i) => (
+            <span key={word} className="inline-block overflow-hidden mr-[0.22em]">
               <motion.span
                 className="inline-block"
                 initial={{ y: "110%" }}
@@ -97,46 +64,64 @@ export default function Hero() {
                 transition={{
                   duration: 0.8,
                   ease: [0.16, 1, 0.3, 1],
-                  delay: 0.3 + 4 * 0.06,
+                  delay: 0.2 + i * 0.06,
                 }}
               >
-                <span className="text-blue">.</span>
+                {word}
               </motion.span>
             </span>
-          </h1>
+          ))}
+          <br className="hidden md:block" />
+          <span className="inline-block overflow-hidden mr-[0.15em]">
+            <motion.span
+              className="inline-block"
+              initial={{ y: "110%" }}
+              animate={isInView ? { y: "0%" } : {}}
+              transition={{
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.38,
+              }}
+            >
+              {WORD_LINE2}
+            </motion.span>
+          </span>
+          <span className="inline-block overflow-hidden">
+            <motion.span
+              className="inline-block text-blue"
+              initial={{ y: "110%" }}
+              animate={isInView ? { y: "0%" } : {}}
+              transition={{
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.44,
+              }}
+            >
+              .
+            </motion.span>
+          </span>
           <style jsx>{`
             h1 {
-              font-size: clamp(2.75rem, 8vw + 1rem, 7rem);
+              font-size: clamp(2.75rem, 7.5vw + 0.5rem, 6.5rem);
             }
           `}</style>
-        </div>
+        </h1>
 
-        {/* Act 3: Divider draws across, then bottom row appears */}
+        {/* Bottom row */}
         <motion.div
-          className="w-full h-[1px] bg-white/[0.08] mb-8 md:mb-10 origin-left"
-          initial={{ scaleX: 0 }}
-          animate={isInView ? { scaleX: 1 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-        />
-
-        {/* Bottom row: subtext left, CTAs right */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-16">
-          <motion.p
-            className="text-body-lg text-slate-light max-w-md leading-relaxed"
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1.1 }}
-          >
+          className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-12 pt-8 md:pt-10 border-t border-white/[0.06]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+        >
+          {/* Subtext */}
+          <p className="text-body-lg text-slate-light max-w-[420px] leading-relaxed">
             We build websites, e&#8209;commerce platforms, AI&nbsp;chatbots,
             and automations for Lebanese businesses ready to&nbsp;grow.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-shrink-0"
-            initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-          >
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-shrink-0">
             <a
               href={WHATSAPP_URL}
               target="_blank"
@@ -155,28 +140,24 @@ export default function Hero() {
             >
               Our Services
             </button>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* ── Scroll indicator — centered ── */}
+      {/* ── Scroll indicator ── */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay: 1.8, duration: 0.5 }}
+        transition={{ delay: 1.4, duration: 0.5 }}
       >
-        <span className="font-mono text-[10px] text-white/25 uppercase tracking-[0.2em]">
+        <span className="font-mono text-[9px] text-white/20 uppercase tracking-[0.2em]">
           Scroll
         </span>
         <motion.span
-          className="block w-[1px] h-6 bg-white/20 origin-top"
+          className="block w-[1px] h-5 bg-white/15 origin-top"
           animate={{ scaleY: [0, 1, 0] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
     </section>
