@@ -50,22 +50,7 @@ export default function Hero() {
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Act 1: Label — wipes in from left */}
-        <motion.div
-          className="flex items-center gap-4 mb-8 md:mb-12"
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        >
-          <motion.span
-            className="block w-10 md:w-16 h-[1px] bg-blue origin-left"
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          />
-          <span className="font-mono text-label text-blue uppercase tracking-[0.14em]">
-            Tech Agency · Lebanon & MENA
-          </span>
-        </motion.div>
+      
 
         {/* Act 2: Headline — full width, the type IS the design */}
         <div className="mb-8 md:mb-14">
@@ -115,20 +100,7 @@ export default function Hero() {
                   delay: 0.3 + 4 * 0.06,
                 }}
               >
-                <span className="text-blue relative inline-block">
-                  .
-                  {/* Circular glow behind the dot — sized explicitly, not inset */}
-                  <span
-                    className="absolute rounded-full bg-blue/25 blur-2xl pointer-events-none"
-                    style={{
-                      width: "0.6em",
-                      height: "0.6em",
-                      bottom: "0.18em",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                    }}
-                  />
-                </span>
+                <span className="text-blue">.</span>
               </motion.span>
             </span>
           </h1>
