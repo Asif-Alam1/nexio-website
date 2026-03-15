@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-  <defs>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap');
-    </style>
-  </defs>
-  <rect width="120" height="120" rx="28" fill="#2563EB"/>
-  <text x="60" y="82" text-anchor="middle" font-family="Outfit, 'Poppins', sans-serif" font-weight="800" font-size="68" letter-spacing="-3" fill="white">N</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><defs><style>@import url(https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap);</style></defs><rect width="120" height="120" fill="#2563EB" rx="28"/><text x="60" y="82" fill="#fff" font-family="Outfit, 'Poppins', sans-serif" font-size="68" font-weight="800" letter-spacing="-3" text-anchor="middle">N</text></svg>
