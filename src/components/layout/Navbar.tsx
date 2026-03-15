@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { NAV_ITEMS, WHATSAPP_URL } from "@/lib/constants";
+import Logo from "@/components/ui/Logo";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,14 +69,9 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, "#hero")}
             className="flex-shrink-0"
           >
-            <img
-              src={
-                isScrolled
-                  ? "/images/logo/nexio-logo-light-bg.svg"
-                  : "/images/logo/nexio-logo-transparent.svg"
-              }
-              alt="Nexio Labs"
-              className="h-8 w-auto"
+            <Logo
+              variant={isScrolled ? "dark" : "light"}
+              className="text-2xl"
             />
           </a>
 

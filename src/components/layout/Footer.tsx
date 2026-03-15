@@ -1,6 +1,7 @@
 import { Linkedin } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import { NAV_ITEMS, SOCIAL_LINKS } from "@/lib/constants";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   return (
@@ -10,11 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-xl">
           {/* Left — brand */}
           <div className="flex flex-col gap-s">
-            <img
-              src="/images/logo/nexio-logo-transparent.svg"
-              alt="Nexio Labs"
-              className="h-8 w-auto"
-            />
+            <Logo variant="light" className="text-2xl" />
             <p className="font-body text-sm text-slate-light">
               Connect. Build. Grow.
             </p>
@@ -83,7 +80,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-midnight-deep mt-3xl pt-l">
+        <div className="border-t border-white/10 mt-3xl pt-l">
           <p className="font-mono text-caption text-slate">
             © 2026 Nexio Labs. All rights reserved.
           </p>

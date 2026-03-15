@@ -110,7 +110,7 @@ export default function Process() {
   };
 
   return (
-    <section id="process" className="bg-midnight noise-overlay overflow-hidden">
+    <section id="process" className="bg-midnight noise-overlay overflow-hidden pb-4xl md:pb-0">
       {/* Header — sits above the pinned scroll area */}
       <div className="relative z-10 max-w-7xl mx-auto px-m lg:px-2xl pt-4xl">
         <SectionHeader

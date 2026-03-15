@@ -31,14 +31,14 @@ export default function PageLoader() {
         setIsLoading(false);
       }}
     >
-      <motion.img
-        src="/images/logo/nexio-monogram.svg"
-        alt=""
-        className="w-16 h-16"
+      <motion.span
+        className="font-display font-extrabold text-5xl text-white tracking-[-0.04em] select-none"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-      />
+      >
+        N<span className="text-blue">.</span>
+      </motion.span>
     </motion.div>
   );
 }

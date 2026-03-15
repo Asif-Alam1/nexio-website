@@ -45,16 +45,23 @@ export default function Hero() {
       id="hero"
       className="noise-overlay relative min-h-screen bg-midnight flex items-center overflow-hidden"
     >
-      {/* Background gradient orb */}
+      {/* Background gradient orbs */}
       <motion.div
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-0 md:opacity-100 scale-75 md:scale-100"
+        className="pointer-events-none absolute right-[-5%] top-1/2 -translate-y-1/2 w-[700px] h-[700px] opacity-0 md:opacity-100"
         style={{
           x: orbX,
           y: orbY,
-          background: "radial-gradient(circle at center, #151D33 0%, transparent 70%)",
+          background: "radial-gradient(circle at center, rgba(37,99,235,0.08) 0%, #151D33 40%, transparent 70%)",
         }}
         animate={{ opacity: [0, 1] }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+      />
+      {/* Secondary subtle glow */}
+      <div
+        className="pointer-events-none absolute left-[-10%] bottom-[-20%] w-[400px] h-[400px] opacity-30 hidden lg:block"
+        style={{
+          background: "radial-gradient(circle at center, rgba(37,99,235,0.06) 0%, transparent 70%)",
+        }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-m lg:px-2xl w-full">
