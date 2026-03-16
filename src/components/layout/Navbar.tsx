@@ -93,7 +93,7 @@ export default function Navbar() {
           >
             <Logo
               variant={isScrolled ? "dark" : "light"}
-              className="text-2xl"
+              className="text-2xl hover:scale-105 transition-transform duration-200"
             />
           </a>
 

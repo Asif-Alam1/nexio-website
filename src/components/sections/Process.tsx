@@ -89,11 +89,21 @@ export default function Process() {
 
                   {/* Center node */}
                   <div className="relative flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full border border-white/15 bg-midnight flex items-center justify-center relative z-10">
+                    <motion.div
+                      className="w-12 h-12 rounded-full border border-white/15 bg-midnight flex items-center justify-center relative z-10"
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: 0.2 + i * 0.08,
+                      }}
+                    >
                       <span className="font-mono text-[13px] text-blue font-medium">
                         {s.step}
                       </span>
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Right content or empty */}
@@ -114,11 +124,17 @@ export default function Process() {
                 {/* ── Mobile — straight vertical ── */}
                 <div className="md:hidden flex gap-5">
                   <div className="relative flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full border border-white/15 bg-midnight flex items-center justify-center relative z-10">
+                    <motion.div
+                      className="w-12 h-12 rounded-full border border-white/15 bg-midnight flex items-center justify-center relative z-10"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                    >
                       <span className="font-mono text-[13px] text-blue font-medium">
                         {s.step}
                       </span>
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="pt-1">
                     <h3 className="font-display text-h3 text-white font-semibold mb-2">

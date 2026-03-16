@@ -1,24 +1,49 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 import { NAV_ITEMS, SOCIAL_LINKS } from "@/lib/constants";
 import Logo from "@/components/ui/Logo";
 
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Footer() {
   return (
     <footer className="bg-midnight-deep">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-3xl pb-xl">
-        {/* 3-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-xl">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-xl"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-5%" }}
+        >
           {/* Left — brand */}
-          <div className="flex flex-col gap-s">
+          <motion.div
+            className="flex flex-col gap-s"
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <Logo variant="light" className="text-2xl" />
             <p className="font-body text-sm text-slate-light">
               Connect. Build. Grow.
             </p>
-          </div>
+          </motion.div>
 
           {/* Middle — navigation */}
-          <div>
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <p className="font-mono text-label uppercase text-blue tracking-[0.14em] mb-m">
               NAVIGATION
             </p>
@@ -27,17 +52,20 @@ export default function Footer() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="font-body text-sm text-slate-light hover:text-white transition-colors duration-hover"
+                    className="font-body text-sm text-slate-light hover:text-white hover:translate-x-1 inline-block transition-all duration-hover"
                   >
                     {item.label}
                   </a>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Right — connect */}
-          <div>
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
             <p className="font-mono text-label uppercase text-blue tracking-[0.14em] mb-m">
               CONNECT
             </p>
@@ -47,9 +75,9 @@ export default function Footer() {
                   href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-colors duration-hover"
+                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover"
                 >
-                  <Linkedin size={16} />
+                  <Linkedin size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
                   LinkedIn
                 </a>
               </li>
@@ -58,9 +86,9 @@ export default function Footer() {
                   href={SOCIAL_LINKS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-colors duration-hover"
+                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover"
                 >
-                  <FaInstagram size={16} />
+                  <FaInstagram size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
                   Instagram
                 </a>
               </li>
@@ -69,22 +97,28 @@ export default function Footer() {
                   href={SOCIAL_LINKS.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-colors duration-hover"
+                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover"
                 >
-                  <FaWhatsapp size={16} />
+                  <FaWhatsapp size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
                   WhatsApp
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-4xl pt-l">
+        <motion.div
+          className="border-t border-white/10 mt-4xl pt-l"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <p className="font-mono text-caption text-slate">
             © 2026 Nexio Labs. All rights reserved.
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
