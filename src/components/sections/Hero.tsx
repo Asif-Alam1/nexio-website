@@ -131,7 +131,7 @@ export default function Hero() {
         >
           {[
             { value: "10+", label: "Projects Delivered" },
-            { value: "3 Wk", label: "Average Launch" },
+            { value: "5+", label: "Industries Served" },
             { value: "90%", label: "Client Retention" },
           ].map((stat, i) => (
             <div key={stat.label} className="flex items-baseline gap-2.5">
