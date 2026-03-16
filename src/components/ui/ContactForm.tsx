@@ -71,7 +71,7 @@ export default function ContactForm() {
             type="text"
             required
             className={cn(
-              "peer w-full bg-white/5 border rounded-input px-4 pt-5 pb-2 text-white text-body outline-none focus:ring-2 focus:ring-blue transition-all duration-focus",
+              "peer w-full bg-white/5 border rounded-input px-4 pt-5 pb-2 !text-white text-body outline-none focus:ring-2 focus:ring-blue transition-all duration-focus caret-white",
               state.fieldErrors?.name
                 ? "border-red focus:ring-red"
                 : "border-white/10"
@@ -100,7 +100,7 @@ export default function ContactForm() {
             type="email"
             required
             className={cn(
-              "peer w-full bg-white/5 border rounded-input px-4 pt-5 pb-2 text-white text-body outline-none focus:ring-2 focus:ring-blue transition-all duration-focus",
+              "peer w-full bg-white/5 border rounded-input px-4 pt-5 pb-2 !text-white text-body outline-none focus:ring-2 focus:ring-blue transition-all duration-focus caret-white",
               state.fieldErrors?.email
                 ? "border-red focus:ring-red"
                 : "border-white/10"
@@ -129,7 +129,7 @@ export default function ContactForm() {
             rows={4}
             required
             className={cn(
-              "peer w-full bg-white/5 border rounded-input px-4 pt-5 pb-2 text-white text-body outline-none focus:ring-2 focus:ring-blue transition-all duration-focus resize-none",
+              "peer w-full bg-white/5 border rounded-input px-4 pt-5 pb-2 !text-white text-body outline-none focus:ring-2 focus:ring-blue transition-all duration-focus caret-white resize-none",
               state.fieldErrors?.message
                 ? "border-red focus:ring-red"
                 : "border-white/10"

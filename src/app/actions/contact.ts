@@ -37,6 +37,11 @@ export async function submitContactForm(
     return { success: false, fieldErrors };
   }
 
+  if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "re_placeholder") {
+    console.log("Contact form submission (Resend not configured):", { name, email, message });
+    return { success: true };
+  }
+
   try {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "Nexio Website <onboarding@resend.dev>",
