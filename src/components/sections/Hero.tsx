@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useSpring, useInView } from "framer-motion";
+import { motion, useSpring, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { WHATSAPP_URL } from "@/lib/constants";
@@ -13,6 +13,17 @@ export default function Hero() {
   const { position, isTouch } = useMousePosition();
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax: headline drifts up, stats drift up slower
+  const headlineY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const subtextY = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
+  const orbScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
+  const orbOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const orbX = useSpring(0, { stiffness: 30, damping: 30 });
   const orbY = useSpring(0, { stiffness: 30, damping: 30 });
@@ -36,12 +47,16 @@ export default function Hero() {
       id="hero"
       className="noise-overlay relative bg-midnight flex flex-col justify-center overflow-hidden pt-32 pb-16 md:min-h-screen md:pt-20 md:pb-16"
     >
-      {/* ── Atmosphere — desktop only ── */}
+      {/* ── Atmosphere ── */}
+
+      {/* Primary orb — mouse parallax + scroll scale */}
       <motion.div
         className="pointer-events-none absolute right-[-10%] top-[35%] -translate-y-1/2 w-[800px] h-[800px] hidden md:block"
         style={{
           x: orbX,
           y: orbY,
+          scale: orbScale,
+          opacity: orbOpacity,
           background:
             "radial-gradient(circle at center, rgba(37,99,235,0.06) 0%, rgba(21,29,51,0.5) 30%, transparent 60%)",
         }}
@@ -50,13 +65,44 @@ export default function Hero() {
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
- 
+      {/* Secondary orb — slow ambient drift */}
+      <motion.div
+        className="pointer-events-none absolute left-[10%] top-[20%] w-[300px] h-[300px] hidden lg:block"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(37,99,235,0.04) 0%, transparent 70%)",
+        }}
+        animate={{
+          x: [0, 20, -10, 0],
+          y: [0, -15, 10, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Floating accent lines — subtle geometric depth */}
+      <motion.div
+        className="pointer-events-none absolute top-[25%] right-[20%] w-[100px] h-[1px] bg-white/[0.04] hidden lg:block"
+        animate={{ x: [0, 30, 0], opacity: [0.04, 0.08, 0.04] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="pointer-events-none absolute bottom-[30%] right-[35%] w-[60px] h-[1px] bg-blue/[0.06] hidden lg:block rotate-45"
+        animate={{ x: [0, -20, 0], opacity: [0.06, 0.1, 0.06] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
 
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
-        {/* Headline */}
-        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-8 md:mb-16 text-[clamp(2.5rem,10vw,7.5rem)]">
+        {/* Headline — scroll parallax on desktop */}
+        <motion.h1
+          className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-8 md:mb-16 text-[clamp(2.5rem,10vw,7.5rem)]"
+          style={{ y: headlineY }}
+        >
           {WORDS_LINE1.map((word, i) => (
             <span key={word} className="inline-block overflow-hidden mr-[0.2em] pr-[0.04em]">
               <motion.span
@@ -102,9 +148,9 @@ export default function Hero() {
               .
             </motion.span>
           </span>
-        </h1>
+        </motion.h1>
 
-        {/* Subtext — mobile: compact, desktop: in bottom row */}
+        {/* Mobile subtext */}
         <motion.p
           className="text-sm md:hidden text-slate-light leading-relaxed mb-5 max-w-[320px]"
           initial={{ opacity: 0 }}
@@ -114,7 +160,7 @@ export default function Hero() {
           Websites, apps, AI chatbots & automations for Lebanese businesses ready to grow.
         </motion.p>
 
-        {/* CTAs — mobile: side by side, compact */}
+        {/* Mobile CTAs */}
         <motion.div
           className="flex gap-3 mb-8 md:hidden"
           initial={{ opacity: 0, y: 12 }}
@@ -138,12 +184,13 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* Stats — mobile: horizontal compact, desktop: full */}
+        {/* Stats — parallax at slower rate */}
         <motion.div
           className="flex items-center gap-4 md:gap-x-12 md:flex-wrap mb-0 md:mb-12"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+          style={{ y: subtextY }}
         >
           {[
             { value: "10+", label: "Projects" },
@@ -164,38 +211,47 @@ export default function Hero() {
           ))}
         </motion.div>
 
-        {/* Desktop bottom row — subtext + CTAs */}
-        <motion.div
-          className="hidden md:flex md:items-end md:justify-between gap-12 pt-8 border-t border-white/[0.06]"
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-        >
-          <p className="text-body-lg text-slate-light max-w-[420px] leading-relaxed">
-            Empowering Lebanese businesses with high-performance websites, cross-platform apps, and smart AI automations designed for growth.
-          </p>
+        {/* Desktop bottom row — divider draws, then content fades */}
+        <div className="hidden md:block">
+          <motion.div
+            className="w-full h-[1px] bg-white/[0.08] origin-left"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
+          />
+          <motion.div
+            className="flex items-end justify-between gap-12 pt-8"
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.0 }}
+            style={{ y: subtextY }}
+          >
+            <p className="text-body-lg text-slate-light max-w-[420px] leading-relaxed">
+              Empowering Lebanese businesses with high-performance websites, cross-platform apps, and smart AI automations designed for growth.
+            </p>
 
-          <div className="flex gap-4 flex-shrink-0">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2.5 bg-orange text-white font-display font-semibold text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:brightness-[0.92] active:translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-orange/50 focus:ring-offset-2 focus:ring-offset-midnight"
-            >
-              Book a Call
-              <ArrowRight
-                size={15}
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </a>
-            <button
-              onClick={scrollToServices}
-              className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/80 font-display font-medium text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white hover:bg-white/[0.04] active:translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-midnight"
-            >
-              Our Services
-            </button>
-          </div>
-        </motion.div>
+            <div className="flex gap-4 flex-shrink-0">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2.5 bg-orange text-white font-display font-semibold text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:brightness-[0.92] active:translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-orange/50 focus:ring-offset-2 focus:ring-offset-midnight"
+              >
+                Book a Call
+                <ArrowRight
+                  size={15}
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                />
+              </a>
+              <button
+                onClick={scrollToServices}
+                className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/80 font-display font-medium text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white hover:bg-white/[0.04] active:translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-midnight"
+              >
+                Our Services
+              </button>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* ── Scroll indicator — desktop only ── */}
