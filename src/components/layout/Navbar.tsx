@@ -126,14 +126,14 @@ export default function Navbar() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-orange rounded-pill text-white font-display font-semibold text-sm py-2 px-5 transition-all duration-hover hover:brightness-90 active:translate-y-[1px]"
+              className="bg-orange rounded-pill text-white font-display font-semibold text-sm py-2.5 px-5 transition-all duration-hover hover:brightness-90 active:translate-y-[1px]"
             >
               Book a Call
             </a>
           </div>
 
           <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] rounded focus:outline-none focus:ring-2 focus:ring-blue"
+            className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[5px] rounded focus:outline-none focus:ring-2 focus:ring-blue"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
@@ -191,7 +191,7 @@ export default function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-orange rounded-pill text-white font-display font-semibold text-base py-3 px-8 transition-all duration-hover hover:brightness-90"
+          className="bg-orange rounded-pill text-white font-display font-semibold text-base py-2.5 px-8 transition-all duration-hover hover:brightness-90"
           tabIndex={mobileMenuOpen ? 0 : -1}
         >
           Book a Call

@@ -61,7 +61,7 @@ export default function Process() {
             return (
               <motion.div
                 key={s.step}
-                className="relative pb-16 last:pb-0"
+                className="relative pb-10 md:pb-16 last:pb-0"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-5%" }}

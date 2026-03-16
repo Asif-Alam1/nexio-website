@@ -26,7 +26,7 @@ export default function Contact() {
               centered={false}
             />
 
-            <p className="text-body-lg text-slate mb-xl -mt-m max-w-md">
+            <p className="text-body-lg text-slate mb-xl max-w-md">
               Tell us about your project. We&apos;ll get back to you within 24 hours.
             </p>
 

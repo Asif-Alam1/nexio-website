@@ -96,7 +96,7 @@ export default function Hero() {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
         {/* Headline — scroll parallax on desktop */}
         <motion.h1
@@ -171,14 +171,14 @@ export default function Hero() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-orange text-white font-display font-semibold text-sm py-3 px-5 rounded-button transition-all duration-200 hover:brightness-[0.92] active:translate-y-[1px]"
+            className="inline-flex items-center justify-center gap-2 bg-orange text-white font-display font-semibold text-sm py-3.5 px-5 rounded-button transition-all duration-200 hover:brightness-[0.92] active:translate-y-[1px]"
           >
             Book a Call
             <ArrowRight size={14} />
           </a>
           <button
             onClick={scrollToServices}
-            className="inline-flex items-center justify-center border border-white/20 text-white/80 font-display font-medium text-sm py-3 px-5 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white active:translate-y-[1px]"
+            className="inline-flex items-center justify-center border border-white/20 text-white/80 font-display font-medium text-sm py-3.5 px-5 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white active:translate-y-[1px]"
           >
             Services
           </button>
@@ -204,7 +204,7 @@ export default function Hero() {
               <span className="font-display font-bold text-base md:text-2xl text-white tabular-nums">
                 {stat.value}
               </span>
-              <span className="font-mono text-[9px] md:text-[11px] text-white/40 uppercase tracking-[0.08em] md:tracking-[0.1em]">
+              <span className="font-mono text-[11px] text-white/40 uppercase tracking-[0.08em] md:tracking-[0.1em]">
                 {stat.label}
               </span>
             </div>

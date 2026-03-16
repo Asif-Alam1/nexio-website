@@ -61,7 +61,7 @@ export default function TeamCard({ name, role, bio, initial, image, linkedinUrl 
           href={linkedinUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center text-slate hover:text-blue transition-colors duration-hover"
+          className="inline-flex items-center justify-center text-slate hover:text-blue transition-colors duration-hover p-2"
           aria-label={`${name} on LinkedIn`}
         >
           <Linkedin size={18} />

@@ -62,7 +62,7 @@ export default function Footer() {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="font-body text-sm text-slate-light hover:text-white hover:translate-x-1 inline-block transition-all duration-hover"
+                    className="font-body text-sm text-slate-light hover:text-white hover:translate-x-1 inline-block transition-all duration-hover py-1"
                   >
                     {item.label}
                   </a>
@@ -85,7 +85,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover"
+                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover py-1.5"
                 >
                   <Linkedin size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
                   LinkedIn
@@ -96,7 +96,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover"
+                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover py-1.5"
                 >
                   <FaInstagram size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
                   Instagram
@@ -107,7 +107,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover"
+                  className="group inline-flex items-center gap-2 text-sm text-slate-light hover:text-blue transition-all duration-hover py-1.5"
                 >
                   <FaWhatsapp size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
                   WhatsApp
