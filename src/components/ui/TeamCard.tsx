@@ -19,7 +19,7 @@ export default function TeamCard({ name, role, bio, initial, image, linkedinUrl 
     <motion.div
       className={cn(
         "bg-white rounded-panel border border-border shadow-sm",
-        "p-xl text-center",
+        "p-xl text-center h-full",
         "transition-all duration-hover",
         "hover:shadow-md"
       )}

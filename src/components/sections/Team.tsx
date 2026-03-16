@@ -56,7 +56,7 @@ export default function Team() {
             viewport={{ once: true, margin: "-10%" }}
           >
             {team.map((member) => (
-              <div key={member.name}>
+              <div key={member.name} className="h-full">
                 <TeamCard {...member} />
               </div>
             ))}
