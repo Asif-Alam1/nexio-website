@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Monitor, ShoppingCart, Smartphone, AppWindow, MessageSquare, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -73,15 +73,24 @@ const fadeUp = {
 };
 
 function BentoCard({ service }: { service: Service }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [hovering, setHovering] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   const Icon = service.icon;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * -6;
-    setTilt({ x, y });
+    el.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    el.style.transition = "none";
+  };
+
+  const handleMouseLeave = () => {
+    const el = cardRef.current;
+    if (!el) return;
+    el.style.transition = "transform 0.4s cubic-bezier(0.16,1,0.3,1)";
+    el.style.transform = "rotateY(0deg) rotateX(0deg)";
   };
 
   return (
@@ -92,18 +101,11 @@ function BentoCard({ service }: { service: Service }) {
       style={{ perspective: 800 }}
     >
       <div
+        ref={cardRef}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => {
-          setHovering(false);
-          setTilt({ x: 0, y: 0 });
-        }}
-        style={{
-          transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
-          transition: hovering ? "none" : "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
-        }}
+        onMouseLeave={handleMouseLeave}
         className={cn(
-          "h-full rounded-card border overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
+          "group h-full rounded-card border overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
           service.accent
             ? "bg-white md:bg-blue text-midnight md:text-white border-border md:border-blue p-6 md:p-10 flex flex-col justify-between shadow-sm md:shadow-md hover:shadow-md md:hover:shadow-xl"
             : service.wide
@@ -114,8 +116,7 @@ function BentoCard({ service }: { service: Service }) {
         {/* Icon */}
         <div
           className={cn(
-            "w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-200",
-            hovering && "scale-110",
+            "w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110",
             service.accent ? "bg-blue-tint md:bg-white/20 text-blue md:text-white" : "bg-blue-tint text-blue",
             service.wide ? "mb-5 md:mb-0" : "mb-5"
           )}
