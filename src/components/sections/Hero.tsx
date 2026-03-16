@@ -34,7 +34,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="noise-overlay relative min-h-[100svh] bg-midnight flex flex-col justify-end md:justify-center overflow-hidden pt-24 pb-8 md:pt-20 md:pb-16"
+      className="noise-overlay relative bg-midnight flex flex-col justify-center overflow-hidden pt-28 pb-12 md:min-h-screen md:pt-20 md:pb-16"
     >
       {/* ── Atmosphere — desktop only ── */}
       <motion.div
