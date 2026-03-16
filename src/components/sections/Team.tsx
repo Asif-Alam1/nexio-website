@@ -47,30 +47,18 @@ export default function Team() {
           subtitle="A small team that gives every project our full attention."
         />
 
-        {/* Co-founders — larger, 2-column */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
         >
-          {team.slice(0, 2).map((member) => (
+          {team.map((member) => (
             <div key={member.name} className="h-full">
               <TeamCard {...member} />
             </div>
           ))}
-        </motion.div>
-
-        {/* Team member — centered, narrower */}
-        <motion.div
-          className="max-w-sm mx-auto"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.24 }}
-        >
-          <TeamCard {...team[2]} />
         </motion.div>
       </div>
 
