@@ -9,18 +9,9 @@ import { WHATSAPP_URL, CONTACT_EMAIL } from "@/lib/constants";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative noise-overlay bg-midnight py-4xl overflow-hidden">
-      {/* Radial gradient orb — positioned LEFT */}
-      <div
-        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-40 hidden md:block"
-        aria-hidden="true"
-        style={{
-          background: "radial-gradient(circle at center, rgba(37,99,235,0.15) 0%, transparent 70%)",
-        }}
-      />
-
+    <section id="contact" className="relative bg-cloud py-4xl overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-3xl">
           {/* Left column */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -32,11 +23,10 @@ export default function Contact() {
             <SectionHeader
               label="GET IN TOUCH"
               title="Let's Build Something Together."
-              dark
               centered={false}
             />
 
-            <p className="text-body-lg text-slate-light mb-xl -mt-m">
+            <p className="text-body-lg text-slate mb-xl -mt-m max-w-md">
               Tell us about your project. We&apos;ll get back to you within 24 hours.
             </p>
 
@@ -55,7 +45,7 @@ export default function Contact() {
             <div className="mt-l">
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="font-mono text-caption text-slate hover:text-white transition-colors duration-hover"
+                className="font-mono text-caption text-slate hover:text-blue transition-colors duration-hover"
               >
                 {CONTACT_EMAIL}
               </a>
@@ -69,7 +59,10 @@ export default function Contact() {
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            <ContactForm />
+            {/* Dark form card */}
+            <div className="bg-midnight rounded-2xl p-6 md:p-10">
+              <ContactForm />
+            </div>
           </motion.div>
         </div>
       </div>
