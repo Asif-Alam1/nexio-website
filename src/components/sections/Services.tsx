@@ -1,58 +1,170 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Monitor, ShoppingCart, Smartphone, AppWindow, MessageSquare, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 import SectionHeader from "@/components/ui/SectionHeader";
 
-const services = [
+interface Service {
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  span: string;
+  variant: "featured" | "default" | "tinted";
+}
+
+const services: Service[] = [
   {
-    num: "01",
     title: "Website Development",
     description:
       "Your online home, built right. We design and develop fast, beautiful websites that work on every device — and that you can actually update yourself.",
     icon: Monitor,
+    span: "md:col-span-2 md:row-span-2",
+    variant: "featured",
   },
   {
-    num: "02",
     title: "E-Commerce",
     description:
-      "Sell online with confidence. We build stores that handle payments, inventory, and shipping — so you can focus on your products.",
+      "Sell online with confidence. Payments, inventory, and shipping — handled.",
     icon: ShoppingCart,
+    span: "md:col-span-1",
+    variant: "default",
   },
   {
-    num: "03",
     title: "Mobile Apps",
     description:
-      "Your business in your customers' pockets. We build native iOS and Android apps that are fast, intuitive, and built to last.",
+      "Your business in your customers' pockets. Native iOS and Android, built to last.",
     icon: Smartphone,
+    span: "md:col-span-1",
+    variant: "tinted",
   },
   {
-    num: "04",
     title: "Desktop Apps",
     description:
-      "Powerful tools that run on Windows, Mac, and Linux. We build desktop applications for when your business needs more than a browser.",
+      "Powerful tools for Windows, Mac, and Linux — for when you need more than a browser.",
     icon: AppWindow,
+    span: "md:col-span-1",
+    variant: "default",
   },
   {
-    num: "05",
     title: "AI Chatbots",
     description:
-      "Answer questions 24/7. Our chatbots handle routine inquiries automatically, so your team can focus on what matters.",
+      "Answer questions 24/7. Your chatbot handles the routine so your team handles what matters.",
     icon: MessageSquare,
+    span: "md:col-span-1",
+    variant: "tinted",
   },
   {
-    num: "06",
     title: "Automations",
     description:
-      "Stop doing things twice. We connect your tools and automate repetitive workflows — saving hours every week.",
+      "Stop doing things twice. We connect your tools and save you hours every week.",
     icon: Zap,
+    span: "md:col-span-2",
+    variant: "default",
   },
 ];
 
-export default function Services() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+function BentoCard({ service }: { service: Service }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false);
+  const Icon = service.icon;
+  const isFeatured = service.variant === "featured";
+  const isTinted = service.variant === "tinted";
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -6;
+    setTilt({ x, y });
+  };
+
+  return (
+    <motion.div
+      variants={fadeUp}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className={cn("h-full", service.span)}
+      style={{ perspective: 800 }}
+    >
+      <div
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => {
+          setHovering(false);
+          setTilt({ x: 0, y: 0 });
+        }}
+        style={{
+          transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
+          transition: hovering ? "none" : "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
+        }}
+        className={cn(
+          "relative h-full rounded-card overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
+          isFeatured
+            ? "bg-midnight p-8 md:p-10 lg:p-12 flex flex-col justify-between shadow-lg hover:shadow-xl"
+            : isTinted
+              ? "bg-blue-tint border border-border/50 p-6 md:p-8 shadow-sm hover:shadow-md"
+              : "bg-white border border-border p-6 md:p-8 shadow-sm hover:shadow-md"
+        )}
+      >
+        {/* Icon */}
+        <div
+          className={cn(
+            "w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-transform duration-200",
+            hovering && "scale-110",
+            isFeatured
+              ? "bg-blue/15 text-blue"
+              : isTinted
+                ? "bg-white text-blue"
+                : "bg-blue-tint text-blue"
+          )}
+        >
+          <Icon size={20} />
+        </div>
+
+        {/* Content */}
+        <div className={isFeatured ? "mt-auto" : ""}>
+          <h3
+            className={cn(
+              "font-display font-bold tracking-[-0.01em] mb-2",
+              isFeatured
+                ? "text-white text-h2 lg:text-h1"
+                : "text-midnight text-h3"
+            )}
+          >
+            {service.title}
+          </h3>
+          <p
+            className={cn(
+              "leading-relaxed",
+              isFeatured
+                ? "text-slate-light text-body-lg max-w-md"
+                : "text-slate text-body"
+            )}
+          >
+            {service.description}
+          </p>
+        </div>
+
+        {/* Featured card noise overlay */}
+        {isFeatured && (
+          <div className="noise-overlay pointer-events-none absolute inset-0" />
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+export default function Services() {
   return (
     <section id="services" className="bg-cloud py-4xl">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
@@ -62,76 +174,17 @@ export default function Services() {
           subtitle="Everything your business needs online, built with care and precision."
         />
 
-        {/* Service list */}
-        <div className="border-t border-border">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            const isActive = activeIndex === i;
-
-            return (
-              <motion.div
-                key={service.num}
-                className="border-b border-border group"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-5%" }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: i * 0.05,
-                }}
-              >
-                <button
-                  className="w-full text-left py-6 md:py-8 flex items-center gap-4 md:gap-8 cursor-pointer"
-                  onClick={() => setActiveIndex(isActive ? null : i)}
-                  aria-expanded={isActive}
-                >
-                  {/* Number */}
-                  <span className="font-mono text-caption text-slate shrink-0 w-8">
-                    {service.num}
-                  </span>
-
-                  {/* Title */}
-                  <h3
-                    className={`font-display font-bold text-xl md:text-2xl lg:text-[28px] tracking-[-0.01em] transition-colors duration-200 flex-1 ${
-                      isActive ? "text-blue" : "text-midnight group-hover:text-blue"
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
-
-                  {/* Icon */}
-                  <div
-                    className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                      isActive
-                        ? "bg-blue text-white"
-                        : "bg-blue-tint text-blue group-hover:bg-blue group-hover:text-white"
-                    }`}
-                  >
-                    <Icon size={18} />
-                  </div>
-                </button>
-
-                {/* Expandable description */}
-                <AnimatePresence initial={false}>
-                  {isActive && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-body-lg text-slate leading-relaxed pl-12 md:pl-16 pb-6 md:pb-8 max-w-xl">
-                        {service.description}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+        >
+          {services.map((service) => (
+            <BentoCard key={service.title} service={service} />
+          ))}
+        </motion.div>
       </div>
     </section>
   );
