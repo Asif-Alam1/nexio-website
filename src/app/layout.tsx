@@ -41,7 +41,7 @@ const structuredData = [
       addressLocality: "Lebanon",
     },
     sameAs: [
-      "https://linkedin.com/company/nexio.labs",
+      "https://linkedin.com/company/nexio-labs",
       "https://instagram.com/nexio.labs",
     ],
     contactPoint: {
