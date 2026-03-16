@@ -50,20 +50,7 @@ export default function Hero() {
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* ── Vertical accent — desktop only ── */}
-      <motion.div
-        className="pointer-events-none select-none absolute right-6 md:right-10 lg:right-16 top-1/2 -translate-y-1/2 hidden lg:block z-10"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <span
-          className="font-mono text-[11px] text-white/[0.08] uppercase tracking-[0.3em] block"
-          style={{ writingMode: "vertical-rl" }}
-        >
-          Connect · Build · Grow
-        </span>
-      </motion.div>
+ 
 
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
