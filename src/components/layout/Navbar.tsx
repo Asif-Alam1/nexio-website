@@ -7,6 +7,7 @@ import Logo from "@/components/ui/Logo";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const hero = document.getElementById("hero");
@@ -26,7 +27,27 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Track active section for nav indicator
+  useEffect(() => {
+    const sections = NAV_ITEMS.map((item) =>
+      document.querySelector(item.href)
+    ).filter(Boolean) as Element[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: "-64px 0px -40% 0px" }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -61,13 +82,14 @@ export default function Navbar() {
             ? "bg-cloud/95 backdrop-blur-xl border-b border-border"
             : "bg-transparent",
         ].join(" ")}
+        aria-label="Main navigation"
       >
         <div className="w-full max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, "#hero")}
             className="flex-shrink-0"
+            aria-label="Nexio Labs — back to top"
           >
             <Logo
               variant={isScrolled ? "dark" : "light"}
@@ -75,36 +97,41 @@ export default function Navbar() {
             />
           </a>
 
-          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
+                aria-current={activeSection === item.href ? "true" : undefined}
                 className={[
-                  "font-display font-semibold text-sm transition-colors duration-hover",
-                  isScrolled
-                    ? "text-midnight hover:text-blue"
-                    : "text-white/90 hover:text-white",
+                  "font-display font-semibold text-sm transition-colors duration-hover relative",
+                  activeSection === item.href
+                    ? isScrolled
+                      ? "text-blue"
+                      : "text-white"
+                    : isScrolled
+                      ? "text-midnight/60 hover:text-midnight"
+                      : "text-white/50 hover:text-white",
                 ].join(" ")}
               >
                 {item.label}
+                {activeSection === item.href && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blue rounded-full" />
+                )}
               </a>
             ))}
 
-            {/* Book a Call pill */}
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-orange rounded-pill text-white font-display font-semibold text-sm py-2 px-5 transition-all duration-hover hover:brightness-90"
+              className="bg-orange rounded-pill text-white font-display font-semibold text-sm py-2 px-5 transition-all duration-hover hover:brightness-90 active:translate-y-[1px]"
             >
               Book a Call
             </a>
           </div>
 
-          {/* Hamburger button — mobile only */}
           <button
             className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] rounded focus:outline-none focus:ring-2 focus:ring-blue"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -138,6 +165,7 @@ export default function Navbar() {
 
       {/* Mobile full-screen overlay */}
       <div
+        aria-hidden={!mobileMenuOpen}
         className={[
           "fixed inset-0 z-40 bg-midnight flex flex-col items-center justify-center md:hidden transition-all duration-300",
           mobileMenuOpen
@@ -145,13 +173,14 @@ export default function Navbar() {
             : "opacity-0 translate-x-full pointer-events-none",
         ].join(" ")}
       >
-        <nav className="flex flex-col items-center gap-8 mb-12">
+        <nav className="flex flex-col items-center gap-8 mb-12" aria-label="Mobile navigation">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
               className="font-display font-semibold text-2xl text-white hover:text-orange transition-colors duration-hover"
+              tabIndex={mobileMenuOpen ? 0 : -1}
             >
               {item.label}
             </a>
@@ -163,6 +192,7 @@ export default function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
           className="bg-orange rounded-pill text-white font-display font-semibold text-base py-3 px-8 transition-all duration-hover hover:brightness-90"
+          tabIndex={mobileMenuOpen ? 0 : -1}
         >
           Book a Call
         </a>
