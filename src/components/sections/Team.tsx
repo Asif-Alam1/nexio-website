@@ -39,7 +39,7 @@ const containerVariants = {
 
 export default function Team() {
   return (
-    <section id="team" className="bg-cloud py-4xl">
+    <section id="team" className="bg-white py-4xl border-t border-border/50">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
           label="THE TEAM"
@@ -47,22 +47,31 @@ export default function Team() {
           subtitle="A small team that gives every project our full attention."
         />
 
-        {/* Cards */}
-        <div className="flex justify-center">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-          >
-            {team.map((member) => (
-              <div key={member.name} className="h-full">
-                <TeamCard {...member} />
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        {/* Co-founders — larger, 2-column */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+        >
+          {team.slice(0, 2).map((member) => (
+            <div key={member.name} className="h-full">
+              <TeamCard {...member} />
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Team member — centered, narrower */}
+        <motion.div
+          className="max-w-sm mx-auto"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.24 }}
+        >
+          <TeamCard {...team[2]} />
+        </motion.div>
       </div>
 
     </section>
