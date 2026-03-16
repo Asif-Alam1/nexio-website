@@ -53,7 +53,6 @@ export default function ContactForm() {
         <div
           className="text-red text-caption mb-l border border-red/30 rounded-input px-m py-s"
           role="alert"
-          aria-live="polite"
         >
           {state.error}
         </div>
@@ -86,7 +85,7 @@ export default function ContactForm() {
             Your Name
           </label>
           {state.fieldErrors?.name && (
-            <p id="name-error" className="mt-xs text-caption text-red" role="alert">
+            <p id="name-error" className="mt-xs text-caption text-red">
               {state.fieldErrors.name}
             </p>
           )}
@@ -115,7 +114,7 @@ export default function ContactForm() {
             Your Email
           </label>
           {state.fieldErrors?.email && (
-            <p id="email-error" className="mt-xs text-caption text-red" role="alert">
+            <p id="email-error" className="mt-xs text-caption text-red">
               {state.fieldErrors.email}
             </p>
           )}
@@ -144,7 +143,7 @@ export default function ContactForm() {
             Your Message
           </label>
           {state.fieldErrors?.message && (
-            <p id="message-error" className="mt-xs text-caption text-red" role="alert">
+            <p id="message-error" className="mt-xs text-caption text-red">
               {state.fieldErrors.message}
             </p>
           )}
