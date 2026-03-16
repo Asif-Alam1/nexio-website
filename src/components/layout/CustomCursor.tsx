@@ -7,8 +7,9 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 export default function CustomCursor() {
   const { position, isTouch } = useMousePosition();
   const [isHovering, setIsHovering] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
 
-  const springConfig = { stiffness: 150, damping: 20, mass: 0.5 };
+  const springConfig = { stiffness: 300, damping: 28, mass: 0.3 };
   const springX = useSpring(position.x, springConfig);
   const springY = useSpring(position.y, springConfig);
 
@@ -29,11 +30,18 @@ export default function CustomCursor() {
       }
     };
 
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
+
     document.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseout", handleMouseOut);
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mouseup", handleMouseUp);
     return () => {
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isTouch]);
 
@@ -52,6 +60,8 @@ export default function CustomCursor() {
 
   if (isTouch) return null;
 
+  const size = isClicking ? 10 : isHovering ? 48 : 16;
+
   return (
     <motion.div
       className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full bg-blue"
@@ -61,14 +71,13 @@ export default function CustomCursor() {
         translateX: "-50%",
         translateY: "-50%",
         mixBlendMode: "difference",
-        width: isHovering ? 48 : 16,
-        height: isHovering ? 48 : 16,
       }}
       animate={{
-        width: isHovering ? 48 : 16,
-        height: isHovering ? 48 : 16,
+        width: size,
+        height: size,
+        opacity: isClicking ? 0.6 : 1,
       }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.15 }}
     />
   );
 }
