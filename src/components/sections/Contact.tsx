@@ -59,10 +59,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            {/* Dark form card */}
-            <div className="bg-midnight rounded-2xl p-6 md:p-10">
-              <ContactForm />
-            </div>
+            <ContactForm />
           </motion.div>
         </div>
       </div>
