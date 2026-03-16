@@ -125,7 +125,7 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <p className="font-mono text-caption text-slate">
+          <p className="font-mono text-caption text-slate-light">
             © 2026 Nexio Labs. All rights reserved.
           </p>
         </motion.div>

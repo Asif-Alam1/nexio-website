@@ -29,7 +29,7 @@ export default function ContactForm() {
   return (
     <div
       className={cn(
-        "bg-white rounded-2xl border border-border p-6 md:p-8 shadow-sm",
+        "bg-white rounded-panel border border-border p-6 md:p-8 shadow-sm",
         hasError && "animate-shake"
       )}
       key={hasError ? "error" : "idle"}

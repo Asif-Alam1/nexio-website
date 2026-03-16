@@ -44,7 +44,7 @@ export default function Process() {
           label="HOW WE WORK"
           title="From Vision to Digital Reality."
           dark
-          centered
+          centered={false}
         />
 
         {/* Zigzag timeline */}
