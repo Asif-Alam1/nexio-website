@@ -105,7 +105,7 @@ function BentoCard({ service }: { service: Service }) {
         className={cn(
           "h-full rounded-card border overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
           service.accent
-            ? "bg-blue text-white border-blue p-8 md:p-10 flex flex-col justify-between shadow-md hover:shadow-xl"
+            ? "bg-white md:bg-blue text-midnight md:text-white border-border md:border-blue p-6 md:p-10 flex flex-col justify-between shadow-sm md:shadow-md hover:shadow-md md:hover:shadow-xl"
             : service.wide
               ? "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md flex flex-row items-center"
               : "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md"
@@ -116,7 +116,7 @@ function BentoCard({ service }: { service: Service }) {
           className={cn(
             "w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-200",
             hovering && "scale-110",
-            service.accent ? "bg-white/20 text-white" : "bg-blue-tint text-blue",
+            service.accent ? "bg-blue-tint md:bg-white/20 text-blue md:text-white" : "bg-blue-tint text-blue",
             service.wide ? "mb-0" : "mb-5"
           )}
         >
@@ -148,7 +148,7 @@ function BentoCard({ service }: { service: Service }) {
           <h3
             className={cn(
               "font-display font-bold tracking-[-0.01em] mb-2",
-              service.accent ? "text-white text-h2 lg:text-h1" : "text-midnight text-h3"
+              service.accent ? "text-midnight md:text-white text-h3 md:text-h2 lg:text-h1" : "text-midnight text-h3"
             )}
           >
             {service.title}
@@ -156,7 +156,7 @@ function BentoCard({ service }: { service: Service }) {
           <p
             className={cn(
               "leading-relaxed",
-              service.accent ? "text-white/80 text-body-lg max-w-md" : "text-slate text-body"
+              service.accent ? "text-slate md:text-white/80 text-body md:text-body-lg max-w-md" : "text-slate text-body"
             )}
           >
             {service.description}
