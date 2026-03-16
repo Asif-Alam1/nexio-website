@@ -110,7 +110,7 @@ function BentoCard({ service }: { service: Service }) {
         className={cn(
           "relative h-full rounded-card overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
           isFeatured
-            ? "bg-midnight p-8 md:p-10 lg:p-12 flex flex-col justify-between shadow-lg hover:shadow-xl"
+            ? "noise-overlay bg-midnight p-8 md:p-10 lg:p-12 flex flex-col justify-between shadow-lg hover:shadow-xl"
             : isTinted
               ? "bg-blue-tint border border-border/50 p-6 md:p-8 shadow-sm hover:shadow-md"
               : "bg-white border border-border p-6 md:p-8 shadow-sm hover:shadow-md"
@@ -155,10 +155,6 @@ function BentoCard({ service }: { service: Service }) {
           </p>
         </div>
 
-        {/* Featured card noise overlay */}
-        {isFeatured && (
-          <div className="noise-overlay pointer-events-none absolute inset-0" />
-        )}
       </div>
     </motion.div>
   );
