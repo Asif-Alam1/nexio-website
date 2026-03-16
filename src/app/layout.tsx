@@ -118,10 +118,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logo/nexio-monogram-blue-512.png",
-        width: 512,
-        height: 512,
-        alt: "Nexio Labs",
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexio Labs — Connect your vision to the digital world",
       },
     ],
   },
@@ -130,7 +130,7 @@ export const metadata: Metadata = {
     title: "Nexio Labs — Your Digital Partner in Lebanon",
     description:
       "We build websites, mobile and desktop apps, e-commerce platforms, AI chatbots, and automations for Lebanese businesses.",
-    images: ["/images/logo/nexio-monogram-blue-512.png"],
+    images: ["/images/og-image.png"],
   },
   robots: {
     index: true,
