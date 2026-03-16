@@ -156,8 +156,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
         >
           <p className="text-body-lg text-slate-light max-w-[420px] leading-relaxed">
-            We build websites, e&#8209;commerce platforms, AI&nbsp;chatbots,
-            and automations for Lebanese businesses ready to&nbsp;grow.
+           Empowering Lebanese businesses with high-performance websites, cross-platform apps, and smart AI automations designed for growth.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-shrink-0">

@@ -51,12 +51,12 @@ const structuredData = {
 export const metadata: Metadata = {
   title: "Nexio Labs — Your Digital Partner in Lebanon",
   description:
-    "We build websites, e-commerce platforms, AI chatbots, and automations for Lebanese businesses. Connect. Build. Grow.",
+    "We build websites, mobile and desktop apps,  e-commerce platforms, AI chatbots, and automations for Lebanese businesses. Connect. Build. Grow.",
   metadataBase: new URL("https://nexiolabs.co"),
   openGraph: {
     title: "Nexio Labs — Your Digital Partner in Lebanon",
     description:
-      "We build websites, e-commerce platforms, AI chatbots, and automations for Lebanese businesses.",
+      "We build websites, mobile and desktop apps,  e-commerce platforms, AI chatbots, and automations for Lebanese businesses.",
     url: "https://nexiolabs.co",
     siteName: "Nexio Labs",
     locale: "en_US",
