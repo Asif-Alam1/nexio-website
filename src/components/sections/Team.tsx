@@ -24,6 +24,7 @@ const team = [
     role: "E-Commerce Expert",
     bio: "Turns online stores into revenue machines. Knows payments, inventory, and conversion inside out.",
     initial: "K",
+      image: "/images/team/karl.jpeg",
   },
 ];
 
