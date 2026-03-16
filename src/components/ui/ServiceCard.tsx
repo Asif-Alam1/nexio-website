@@ -79,7 +79,7 @@ export default function ServiceCard({
         {decorative && (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 right-0 h-32 w-48 translate-x-6 translate-y-6 rounded-card border-2 border-blue-tint opacity-60"
+            className="pointer-events-none absolute bottom-0 right-0 h-32 w-48 translate-x-6 translate-y-6 rounded-card border-2 border-blue-tint opacity-60 hidden md:block"
           >
             <div className="flex items-center gap-1 border-b border-blue-tint px-3 py-2">
               <span className="h-2 w-2 rounded-full border border-blue-tint" />
