@@ -60,7 +60,7 @@ const services: Service[] = [
     description:
       "Stop doing things twice. We connect your tools and save you hours every week.",
     icon: Zap,
-    span: "md:col-span-2",
+    span: "md:col-span-4",
     variant: "default",
   },
 ];
@@ -119,7 +119,7 @@ function BentoCard({ service }: { service: Service }) {
         {/* Icon */}
         <div
           className={cn(
-            "w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-transform duration-200",
+            "relative z-10 w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-transform duration-200",
             hovering && "scale-110",
             isFeatured
               ? "bg-blue/15 text-blue"
@@ -132,7 +132,7 @@ function BentoCard({ service }: { service: Service }) {
         </div>
 
         {/* Content */}
-        <div className={isFeatured ? "mt-auto" : ""}>
+        <div className={cn("relative z-10", isFeatured && "mt-auto")}>
           <h3
             className={cn(
               "font-display font-bold tracking-[-0.01em] mb-2",
