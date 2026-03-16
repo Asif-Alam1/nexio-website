@@ -16,6 +16,15 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  e.preventDefault();
+  const target = document.querySelector(href);
+  if (target) {
+    const top = target.getBoundingClientRect().top + window.scrollY - 64;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+}
+
 export default function Footer() {
   return (
     <footer className="bg-midnight-deep">
@@ -52,6 +61,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <a
                     href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className="font-body text-sm text-slate-light hover:text-white hover:translate-x-1 inline-block transition-all duration-hover"
                   >
                     {item.label}

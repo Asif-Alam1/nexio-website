@@ -68,7 +68,7 @@ export default function Process() {
                 transition={{
                   duration: 0.6,
                   ease: [0.16, 1, 0.3, 1],
-                  delay: i * 0.06,
+                  delay: i * 0.12,
                 }}
               >
                 {/* ── Desktop zigzag ── */}
@@ -97,7 +97,7 @@ export default function Process() {
                       transition={{
                         duration: 0.4,
                         ease: [0.16, 1, 0.3, 1],
-                        delay: 0.2 + i * 0.08,
+                        delay: 0.3 + i * 0.14,
                       }}
                     >
                       <span className="font-mono text-[13px] text-blue font-medium">
