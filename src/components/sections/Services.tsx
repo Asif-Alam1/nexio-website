@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Monitor, ShoppingCart, MessageSquare, Zap, Smartphone } from "lucide-react";
+import { Monitor, ShoppingCart, MessageSquare, Zap, Smartphone, AppWindow } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceCard from "@/components/ui/ServiceCard";
 
@@ -20,8 +20,8 @@ const services = [
     title: "Website Development",
     description:
       "Your online home, built right. We design and develop fast, beautiful websites that work on every device — and that you can actually update yourself.",
-    colSpan: "md:col-span-2",
-    decorative: true,
+    colSpan: "md:col-span-1",
+    decorative: false,
   },
   {
     icon: <ShoppingCart size={24} />,
@@ -40,6 +40,14 @@ const services = [
     decorative: false,
   },
   {
+    icon: <AppWindow size={24} />,
+    title: "Desktop Apps",
+    description:
+      "Powerful tools that run on Windows, Mac, and Linux. We build desktop applications for when your business needs more than a browser.",
+    colSpan: "md:col-span-1",
+    decorative: false,
+  },
+  {
     icon: <MessageSquare size={24} />,
     title: "AI Chatbots",
     description:
@@ -52,7 +60,7 @@ const services = [
     title: "Automations",
     description:
       "Stop doing things twice. We connect your tools and automate repetitive workflows — saving hours every week.",
-    colSpan: "md:col-span-2",
+    colSpan: "md:col-span-1",
     decorative: false,
   },
 ];
