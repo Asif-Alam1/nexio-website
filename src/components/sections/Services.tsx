@@ -107,7 +107,7 @@ function BentoCard({ service }: { service: Service }) {
           service.accent
             ? "bg-white md:bg-blue text-midnight md:text-white border-border md:border-blue p-6 md:p-10 flex flex-col justify-between shadow-sm md:shadow-md hover:shadow-md md:hover:shadow-xl"
             : service.wide
-              ? "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md flex flex-row items-center"
+              ? "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md md:flex-row md:items-center"
               : "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md"
         )}
       >
@@ -117,7 +117,7 @@ function BentoCard({ service }: { service: Service }) {
             "w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-200",
             hovering && "scale-110",
             service.accent ? "bg-blue-tint md:bg-white/20 text-blue md:text-white" : "bg-blue-tint text-blue",
-            service.wide ? "mb-0" : "mb-5"
+            service.wide ? "mb-5 md:mb-0" : "mb-5"
           )}
         >
           <Icon size={20} />
@@ -144,7 +144,7 @@ function BentoCard({ service }: { service: Service }) {
         )}
 
         {/* Content */}
-        <div className={cn(service.accent && "mt-auto", service.wide && "ml-5")}>
+        <div className={cn(service.accent && "mt-auto", service.wide && "mt-5 md:mt-0 md:ml-5")}>
           <h3
             className={cn(
               "font-display font-bold tracking-[-0.01em] mb-2",
