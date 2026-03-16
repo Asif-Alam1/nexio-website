@@ -10,6 +10,29 @@
   .cursor-custom * {
     cursor: none !important;
   }
+
+  /* Custom scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2563EB #0B1120;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0B1120;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2563EB;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1D4ED8;
+  }
 }
 
 @layer base {
