@@ -34,9 +34,9 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="noise-overlay relative min-h-screen bg-midnight flex flex-col justify-center overflow-hidden pt-20 pb-16"
+      className="noise-overlay relative min-h-[100svh] bg-midnight flex flex-col justify-end md:justify-center overflow-hidden pt-24 pb-8 md:pt-20 md:pb-16"
     >
-      {/* ── Atmosphere ── */}
+      {/* ── Atmosphere — desktop only ── */}
       <motion.div
         className="pointer-events-none absolute right-[-10%] top-[35%] -translate-y-1/2 w-[800px] h-[800px] hidden md:block"
         style={{
@@ -50,7 +50,7 @@ export default function Hero() {
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* ── Vertical accent text — right edge ── */}
+      {/* ── Vertical accent — desktop only ── */}
       <motion.div
         className="pointer-events-none select-none absolute right-6 md:right-10 lg:right-16 top-1/2 -translate-y-1/2 hidden lg:block z-10"
         initial={{ opacity: 0 }}
@@ -66,10 +66,10 @@ export default function Hero() {
       </motion.div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
-        {/* Headline — the hero IS the type */}
-        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-12 md:mb-16">
+        {/* Headline */}
+        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-6 md:mb-16 text-[clamp(2.5rem,10vw,7.5rem)]">
           {WORDS_LINE1.map((word, i) => (
             <span key={word} className="inline-block overflow-hidden mr-[0.2em] pr-[0.04em]">
               <motion.span
@@ -115,56 +115,85 @@ export default function Hero() {
               .
             </motion.span>
           </span>
-          <style jsx>{`
-            h1 {
-              font-size: clamp(3rem, 8vw + 0.5rem, 7.5rem);
-            }
-          `}</style>
         </h1>
 
-        {/* Stat strip — social proof, adds rhythm between headline and CTAs */}
+        {/* Subtext — mobile: compact, desktop: in bottom row */}
+        <motion.p
+          className="text-sm md:hidden text-slate-light leading-relaxed mb-5 max-w-[320px]"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+        >
+          Websites, apps, AI chatbots & automations for Lebanese businesses ready to grow.
+        </motion.p>
+
+        {/* CTAs — mobile: side by side, compact */}
         <motion.div
-          className="flex flex-wrap items-center gap-x-8 md:gap-x-12 gap-y-3 mb-10 md:mb-12"
+          className="flex gap-3 mb-8 md:hidden"
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+        >
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 bg-orange text-white font-display font-semibold text-sm py-3 px-5 rounded-button transition-all duration-200 hover:brightness-[0.92] active:translate-y-[1px]"
+          >
+            Book a Call
+            <ArrowRight size={14} />
+          </a>
+          <button
+            onClick={scrollToServices}
+            className="inline-flex items-center justify-center border border-white/20 text-white/80 font-display font-medium text-sm py-3 px-5 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white active:translate-y-[1px]"
+          >
+            Services
+          </button>
+        </motion.div>
+
+        {/* Stats — mobile: horizontal compact, desktop: full */}
+        <motion.div
+          className="flex items-center gap-4 md:gap-x-12 md:flex-wrap mb-0 md:mb-12"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
         >
           {[
-            { value: "10+", label: "Projects Delivered" },
-            { value: "5+", label: "Industries Served" },
-            { value: "90%", label: "Client Retention" },
+            { value: "10+", label: "Projects" },
+            { value: "5+", label: "Industries" },
+            { value: "90%", label: "Retention" },
           ].map((stat, i) => (
-            <div key={stat.label} className="flex items-baseline gap-2.5">
+            <div key={stat.label} className="flex items-baseline gap-1.5 md:gap-2.5">
               {i > 0 && (
-                <span className="hidden md:block w-[1px] h-4 bg-white/10 -ml-4 md:-ml-6 mr-4 md:mr-6" />
+                <span className="block w-[1px] h-3 md:h-4 bg-white/10 -ml-2 md:-ml-6 mr-2 md:mr-6" />
               )}
-              <span className="font-display font-bold text-xl md:text-2xl text-white">
+              <span className="font-display font-bold text-base md:text-2xl text-white tabular-nums">
                 {stat.value}
               </span>
-              <span className="font-mono text-[10px] md:text-[11px] text-white/40 uppercase tracking-[0.1em]">
+              <span className="font-mono text-[9px] md:text-[11px] text-white/40 uppercase tracking-[0.08em] md:tracking-[0.1em]">
                 {stat.label}
               </span>
             </div>
           ))}
         </motion.div>
 
-        {/* Bottom row — subtext + CTAs */}
+        {/* Desktop bottom row — subtext + CTAs */}
         <motion.div
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12 pt-8 border-t border-white/[0.06]"
+          className="hidden md:flex md:items-end md:justify-between gap-12 pt-8 border-t border-white/[0.06]"
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
         >
           <p className="text-body-lg text-slate-light max-w-[420px] leading-relaxed">
-           Empowering Lebanese businesses with high-performance websites, cross-platform apps, and smart AI automations designed for growth.
+            Empowering Lebanese businesses with high-performance websites, cross-platform apps, and smart AI automations designed for growth.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-shrink-0">
+          <div className="flex gap-4 flex-shrink-0">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2.5 bg-orange text-white font-display font-semibold text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:brightness-[0.92] focus:outline-none focus:ring-2 focus:ring-orange/50 focus:ring-offset-2 focus:ring-offset-midnight"
+              className="group inline-flex items-center justify-center gap-2.5 bg-orange text-white font-display font-semibold text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:brightness-[0.92] active:translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-orange/50 focus:ring-offset-2 focus:ring-offset-midnight"
             >
               Book a Call
               <ArrowRight
@@ -174,7 +203,7 @@ export default function Hero() {
             </a>
             <button
               onClick={scrollToServices}
-              className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/80 font-display font-medium text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white hover:bg-white/[0.04] focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-midnight"
+              className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/80 font-display font-medium text-[15px] py-3.5 px-7 rounded-button transition-all duration-200 hover:border-white/40 hover:text-white hover:bg-white/[0.04] active:translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-midnight"
             >
               Our Services
             </button>
@@ -182,9 +211,9 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── Scroll indicator ── */}
+      {/* ── Scroll indicator — desktop only ── */}
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 z-10"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ delay: 1.4, duration: 0.5 }}
