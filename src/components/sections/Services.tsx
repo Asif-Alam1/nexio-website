@@ -12,6 +12,7 @@ interface Service {
   icon: React.ElementType;
   span: string;
   accent?: boolean;
+  wide?: boolean;
 }
 
 const services: Service[] = [
@@ -57,6 +58,7 @@ const services: Service[] = [
       "Stop doing things twice. We connect your tools and save you hours every week.",
     icon: Zap,
     span: "md:col-span-4",
+    wide: true,
   },
 ];
 
@@ -104,22 +106,45 @@ function BentoCard({ service }: { service: Service }) {
           "h-full rounded-card border overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
           service.accent
             ? "bg-blue text-white border-blue p-8 md:p-10 flex flex-col justify-between shadow-md hover:shadow-xl"
-            : "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md"
+            : service.wide
+              ? "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md flex flex-row items-center"
+              : "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md"
         )}
       >
         {/* Icon */}
         <div
           className={cn(
-            "w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-transform duration-200",
+            "w-11 h-11 rounded-full flex items-center justify-center transition-transform duration-200",
             hovering && "scale-110",
-            service.accent ? "bg-white/20 text-white" : "bg-blue-tint text-blue"
+            service.accent ? "bg-white/20 text-white" : "bg-blue-tint text-blue",
+            service.wide ? "mb-0" : "mb-5"
           )}
         >
           <Icon size={20} />
         </div>
 
+        {/* Decorative browser mockup for featured card */}
+        {service.accent && (
+          <div className="hidden md:block my-6 pointer-events-none select-none" aria-hidden="true">
+            <div className="rounded-lg border border-white/20 overflow-hidden w-full max-w-[320px]">
+              <div className="flex items-center gap-1.5 px-3 py-2 border-b border-white/10">
+                <span className="w-2 h-2 rounded-full bg-white/30" />
+                <span className="w-2 h-2 rounded-full bg-white/20" />
+                <span className="w-2 h-2 rounded-full bg-white/15" />
+                <span className="ml-3 h-2.5 w-24 rounded bg-white/10" />
+              </div>
+              <div className="p-4 space-y-2.5">
+                <div className="h-2.5 w-3/4 rounded bg-white/12" />
+                <div className="h-2.5 w-full rounded bg-white/8" />
+                <div className="h-2.5 w-5/6 rounded bg-white/8" />
+                <div className="mt-4 h-7 w-24 rounded bg-white/15" />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Content */}
-        <div className={service.accent ? "mt-auto" : ""}>
+        <div className={cn(service.accent && "mt-auto", service.wide && "ml-5")}>
           <h3
             className={cn(
               "font-display font-bold tracking-[-0.01em] mb-2",
