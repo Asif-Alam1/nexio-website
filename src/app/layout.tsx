@@ -38,8 +38,8 @@ const structuredData = {
     addressCountry: "LB",
   },
   sameAs: [
-    "https://linkedin.com/company/nexiolabs",
-    "https://instagram.com/nexiolabs",
+    "https://linkedin.com/company/nexio.labs",
+    "https://instagram.com/nexio.labs",
   ],
   contactPoint: {
     "@type": "ContactPoint",

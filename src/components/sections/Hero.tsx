@@ -130,9 +130,9 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
         >
           {[
-            { value: "14+", label: "Projects Delivered" },
+            { value: "10+", label: "Projects Delivered" },
             { value: "3 Wk", label: "Average Launch" },
-            { value: "100%", label: "Client Retention" },
+            { value: "90%", label: "Client Retention" },
           ].map((stat, i) => (
             <div key={stat.label} className="flex items-baseline gap-2.5">
               {i > 0 && (

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Monitor, ShoppingCart, MessageSquare, Zap } from "lucide-react";
+import { Monitor, ShoppingCart, MessageSquare, Zap, Smartphone } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceCard from "@/components/ui/ServiceCard";
 
@@ -28,6 +28,14 @@ const services = [
     title: "E-Commerce",
     description:
       "Sell online with confidence. We build stores that handle payments, inventory, and shipping — so you can focus on your products.",
+    colSpan: "md:col-span-1",
+    decorative: false,
+  },
+  {
+    icon: <Smartphone size={24} />,
+    title: "Mobile Apps",
+    description:
+      "Your business in your customers' pockets. We build native iOS and Android apps that are fast, intuitive, and built to last.",
     colSpan: "md:col-span-1",
     decorative: false,
   },

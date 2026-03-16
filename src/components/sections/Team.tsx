@@ -19,6 +19,12 @@ const team = [
     initial: "J",
     image: "/images/team/joseph.jpeg",
   },
+  {
+    name: "Karl Abou Jaoude",
+    role: "E-Commerce Expert",
+    bio: "Turns online stores into revenue machines. Knows payments, inventory, and conversion inside out.",
+    initial: "K",
+  },
 ];
 
 const containerVariants = {
@@ -43,14 +49,14 @@ export default function Team() {
         {/* Cards */}
         <div className="flex justify-center">
           <motion.div
-            className="flex flex-col md:flex-row gap-12 w-full max-w-[800px]"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
           >
             {team.map((member) => (
-              <div key={member.name} className="flex-1">
+              <div key={member.name}>
                 <TeamCard {...member} />
               </div>
             ))}
