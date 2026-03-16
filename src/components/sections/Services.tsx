@@ -11,7 +11,7 @@ interface Service {
   description: string;
   icon: React.ElementType;
   span: string;
-  variant: "featured" | "default" | "tinted";
+  accent?: boolean;
 }
 
 const services: Service[] = [
@@ -21,7 +21,7 @@ const services: Service[] = [
       "Your online home, built right. We design and develop fast, beautiful websites that work on every device — and that you can actually update yourself.",
     icon: Monitor,
     span: "md:col-span-2 md:row-span-2",
-    variant: "featured",
+    accent: true,
   },
   {
     title: "E-Commerce",
@@ -29,7 +29,6 @@ const services: Service[] = [
       "Sell online with confidence. Payments, inventory, and shipping — handled.",
     icon: ShoppingCart,
     span: "md:col-span-1",
-    variant: "default",
   },
   {
     title: "Mobile Apps",
@@ -37,7 +36,6 @@ const services: Service[] = [
       "Your business in your customers' pockets. Native iOS and Android, built to last.",
     icon: Smartphone,
     span: "md:col-span-1",
-    variant: "tinted",
   },
   {
     title: "Desktop Apps",
@@ -45,7 +43,6 @@ const services: Service[] = [
       "Powerful tools for Windows, Mac, and Linux — for when you need more than a browser.",
     icon: AppWindow,
     span: "md:col-span-1",
-    variant: "default",
   },
   {
     title: "AI Chatbots",
@@ -53,7 +50,6 @@ const services: Service[] = [
       "Answer questions 24/7. Your chatbot handles the routine so your team handles what matters.",
     icon: MessageSquare,
     span: "md:col-span-1",
-    variant: "tinted",
   },
   {
     title: "Automations",
@@ -61,7 +57,6 @@ const services: Service[] = [
       "Stop doing things twice. We connect your tools and save you hours every week.",
     icon: Zap,
     span: "md:col-span-4",
-    variant: "default",
   },
 ];
 
@@ -79,8 +74,6 @@ function BentoCard({ service }: { service: Service }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const Icon = service.icon;
-  const isFeatured = service.variant === "featured";
-  const isTinted = service.variant === "tinted";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -108,37 +101,29 @@ function BentoCard({ service }: { service: Service }) {
           transition: hovering ? "none" : "transform 0.4s cubic-bezier(0.16,1,0.3,1)",
         }}
         className={cn(
-          "relative h-full rounded-card overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
-          isFeatured
-            ? "noise-overlay bg-midnight p-8 md:p-10 lg:p-12 flex flex-col justify-between shadow-lg hover:shadow-xl"
-            : isTinted
-              ? "bg-blue-tint border border-border/50 p-6 md:p-8 shadow-sm hover:shadow-md"
-              : "bg-white border border-border p-6 md:p-8 shadow-sm hover:shadow-md"
+          "h-full rounded-card border overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
+          service.accent
+            ? "bg-blue text-white border-blue p-8 md:p-10 flex flex-col justify-between shadow-md hover:shadow-xl"
+            : "bg-white border-border p-6 md:p-8 shadow-sm hover:shadow-md"
         )}
       >
         {/* Icon */}
         <div
           className={cn(
-            "relative z-10 w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-transform duration-200",
+            "w-11 h-11 rounded-full flex items-center justify-center mb-5 transition-transform duration-200",
             hovering && "scale-110",
-            isFeatured
-              ? "bg-blue/15 text-blue"
-              : isTinted
-                ? "bg-white text-blue"
-                : "bg-blue-tint text-blue"
+            service.accent ? "bg-white/20 text-white" : "bg-blue-tint text-blue"
           )}
         >
           <Icon size={20} />
         </div>
 
         {/* Content */}
-        <div className={cn("relative z-10", isFeatured && "mt-auto")}>
+        <div className={service.accent ? "mt-auto" : ""}>
           <h3
             className={cn(
               "font-display font-bold tracking-[-0.01em] mb-2",
-              isFeatured
-                ? "text-white text-h2 lg:text-h1"
-                : "text-midnight text-h3"
+              service.accent ? "text-white text-h2 lg:text-h1" : "text-midnight text-h3"
             )}
           >
             {service.title}
@@ -146,15 +131,12 @@ function BentoCard({ service }: { service: Service }) {
           <p
             className={cn(
               "leading-relaxed",
-              isFeatured
-                ? "text-slate-light text-body-lg max-w-md"
-                : "text-slate text-body"
+              service.accent ? "text-white/80 text-body-lg max-w-md" : "text-slate text-body"
             )}
           >
             {service.description}
           </p>
         </div>
-
       </div>
     </motion.div>
   );
