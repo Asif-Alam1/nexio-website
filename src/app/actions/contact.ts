@@ -38,9 +38,7 @@ export async function submitContactForm(
   }
 
   if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === "re_placeholder") {
-    if (process.env.NODE_ENV === "development") {
-      console.log("Contact form submission (Resend not configured):", { name, email });
-    }
+    console.log("Contact form submission (Resend not configured):", { name, email, message });
     return { success: true };
   }
 

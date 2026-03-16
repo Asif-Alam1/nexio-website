@@ -16,13 +16,6 @@ export default function PageLoader() {
       setIsLoading(false);
       return;
     }
-
-    // Mark as seen immediately so back-navigation skips the loader
-    sessionStorage.setItem("nexio-loaded", "true");
-
-    // Safety valve: force-hide after 2s in case onAnimationComplete never fires
-    const timeout = setTimeout(() => setIsLoading(false), 2000);
-    return () => clearTimeout(timeout);
   }, []);
 
   if (!isLoading) return null;
@@ -34,6 +27,7 @@ export default function PageLoader() {
       animate={{ opacity: 0 }}
       transition={{ duration: 0.4, delay: 0.8 }}
       onAnimationComplete={() => {
+        sessionStorage.setItem("nexio-loaded", "true");
         setIsLoading(false);
       }}
     >

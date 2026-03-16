@@ -61,6 +61,8 @@ export default function CustomCursor() {
         translateX: "-50%",
         translateY: "-50%",
         mixBlendMode: "difference",
+        width: isHovering ? 48 : 16,
+        height: isHovering ? 48 : 16,
       }}
       animate={{
         width: isHovering ? 48 : 16,

@@ -33,10 +33,9 @@ export default function TeamCard({ name, role, bio, initial, image, linkedinUrl 
         {image ? (
           <Image
             src={image}
-            alt=""
+            alt={name}
             width={120}
             height={120}
-            sizes="120px"
             className="rounded-full ring-2 ring-border object-cover object-top w-[120px] h-[120px]"
             priority={false}
           />

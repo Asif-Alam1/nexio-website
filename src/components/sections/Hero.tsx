@@ -69,7 +69,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
         {/* Headline — the hero IS the type */}
-        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-12 md:mb-16 text-[clamp(3rem,8vw+0.5rem,7.5rem)]">
+        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-12 md:mb-16">
           {WORDS_LINE1.map((word, i) => (
             <span key={word} className="inline-block overflow-hidden mr-[0.2em] pr-[0.04em]">
               <motion.span
@@ -115,6 +115,11 @@ export default function Hero() {
               .
             </motion.span>
           </span>
+          <style jsx>{`
+            h1 {
+              font-size: clamp(3rem, 8vw + 0.5rem, 7.5rem);
+            }
+          `}</style>
         </h1>
 
         {/* Stat strip — social proof, adds rhythm between headline and CTAs */}
