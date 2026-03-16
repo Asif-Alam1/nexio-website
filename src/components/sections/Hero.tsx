@@ -34,7 +34,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
-      className="noise-overlay relative bg-midnight flex flex-col justify-center overflow-hidden pt-28 pb-12 md:min-h-screen md:pt-20 md:pb-16"
+      className="noise-overlay relative bg-midnight flex flex-col justify-center overflow-hidden pt-32 pb-16 md:min-h-screen md:pt-20 md:pb-16"
     >
       {/* ── Atmosphere — desktop only ── */}
       <motion.div
@@ -69,7 +69,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
         {/* Headline */}
-        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-6 md:mb-16 text-[clamp(2.5rem,10vw,7.5rem)]">
+        <h1 className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-8 md:mb-16 text-[clamp(2.5rem,10vw,7.5rem)]">
           {WORDS_LINE1.map((word, i) => (
             <span key={word} className="inline-block overflow-hidden mr-[0.2em] pr-[0.04em]">
               <motion.span
