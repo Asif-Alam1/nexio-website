@@ -44,47 +44,94 @@ export default function Process() {
           label="HOW WE WORK"
           title="From Vision to Digital Reality."
           dark
-          centered={false}
+          centered
         />
 
-        {/* Timeline */}
-        <div className="relative max-w-3xl">
-          {/* Vertical line */}
-          <div className="absolute left-[23px] md:left-[39px] top-0 bottom-0 w-[1px] bg-white/[0.06]" />
+        {/* Zigzag timeline */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Center vertical line — desktop only */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-white/[0.08]" />
 
-          {steps.map((s, i) => (
-            <motion.div
-              key={s.step}
-              className="relative flex gap-6 md:gap-10 pb-12 last:pb-0"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-5%" }}
-              transition={{
-                duration: 0.6,
-                ease: [0.16, 1, 0.3, 1],
-                delay: i * 0.08,
-              }}
-            >
-              {/* Step number */}
-              <div className="relative flex-shrink-0">
-                <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/10 bg-midnight flex items-center justify-center">
-                  <span className="font-display font-bold text-lg md:text-2xl text-white/20">
-                    {s.step}
-                  </span>
+          {/* Mobile vertical line — left side */}
+          <div className="md:hidden absolute left-[23px] top-0 bottom-0 w-[1px] bg-white/[0.08]" />
+
+          {steps.map((s, i) => {
+            const isLeft = i % 2 === 0;
+
+            return (
+              <motion.div
+                key={s.step}
+                className="relative pb-16 last:pb-0"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-5%" }}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: i * 0.06,
+                }}
+              >
+                {/* ── Desktop zigzag ── */}
+                <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:gap-8 items-start">
+                  {/* Left content or empty */}
+                  <div className={isLeft ? "text-right pr-4" : ""}>
+                    {isLeft && (
+                      <>
+                        <h3 className="font-display text-h2 text-white font-bold mb-2">
+                          {s.title}
+                        </h3>
+                        <p className="text-body text-slate-light leading-relaxed ml-auto max-w-sm">
+                          {s.description}
+                        </p>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Center node */}
+                  <div className="relative flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full border border-white/15 bg-midnight flex items-center justify-center relative z-10">
+                      <span className="font-mono text-[13px] text-blue font-medium">
+                        {s.step}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Right content or empty */}
+                  <div className={!isLeft ? "pl-4" : ""}>
+                    {!isLeft && (
+                      <>
+                        <h3 className="font-display text-h2 text-white font-bold mb-2">
+                          {s.title}
+                        </h3>
+                        <p className="text-body text-slate-light leading-relaxed max-w-sm">
+                          {s.description}
+                        </p>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="pt-1 md:pt-4">
-                <h3 className="font-display text-h2 text-white font-bold mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-body text-slate-light leading-relaxed max-w-md">
-                  {s.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                {/* ── Mobile — straight vertical ── */}
+                <div className="md:hidden flex gap-5">
+                  <div className="relative flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full border border-white/15 bg-midnight flex items-center justify-center relative z-10">
+                      <span className="font-mono text-[13px] text-blue font-medium">
+                        {s.step}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="pt-1">
+                    <h3 className="font-display text-h3 text-white font-semibold mb-2">
+                      {s.title}
+                    </h3>
+                    <p className="text-body text-slate-light leading-relaxed">
+                      {s.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
