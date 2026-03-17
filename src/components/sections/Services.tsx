@@ -176,14 +176,14 @@ export default function Services() {
           label="OUR SERVICES"
           title="What We Build"
           subtitle="Everything your business needs online, built with care and precision."
+          animateOnView={false}
         />
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5"
           variants={stagger}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
+          animate="visible"
         >
           {services.map((service) => (
             <BentoCard key={service.title} service={service} />

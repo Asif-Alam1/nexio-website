@@ -9,6 +9,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   dark?: boolean;
   centered?: boolean;
+  animateOnView?: boolean;
 }
 
 export default function SectionHeader({
@@ -17,14 +18,21 @@ export default function SectionHeader({
   subtitle,
   dark = false,
   centered = true,
+  animateOnView = true,
 }: SectionHeaderProps) {
+  const animationProps = animateOnView
+    ? {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, margin: "-20%" },
+        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+      }
+    : {};
+
   return (
     <motion.div
       className={cn("mb-2xl", centered && "text-center")}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20%" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      {...animationProps}
     >
       {!centered && (
         <div className="w-8 h-[2px] bg-blue mb-s" aria-hidden="true" />
