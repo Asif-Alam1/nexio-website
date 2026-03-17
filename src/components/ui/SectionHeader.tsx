@@ -20,19 +20,17 @@ export default function SectionHeader({
   centered = true,
   animateOnView = true,
 }: SectionHeaderProps) {
-  const animationProps = animateOnView
-    ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-20%" },
-        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-      }
-    : {};
-
   return (
     <motion.div
       className={cn("mb-2xl", centered && "text-center")}
-      {...animationProps}
+      initial={animateOnView ? { opacity: 0, y: 20 } : undefined}
+      whileInView={animateOnView ? { opacity: 1, y: 0 } : undefined}
+      viewport={animateOnView ? { once: true, margin: "-20%" } : undefined}
+      transition={
+        animateOnView
+          ? { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
+          : undefined
+      }
     >
       {!centered && (
         <div className="w-8 h-[2px] bg-blue mb-s" aria-hidden="true" />
