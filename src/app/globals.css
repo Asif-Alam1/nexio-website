@@ -73,4 +73,16 @@
       background-color: rgba(19, 29, 53, 1) !important;
     }
   }
+  /* Prevent blank flash on mobile where Services section may be in initial viewport.
+     Framer-motion sets inline opacity: 0 via initial="hidden" in SSR HTML.
+     On small screens the hero doesn't fill the viewport, so the Services bg
+     is visible but the content is invisible. CSS !important overrides inline styles. */
+  @media (max-width: 767px) {
+    #services [data-services-grid],
+    #services [data-services-grid] > *,
+    #services > div > div:first-child {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 }
