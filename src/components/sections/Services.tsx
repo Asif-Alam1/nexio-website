@@ -184,7 +184,7 @@ export default function Services() {
           variants={stagger}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
+          viewport={{ once: true, margin: "0px" }}
         >
           {services.map((service) => (
             <BentoCard key={service.title} service={service} />
