@@ -24,7 +24,7 @@ export default function SectionHeader({
     ? {
         initial: { opacity: 0, y: 20 },
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-20%" },
+        viewport: { once: true, margin: "200px" },
         transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
       }
     : {};

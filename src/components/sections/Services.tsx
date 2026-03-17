@@ -62,17 +62,7 @@ const services: Service[] = [
   },
 ];
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-function BentoCard({ service }: { service: Service }) {
+function BentoCard({ service, index }: { service: Service; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const Icon = service.icon;
 
@@ -95,8 +85,10 @@ function BentoCard({ service }: { service: Service }) {
 
   return (
     <motion.div
-      variants={fadeUp}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 18, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
       className={cn("h-full", service.span)}
       style={{ perspective: 800 }}
     >
@@ -179,18 +171,14 @@ export default function Services() {
           animateOnView={true}
         />
 
-        <motion.div
+        <div
           data-services-grid=""
           className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "0px" }}
         >
-          {services.map((service) => (
-            <BentoCard key={service.title} service={service} />
+          {services.map((service, index) => (
+            <BentoCard key={service.title} service={service} index={index} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
