@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Outfit, Lora, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 
 const outfit = Outfit({
@@ -504,6 +505,7 @@ export default function RootLayout({
         </a>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
