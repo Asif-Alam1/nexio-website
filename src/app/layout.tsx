@@ -228,6 +228,46 @@ const structuredData = [
           text: "Yes, we don't disappear after launch. We monitor performance, optimize as needed, and help you scale — because digital growth never stops.",
         },
       },
+      {
+        "@type": "Question",
+        name: "What technologies does Nexio Labs use?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nexio Labs primarily uses Next.js, React, React Native, TypeScript, and Node.js. For AI chatbots, we integrate with modern AI/ML APIs. We choose the best technology stack for each project's specific requirements.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How much does a project with Nexio Labs cost?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pricing varies by project scope and complexity. Nexio Labs operates at a mid-range price point, making professional digital services accessible to growing businesses. Contact us at hello@nexiolabs.co or via WhatsApp at +961 76 423 052 for a free project estimate.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What industries does Nexio Labs serve?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nexio Labs serves businesses across 5+ industries in Lebanon and the MENA region, including retail, hospitality, professional services, healthcare, and education. Our digital solutions are adaptable to any industry.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where is Nexio Labs located?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nexio Labs is based in Lebanon and serves clients across the broader MENA region. The team communicates in both English and Arabic.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long does a typical project take?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Timeline depends on project scope. Simple websites can be delivered in weeks, while complex applications with custom features take longer. Nexio Labs provides exact timelines during the planning phase — no surprises.",
+        },
+      },
     ],
   },
   // Person schemas for team
@@ -272,7 +312,40 @@ const structuredData = [
       },
     ],
   },
+  // Speakable — identifies the most quotable/citable content for AI and voice
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${BASE_URL}/#webpage`,
+    name: "Nexio Labs — Web & App Development Agency in Lebanon",
+    url: BASE_URL,
+    isPartOf: { "@id": `${BASE_URL}/#website` },
+    about: { "@id": `${BASE_URL}/#organization` },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [
+        "#hero h1",
+        "#services h2",
+        "#services h3",
+        "#process h2",
+        "#contact h2",
+      ],
+    },
+  },
 ];
+
+const llmsInlineContent = `# Nexio Labs
+> Digital agency in Lebanon building websites, mobile apps, e-commerce, AI chatbots, and automations.
+
+## Services
+Website Development, E-Commerce, Mobile Apps (iOS/Android), Desktop Apps, AI Chatbots, Business Automation.
+
+## Contact
+Email: hello@nexiolabs.co | WhatsApp: +961 76 423 052 | Web: https://nexiolabs.co
+
+## Key Facts
+Location: Lebanon (MENA) | Founded: 2026 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
+`;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -391,6 +464,11 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData),
           }}
         />
+        <script
+          type="text/llms.txt"
+          dangerouslySetInnerHTML={{ __html: llmsInlineContent }}
+        />
+        <link rel="author" href={`${BASE_URL}/llms.txt`} />
       </head>
       <body>
         <a

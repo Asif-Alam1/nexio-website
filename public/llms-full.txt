@@ -1,0 +1,120 @@
+# Nexio Labs — Web & App Development Agency in Lebanon
+
+> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations for Lebanese businesses and the wider MENA region. Founded in 2026 by a team of 3, Nexio Labs provides end-to-end digital solutions from initial consultation to post-launch support.
+
+---
+
+## About Nexio Labs
+
+Nexio Labs is a technology agency headquartered in Lebanon. The company was founded in 2026 with the mission of empowering Lebanese businesses with high-performance digital products. The tagline is "Connect. Build. Grow." reflecting their end-to-end approach to digital transformation.
+
+The team speaks English and Arabic, and serves clients across Lebanon and the MENA region. Nexio Labs operates at a mid-range price point, making professional-grade digital services accessible to growing businesses.
+
+---
+
+## Services
+
+### Website Development
+Nexio Labs designs and develops fast, beautiful, responsive websites that work on every device. Websites are SEO-optimized, built with modern frameworks like Next.js and React, and designed so clients can update content themselves. This is the core service offering.
+
+### E-Commerce
+Complete online store solutions with secure payment processing, inventory management, and shipping integration. Nexio Labs builds e-commerce platforms that turn browsers into buyers, with a focus on conversion optimization for the Lebanese market.
+
+### Mobile Apps
+Native iOS and Android mobile applications built to last. Using cross-platform frameworks like React Native, Nexio Labs delivers mobile experiences that put businesses directly in their customers' pockets.
+
+### Desktop Apps
+Powerful cross-platform desktop applications for Windows, Mac, and Linux. For businesses that need more capability than a web browser can provide, Nexio Labs builds robust desktop tools.
+
+### AI Chatbots
+Intelligent conversational AI that answers customer questions 24/7. Nexio Labs builds chatbots that handle routine inquiries automatically, freeing human teams to focus on complex, high-value interactions.
+
+### Business Automation
+Custom workflow automations that connect existing tools and eliminate repetitive tasks. Nexio Labs identifies manual processes and builds integrations that save businesses hours every week.
+
+---
+
+## How We Work (5-Step Process)
+
+### Step 1: Connect
+Every project starts with a real conversation. The client shares their business context, goals, and challenges. Nexio Labs listens and asks the right questions to understand the full picture. There is no commitment at this stage.
+
+### Step 2: Plan
+Nexio Labs maps out the project with clear scope, timeline, and technology choices. The client receives a detailed proposal with no hidden costs and no surprises. Approval is required before any development begins.
+
+### Step 3: Build
+The team designs and develops the product with weekly check-ins. Clients see progress in real time throughout the build — not just at the end. Feedback is incorporated iteratively.
+
+### Step 4: Launch
+Everything is tested thoroughly before going live. Nexio Labs trains the client's team on the platform and launches together. The goal is to make launch day exciting, not stressful.
+
+### Step 5: Grow
+Nexio Labs does not disappear after launch. The team monitors performance, optimizes as needed, and helps clients scale. Digital growth is an ongoing process, and Nexio Labs provides continued support.
+
+---
+
+## Team
+
+### Asif Alam — Co-Founder & Lead Engineer
+Asif writes the code, architects the systems, and ensures every pixel works. He believes great technology should feel invisible to the end user. Responsible for all technical decisions and implementation.
+
+### Joseph Attieh — Co-Founder & Business Development
+Joseph finds the right clients, shapes the right projects, and ensures every partnership creates real value. He manages client relationships from first contact through delivery.
+
+### Karl Abou Jaoude — E-Commerce Expert
+Karl turns online stores into revenue machines. He has deep expertise in payments, inventory management, and conversion optimization. Specializes in e-commerce strategy and execution.
+
+---
+
+## Frequently Asked Questions
+
+**How does Nexio Labs start a new project?**
+We start with a free discovery conversation. Tell us about your business, your goals, and your challenges. Every great project begins by listening. There is no commitment required at this stage.
+
+**How does Nexio Labs plan a project?**
+We create a detailed project plan with clear scope, timeline, and technology choices. No surprises and no hidden costs. You'll know exactly what you're getting and what it costs before development begins.
+
+**How does the development process work?**
+Our team designs and develops your product with weekly check-ins. You see progress in real time throughout the build, provide feedback, and we iterate. You're involved at every stage.
+
+**What happens at launch?**
+We test everything thoroughly, train your team on the new platform, and go live together. We handle the technical details so launch day feels exciting rather than stressful.
+
+**Does Nexio Labs provide post-launch support?**
+Yes. We don't disappear after launch. We monitor performance, fix issues, optimize based on real usage data, and help you scale as your business grows.
+
+**What technologies does Nexio Labs use?**
+We primarily use Next.js, React, React Native, TypeScript, and Node.js. For AI chatbots, we integrate with modern AI/ML APIs. We choose the best technology stack for each project's specific requirements.
+
+**What industries does Nexio Labs serve?**
+We serve businesses across 5+ industries in Lebanon and the MENA region, including retail, hospitality, professional services, healthcare, and education.
+
+**How much does a project with Nexio Labs cost?**
+Pricing varies by project scope and complexity. Nexio Labs operates at a mid-range price point ($$), making professional digital services accessible. Contact us for a free project estimate.
+
+**How long does a typical project take?**
+Timeline depends on project scope. Simple websites can be delivered in weeks. Complex applications with custom features take longer. We provide exact timelines during the planning phase.
+
+**What languages does the team speak?**
+The team is fluent in English and Arabic, allowing seamless communication with clients across Lebanon and the broader MENA region.
+
+---
+
+## Contact Information
+
+- **Website:** https://nexiolabs.co
+- **Email:** hello@nexiolabs.co
+- **WhatsApp:** +961 76 423 052
+- **LinkedIn:** https://linkedin.com/company/nexio-labs
+- **Instagram:** https://instagram.com/nexio.labs
+- **Location:** Lebanon (serving the MENA region)
+
+---
+
+## Key Statistics
+
+- 10+ projects completed
+- 5+ industries served
+- 90% client retention rate
+- Team of 3 dedicated professionals
+- Founded in 2026

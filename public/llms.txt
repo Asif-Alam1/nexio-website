@@ -1,0 +1,39 @@
+# Nexio Labs
+
+> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations. Founded in 2026, the team of 3 serves Lebanese businesses and the wider MENA region.
+
+## Services
+
+- [Website Development](https://nexiolabs.co/#services): Fast, responsive websites built with Next.js, React, and modern frameworks. SEO-optimized, mobile-first, and easy to update.
+- [E-Commerce](https://nexiolabs.co/#services): Complete online stores with secure payments, inventory management, and shipping integration.
+- [Mobile Apps](https://nexiolabs.co/#services): Native iOS and Android applications. Cross-platform development using React Native.
+- [Desktop Apps](https://nexiolabs.co/#services): Cross-platform desktop applications for Windows, Mac, and Linux.
+- [AI Chatbots](https://nexiolabs.co/#services): Intelligent customer service chatbots that handle routine inquiries 24/7.
+- [Business Automation](https://nexiolabs.co/#services): Custom workflow automations that connect tools and eliminate repetitive tasks.
+
+## Process
+
+Nexio Labs follows a 5-step process: Connect (discovery call), Plan (scope and timeline), Build (design and develop with weekly check-ins), Launch (testing and go-live), Grow (ongoing monitoring and optimization).
+
+## Team
+
+- Asif Alam: Co-Founder & Lead Engineer. Architects systems and writes production code.
+- Joseph Attieh: Co-Founder & Business Development. Manages client relationships and project scoping.
+- Karl Abou Jaoude: E-Commerce Expert. Specializes in online store optimization and conversion.
+
+## Contact
+
+- Website: https://nexiolabs.co
+- Email: hello@nexiolabs.co
+- WhatsApp: +961 76 423 052
+- LinkedIn: https://linkedin.com/company/nexio-labs
+- Instagram: https://instagram.com/nexio.labs
+
+## Key Facts
+
+- Location: Lebanon (serves MENA region)
+- Founded: 2026
+- Team size: 3
+- Languages: English, Arabic
+- Technologies: Next.js, React, React Native, TypeScript, Node.js, AI/ML
+- Pricing: Mid-range ($$)
