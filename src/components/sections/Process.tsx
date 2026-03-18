@@ -38,7 +38,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="noise-overlay relative bg-midnight py-4xl overflow-hidden">
+    <section id="process" aria-label="Our development process" className="noise-overlay relative bg-midnight py-4xl overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
           label="HOW WE WORK"

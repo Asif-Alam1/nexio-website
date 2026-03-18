@@ -1,11 +1,14 @@
 {
-  "name": "Nexio Labs",
-  "short_name": "Nexio",
-  "description": "Your Digital Partner in Lebanon. We build websites, mobile apps, e-commerce, AI chatbots, and automations.",
+  "name": "Nexio Labs — Web & App Development Agency",
+  "short_name": "Nexio Labs",
+  "description": "Lebanon's digital agency building websites, mobile apps, e-commerce stores, AI chatbots & automations for businesses ready to grow online.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B1120",
   "theme_color": "#2563EB",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
       "src": "/favicon-32.png",
@@ -15,12 +18,14 @@
     {
       "src": "/apple-touch-icon.png",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/favicon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

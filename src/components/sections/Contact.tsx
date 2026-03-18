@@ -9,7 +9,7 @@ import { WHATSAPP_URL, CONTACT_EMAIL } from "@/lib/constants";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative bg-cloud py-4xl overflow-hidden border-t border-border/50">
+    <section id="contact" aria-label="Contact us" className="relative bg-cloud py-4xl overflow-hidden border-t border-border/50">
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-3xl">
           {/* Left column */}

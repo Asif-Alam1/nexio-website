@@ -45,6 +45,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="hero"
+      aria-label="Nexio Labs — Connect Your Business Online"
       className="noise-overlay relative bg-midnight flex flex-col justify-center overflow-hidden pt-32 pb-16 md:min-h-screen md:pt-20 md:pb-16"
     >
       {/* ── Atmosphere ── */}

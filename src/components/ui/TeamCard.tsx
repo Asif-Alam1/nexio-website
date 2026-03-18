@@ -34,7 +34,7 @@ export default function TeamCard({ name, role, bio, initial, image, linkedinUrl 
           {image ? (
             <Image
               src={image}
-              alt=""
+              alt={`${name}, ${role} at Nexio Labs`}
               width={120}
               height={120}
               sizes="120px"

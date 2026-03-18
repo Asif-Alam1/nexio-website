@@ -25,21 +25,37 @@ const dmMono = DM_Mono({
   weight: ["400"],
 });
 
+const BASE_URL = "https://nexiolabs.co";
+
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${BASE_URL}/#organization`,
     name: "Nexio Labs",
-    url: "https://nexiolabs.co",
-    logo: "https://nexiolabs.co/images/logo/nexio-monogram-blue-512.png",
+    url: BASE_URL,
+    logo: {
+      "@type": "ImageObject",
+      url: `${BASE_URL}/images/logo/nexio-monogram-blue-512.png`,
+      width: 512,
+      height: 512,
+    },
     description:
-      "Tech agency in Lebanon building websites, mobile apps, desktop apps, e-commerce, AI chatbots, and automations.",
+      "Tech agency in Lebanon building websites, mobile apps, desktop apps, e-commerce, AI chatbots, and automations for businesses ready to grow online.",
     foundingDate: "2026",
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      value: 3,
+    },
     address: {
       "@type": "PostalAddress",
       addressCountry: "LB",
       addressLocality: "Lebanon",
     },
+    areaServed: [
+      { "@type": "Country", name: "Lebanon" },
+      { "@type": "Place", name: "MENA Region" },
+    ],
     sameAs: [
       "https://linkedin.com/company/nexio-labs",
       "https://instagram.com/nexio.labs",
@@ -51,18 +67,37 @@ const structuredData = [
       contactType: "customer service",
       availableLanguage: ["English", "Arabic"],
     },
+    knowsAbout: [
+      "Web Development",
+      "Mobile App Development",
+      "E-Commerce",
+      "AI Chatbots",
+      "Business Automation",
+      "Desktop Applications",
+    ],
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
     name: "Nexio Labs",
-    url: "https://nexiolabs.co",
+    url: BASE_URL,
+    publisher: { "@id": `${BASE_URL}/#organization` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   },
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
+    "@id": `${BASE_URL}/#localbusiness`,
     name: "Nexio Labs",
-    url: "https://nexiolabs.co",
+    url: BASE_URL,
     telephone: "+96176423052",
     email: "hello@nexiolabs.co",
     address: {
@@ -71,7 +106,171 @@ const structuredData = [
       addressLocality: "Lebanon",
     },
     priceRange: "$$",
-    image: "https://nexiolabs.co/images/logo/nexio-monogram-blue-512.png",
+    image: `${BASE_URL}/images/logo/nexio-monogram-blue-512.png`,
+    parentOrganization: { "@id": `${BASE_URL}/#organization` },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Digital Services",
+      itemListElement: [
+        {
+          "@type": "OfferCatalog",
+          name: "Website Development",
+          itemListElement: [
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Website Design & Development" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Responsive Web Design" } },
+          ],
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "App Development",
+          itemListElement: [
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "iOS & Android Mobile Apps" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cross-Platform Desktop Apps" } },
+          ],
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "AI & Automation",
+          itemListElement: [
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Chatbot Development" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business Process Automation" } },
+          ],
+        },
+      ],
+    },
+  },
+  // Service schemas for each offering
+  ...[
+    {
+      name: "Website Development",
+      description: "Fast, beautiful, responsive websites built to convert visitors into customers. SEO-optimized and easy to update.",
+      serviceType: "Web Development",
+    },
+    {
+      name: "E-Commerce Solutions",
+      description: "Complete online stores with secure payments, inventory management, and shipping integration for Lebanese businesses.",
+      serviceType: "E-Commerce Development",
+    },
+    {
+      name: "Mobile App Development",
+      description: "Native iOS and Android applications built to last. Your business in your customers' pockets.",
+      serviceType: "Mobile App Development",
+    },
+    {
+      name: "Desktop App Development",
+      description: "Powerful cross-platform desktop tools for Windows, Mac, and Linux when you need more than a browser.",
+      serviceType: "Software Development",
+    },
+    {
+      name: "AI Chatbot Development",
+      description: "Intelligent chatbots that answer customer questions 24/7, handling routine inquiries so your team focuses on what matters.",
+      serviceType: "AI Development",
+    },
+    {
+      name: "Business Automation",
+      description: "Connect your tools, eliminate repetitive tasks, and save hours every week with custom workflow automations.",
+      serviceType: "Business Process Automation",
+    },
+  ].map((service) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.description,
+    serviceType: service.serviceType,
+    provider: { "@id": `${BASE_URL}/#organization` },
+    areaServed: [
+      { "@type": "Country", name: "Lebanon" },
+      { "@type": "Place", name: "MENA Region" },
+    ],
+  })),
+  // FAQPage schema from Process section
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How does Nexio Labs start a new project?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We start with a real conversation. Tell us about your business, goals, and challenges. Every great project begins by listening and understanding your needs.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does Nexio Labs plan a project?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We map out your project with clear scope, timeline, and technology choices. No surprises, no hidden costs — you'll know exactly what you're getting before development begins.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does the development process work at Nexio Labs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Our team designs and develops your product with weekly check-ins. You see progress in real time throughout the build, not just at the end.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What happens at launch?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We test everything thoroughly, train your team on the platform, and go live together. Launch day should feel exciting, not stressful.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does Nexio Labs provide support after launch?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, we don't disappear after launch. We monitor performance, optimize as needed, and help you scale — because digital growth never stops.",
+        },
+      },
+    ],
+  },
+  // Person schemas for team
+  ...[
+    {
+      name: "Asif Alam",
+      jobTitle: "Co-Founder & Lead Engineer",
+      description: "Writes the code, architects the systems, and makes sure every pixel works.",
+      image: `${BASE_URL}/images/team/asif.jpeg`,
+    },
+    {
+      name: "Joseph Attieh",
+      jobTitle: "Co-Founder & Business Development",
+      description: "Finds the right clients, shapes the right projects, and makes sure every partnership creates real value.",
+      image: `${BASE_URL}/images/team/joseph.jpeg`,
+    },
+    {
+      name: "Karl Abou Jaoude",
+      jobTitle: "E-Commerce Expert",
+      description: "Turns online stores into revenue machines. Knows payments, inventory, and conversion inside out.",
+      image: `${BASE_URL}/images/team/karl.jpeg`,
+    },
+  ].map((person) => ({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: person.name,
+    jobTitle: person.jobTitle,
+    description: person.description,
+    image: person.image,
+    worksFor: { "@id": `${BASE_URL}/#organization` },
+  })),
+  // BreadcrumbList
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: BASE_URL,
+      },
+    ],
   },
 ];
 
@@ -86,11 +285,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Nexio Labs — Your Digital Partner in Lebanon",
+    default: "Nexio Labs — Web & App Development Agency in Lebanon",
     template: "%s | Nexio Labs",
   },
   description:
-    "We build websites, mobile and desktop apps, e-commerce platforms, AI chatbots, and automations for Lebanese businesses. Connect. Build. Grow.",
+    "Lebanon's digital agency building high-performance websites, mobile apps, e-commerce stores, AI chatbots & automations. From idea to launch in weeks. Get a free consultation.",
   keywords: [
     "web development Lebanon",
     "mobile app development Lebanon",
@@ -100,19 +299,31 @@ export const metadata: Metadata = {
     "Nexio Labs",
     "website design Beirut",
     "tech agency MENA",
+    "software development Lebanon",
+    "custom website Lebanon",
+    "app developer Beirut",
+    "business automation Lebanon",
+    "iOS Android app Lebanon",
+    "online store Lebanon",
+    "web design agency Beirut",
+    "desktop application development",
+    "React Next.js developer Lebanon",
+    "digital transformation Lebanon",
   ],
-  authors: [{ name: "Nexio Labs", url: "https://nexiolabs.co" }],
+  applicationName: "Nexio Labs",
+  category: "technology",
+  authors: [{ name: "Nexio Labs", url: BASE_URL }],
   creator: "Nexio Labs",
   publisher: "Nexio Labs",
-  metadataBase: new URL("https://nexiolabs.co"),
+  metadataBase: new URL(BASE_URL),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Nexio Labs — Your Digital Partner in Lebanon",
+    title: "Nexio Labs — Web & App Development Agency in Lebanon",
     description:
-      "We build websites, mobile and desktop apps, e-commerce platforms, AI chatbots, and automations for Lebanese businesses.",
-    url: "https://nexiolabs.co",
+      "We build websites, mobile apps, e-commerce stores, AI chatbots & automations for Lebanese businesses. From idea to launch in weeks.",
+    url: BASE_URL,
     siteName: "Nexio Labs",
     locale: "en_US",
     type: "website",
@@ -121,16 +332,23 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Nexio Labs — Connect your vision to the digital world",
+        alt: "Nexio Labs — Web & App Development Agency in Lebanon. Connect. Build. Grow.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexio Labs — Your Digital Partner in Lebanon",
+    title: "Nexio Labs — Web & App Development Agency in Lebanon",
     description:
-      "We build websites, mobile and desktop apps, e-commerce platforms, AI chatbots, and automations for Lebanese businesses.",
-    images: ["/images/og-image.png"],
+      "Lebanon's digital agency: websites, apps, e-commerce, AI chatbots & automations. From idea to launch in weeks.",
+    images: [
+      {
+        url: "/images/og-image.png",
+        alt: "Nexio Labs — Web & App Development Agency in Lebanon",
+      },
+    ],
+    site: "@nexiolabs",
+    creator: "@nexiolabs",
   },
   robots: {
     index: true,

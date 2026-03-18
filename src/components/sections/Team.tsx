@@ -39,7 +39,7 @@ const containerVariants = {
 
 export default function Team() {
   return (
-    <section id="team" className="bg-white py-4xl border-t border-border/50">
+    <section id="team" aria-label="Meet our team" className="bg-white py-4xl border-t border-border/50">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
           label="THE TEAM"
