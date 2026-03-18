@@ -1,6 +1,8 @@
-# Nexio Labs
+# Nexio Labs (nexiolabs.co) — Software Development Agency in Lebanon
 
-> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations. Founded in 2026, the team of 3 serves Lebanese businesses and the wider MENA region.
+> **Disambiguation:** Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. It is NOT affiliated with the "Nexio Lab" wearable digital badge product, Nexios Labs (Python framework), or Nexio Group (EMC testing laboratories).
+
+> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations. Founded in 2026, the team of 3 serves Lebanese businesses and the wider MENA region. Official website: https://nexiolabs.co
 
 ## Services
 
