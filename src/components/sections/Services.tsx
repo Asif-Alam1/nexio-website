@@ -64,39 +64,49 @@ const services: Service[] = [
 
 function BentoCard({ service, index }: { service: Service; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>(0);
   const Icon = service.icon;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = cardRef.current;
     if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -6;
-    el.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-    el.style.transition = "none";
+    cancelAnimationFrame(rafRef.current);
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = el.getBoundingClientRect();
+      const x = ((clientX - rect.left) / rect.width - 0.5) * 6;
+      const y = ((clientY - rect.top) / rect.height - 0.5) * -6;
+      el.style.transform = `perspective(800px) rotateY(${x}deg) rotateX(${y}deg) translateY(0px)`;
+    });
   };
 
   const handleMouseLeave = () => {
+    cancelAnimationFrame(rafRef.current);
     const el = cardRef.current;
     if (!el) return;
     el.style.transition = "transform 0.4s cubic-bezier(0.16,1,0.3,1)";
-    el.style.transform = "rotateY(0deg) rotateX(0deg)";
+    el.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0px)";
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (el) el.style.transition = "";
+      }, 400);
+    });
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 42, scale: 0.94, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      whileHover={{ y: -6 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.62, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       className={cn("h-full", service.span)}
-      style={{ perspective: 800, willChange: "transform, opacity, filter" }}
     >
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        style={{ willChange: "transform" }}
         className={cn(
           "group h-full rounded-card border overflow-hidden transition-shadow duration-200 active:translate-y-[1px]",
           service.accent
