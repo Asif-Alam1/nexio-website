@@ -3,7 +3,6 @@ import { Outfit, Lora, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -503,7 +502,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        {children}
         <Analytics />
         <SpeedInsights />
       </body>

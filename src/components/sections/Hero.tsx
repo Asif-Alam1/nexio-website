@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useSpring, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useSpring, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { WHATSAPP_URL } from "@/lib/constants";
@@ -12,14 +12,12 @@ const WORD_LINE2 = "Online";
 export default function Hero() {
   const { position, isTouch } = useMousePosition();
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  // Parallax: headline drifts up, stats drift up slower
   const headlineY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
   const subtextY = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
   const orbScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
@@ -99,55 +97,37 @@ export default function Hero() {
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 flex flex-col flex-1 justify-center">
 
-        {/* Headline — scroll parallax on desktop */}
+        {/* Headline — CSS animation for instant FCP, scroll parallax on desktop */}
         <motion.h1
           className="font-display font-extrabold tracking-[-0.045em] leading-[0.9] text-white mb-8 md:mb-16 text-[clamp(2.5rem,10vw,7.5rem)]"
           style={{ y: headlineY }}
         >
           {WORDS_LINE1.map((word, i) => (
             <span key={word} className="inline-block overflow-hidden mr-[0.2em] pr-[0.04em]">
-              <motion.span
-                className="inline-block"
-                initial={{ y: "115%" }}
-                animate={isInView ? { y: "0%" } : {}}
-                transition={{
-                  duration: 0.9,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.15 + i * 0.07,
-                }}
+              <span
+                className="inline-block hero-word"
+                style={{ animationDelay: `${0.15 + i * 0.07}s` }}
               >
                 {word}
-              </motion.span>
+              </span>
             </span>
           ))}
           <br className="hidden md:block" />
           <span className="inline-block overflow-hidden mr-[0.12em] pr-[0.04em]">
-            <motion.span
-              className="inline-block"
-              initial={{ y: "115%" }}
-              animate={isInView ? { y: "0%" } : {}}
-              transition={{
-                duration: 0.9,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.36,
-              }}
+            <span
+              className="inline-block hero-word"
+              style={{ animationDelay: "0.36s" }}
             >
               {WORD_LINE2}
-            </motion.span>
+            </span>
           </span>
           <span className="inline-block overflow-hidden">
-            <motion.span
-              className="inline-block text-blue"
-              initial={{ y: "115%", scale: 0.8 }}
-              animate={isInView ? { y: "0%", scale: 1 } : {}}
-              transition={{
-                duration: 0.9,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.43,
-              }}
+            <span
+              className="inline-block text-blue hero-word"
+              style={{ animationDelay: "0.43s" }}
             >
               .
-            </motion.span>
+            </span>
           </span>
         </motion.h1>
 
@@ -155,7 +135,7 @@ export default function Hero() {
         <motion.p
           className="text-sm md:hidden text-slate-light leading-relaxed mb-5 max-w-[320px]"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
         >
           Websites, apps, AI chatbots & automations for Lebanese businesses ready to grow.
@@ -165,7 +145,7 @@ export default function Hero() {
         <motion.div
           className="flex gap-3 mb-8 md:hidden"
           initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
         >
           <a
@@ -189,7 +169,7 @@ export default function Hero() {
         <motion.div
           className="flex items-center gap-4 md:gap-x-12 md:flex-wrap mb-0 md:mb-12"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
           style={{ y: subtextY }}
         >
@@ -217,13 +197,13 @@ export default function Hero() {
           <motion.div
             className="w-full h-[1px] bg-white/[0.08] origin-left"
             initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
+            animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
           />
           <motion.div
             className="flex items-end justify-between gap-12 pt-8"
             initial={{ opacity: 0, y: 16 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.0 }}
             style={{ y: subtextY }}
           >
@@ -259,7 +239,7 @@ export default function Hero() {
       <motion.div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 z-10"
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
+        animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.5 }}
       >
         <span className="font-mono text-[9px] text-white/20 uppercase tracking-[0.2em]">

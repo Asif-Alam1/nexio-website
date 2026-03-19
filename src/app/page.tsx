@@ -1,21 +1,18 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
-import ScrollProgress from "@/components/layout/ScrollProgress";
-import CustomCursor from "@/components/layout/CustomCursor";
-import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
-import PageLoader from "@/components/layout/PageLoader";
 import Hero from "@/components/sections/Hero";
-import Services from "@/components/sections/Services";
-import Process from "@/components/sections/Process";
-import Team from "@/components/sections/Team";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/layout/Footer";
+import ClientShell from "@/components/layout/ClientShell";
+
+const Services = dynamic(() => import("@/components/sections/Services"));
+const Process = dynamic(() => import("@/components/sections/Process"));
+const Team = dynamic(() => import("@/components/sections/Team"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
+const Footer = dynamic(() => import("@/components/layout/Footer"));
 
 export default function Home() {
   return (
     <>
-      <PageLoader />
-      <CustomCursor />
-      <ScrollProgress />
+      <ClientShell />
       <Navbar />
       <main id="main-content">
         <Hero />
@@ -25,7 +22,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </>
   );
 }
