@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
 import CapabilitiesSection from "@/components/home/CapabilitiesSection";
 import CTASection from "@/components/home/CTASection";
 import TextMarquee from "@/components/ui/TextMarquee";
+
+export const metadata: Metadata = {
+  title: "Nexio Labs — Curating the Future of Code",
+  description:
+    "We bridge raw technical power and high-end craftsmanship. Website development, mobile apps, AI chatbots, and automations for ambitious brands.",
+};
 
 export default function HomePage() {
   return (

@@ -58,7 +58,7 @@ const structuredData = [
       "Nexio Labs is a digital agency and software development company based in Lebanon. We build websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. Not affiliated with Nexio Lab digital badges or Nexio Group testing laboratories.",
     disambiguatingDescription:
       "A software development and digital services agency headquartered in Lebanon (nexiolabs.co), distinct from the Nexio Lab wearable digital badge product and Nexio Group EMC testing laboratories.",
-    foundingDate: "2026",
+    foundingDate: "2024",
     foundingLocation: {
       "@type": "Place",
       name: "Lebanon",
@@ -297,7 +297,7 @@ const structuredData = [
         name: "What is Nexio Labs?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. Founded in 2026, we build websites, mobile apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. We are not affiliated with the Nexio Lab digital badge product or Nexio Group testing laboratories.",
+          text: "Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. Founded in 2024, we build websites, mobile apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. We are not affiliated with the Nexio Lab digital badge product or Nexio Group testing laboratories.",
         },
       },
     ],
@@ -342,6 +342,24 @@ const structuredData = [
         name: "Home",
         item: BASE_URL,
       },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${BASE_URL}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "About",
+        item: `${BASE_URL}/about`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Contact",
+        item: `${BASE_URL}/contact`,
+      },
     ],
   },
   // Speakable — identifies the most quotable/citable content for AI and voice
@@ -376,7 +394,7 @@ Nexio Labs (nexiolabs.co) is a digital agency that builds: websites, e-commerce 
 Email: hello@nexiolabs.co | WhatsApp: +961 76 423 052 | Web: https://nexiolabs.co | LinkedIn: linkedin.com/company/nexio-labs
 
 ## Key Facts
-Type: Software Development Agency | Location: Lebanon (serves MENA) | Founded: 2026 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
+Type: Software Development Agency | Location: Lebanon (serves MENA) | Founded: 2024 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
 `;
 
 export const viewport: Viewport = {
