@@ -3,6 +3,13 @@ import { Outfit, Newsreader, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import GrainOverlay from "@/components/layout/GrainOverlay";
+import CustomCursor from "@/components/layout/CustomCursor";
+import ScrollProgress from "@/components/layout/ScrollProgress";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -495,14 +502,22 @@ export default function RootLayout({
         />
         <link rel="author" href={`${BASE_URL}/llms.txt`} />
       </head>
-      <body>
+      <body className="font-body bg-surface-dim text-on-surface antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-blue focus:text-white focus:px-4 focus:py-2 focus:rounded-button focus:outline-none"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:outline-none"
         >
           Skip to content
         </a>
-        {children}
+        <SmoothScrollProvider>
+          <GrainOverlay />
+          <CustomCursor />
+          <ScrollProgress />
+          <Navbar />
+          <main id="main-content">{children}</main>
+          <Footer />
+          <FloatingWhatsApp />
+        </SmoothScrollProvider>
         <Analytics />
         <SpeedInsights />
       </body>
