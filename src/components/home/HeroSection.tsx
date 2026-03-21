@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import KineticText from "@/components/ui/KineticText";
@@ -88,7 +89,13 @@ export default function HeroSection() {
         <FloatingMetadata className="absolute -top-4 -left-4">
           [RENDER_BUFFER: ACTIVE]
         </FloatingMetadata>
-        <div className="w-full h-full bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 mix-blend-screen opacity-60" />
+        <Image
+          src="https://images.unsplash.com/photo-1735139099204-c9dfcbea0647?w=1920&q=80"
+          alt="Abstract visual"
+          fill
+          className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
+          priority
+        />
         <div className="absolute bottom-10 right-0 w-px h-32 bg-gradient-to-b from-primary/0 to-primary/40" />
       </div>
 

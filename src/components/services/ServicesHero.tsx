@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
@@ -93,13 +94,12 @@ export default function ServicesHero() {
             )}
             style={{ animation: "subtle-float 10s ease-in-out infinite" }}
           >
-            <div
-              className="w-full h-full"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 30% 40%, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.05) 40%, transparent 70%)",
-                filter: "blur(40px)",
-              }}
+            <Image
+              src="https://images.unsplash.com/photo-1727791949033-780c17e38783?w=1920&q=80"
+              alt="Abstract 3D shape"
+              fill
+              className="object-cover opacity-80"
+              style={{ filter: "blur(40px)" }}
             />
           </div>
         </div>
