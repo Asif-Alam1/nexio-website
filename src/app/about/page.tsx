@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import AboutHero from "@/components/about/AboutHero";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -44,12 +45,12 @@ export default function AboutPage() {
               <MagneticButton variant="gradient" href="/contact">
                 Inquire Now
               </MagneticButton>
-              <a
+              <Link
                 href="/services"
                 className="font-label text-xs uppercase tracking-[0.2em] text-on-surface hover:text-secondary transition-colors border-b border-outline/20 pb-2"
               >
-                View our services
-              </a>
+                View Our Services
+              </Link>
             </div>
           </ScrollReveal>
         </div>

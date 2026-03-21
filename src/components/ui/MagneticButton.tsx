@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useMagneticEffect } from "@/hooks/useMagneticEffect";
 
@@ -17,7 +18,7 @@ type MagneticButtonProps = {
 >;
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[2px] active:scale-[0.98] transition-transform duration-100";
+  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[2px] active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-dim focus-visible:outline-none";
 
 const variantStyles: Record<MagneticButtonVariant, string> = {
   gradient:
@@ -46,8 +47,27 @@ export default function MagneticButton({
   };
 
   if (href) {
+    const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+
+    if (isExternal) {
+      return (
+        <a
+          ref={elementRef as React.RefObject<HTMLAnchorElement>}
+          href={href}
+          className={styles}
+          style={magneticStyle}
+          onMouseLeave={handleMouseLeave}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <a
+      <Link
         ref={elementRef as React.RefObject<HTMLAnchorElement>}
         href={href}
         className={styles}
@@ -56,7 +76,7 @@ export default function MagneticButton({
         {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
-      </a>
+      </Link>
     );
   }
 

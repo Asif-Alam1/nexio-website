@@ -115,11 +115,11 @@ export default function TeamGallery() {
               </h4>
 
               {/* Tactical Card */}
-              <GlassPanel className="p-3 relative z-10 overflow-hidden">
+              <GlassPanel className="p-2 relative z-10 overflow-hidden">
                 <div className="aspect-[4/5] overflow-hidden relative">
                   <Image
                     src={team[0].image}
-                    alt={team[0].name}
+                    alt={`${team[0].name}, ${team[0].role}`}
                     fill
                     className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
@@ -158,11 +158,11 @@ export default function TeamGallery() {
                 {team[1].firstName}
               </h4>
 
-              <GlassPanel className="p-3 relative z-10 overflow-hidden">
+              <GlassPanel className="p-2 relative z-10 overflow-hidden">
                 <div className="aspect-[3/4] overflow-hidden relative">
                   <Image
                     src={team[1].image}
-                    alt={team[1].name}
+                    alt={`${team[1].name}, ${team[1].role}`}
                     fill
                     className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
@@ -198,7 +198,7 @@ export default function TeamGallery() {
               <div className="w-full md:w-1/2 aspect-square overflow-hidden relative">
                 <Image
                   src={team[2].image}
-                  alt={team[2].name}
+                  alt={`${team[2].name}, ${team[2].role}`}
                   fill
                   className="object-cover grayscale group-hover:grayscale-0 contrast-[1.2] brightness-[0.85] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   sizes="(max-width: 768px) 100vw, 40vw"

@@ -72,11 +72,13 @@ export default function CustomCursor() {
       <canvas
         id="canvas-cursor"
         className="pointer-events-none fixed inset-0 z-[9998]"
+        aria-hidden="true"
       />
 
       {/* Framer Motion circle cursor for hover states */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full"
+        aria-hidden="true"
         style={{
           x: springX,
           y: springY,

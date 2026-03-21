@@ -26,7 +26,7 @@ const initialState: ContactFormState = { success: false };
 
 // Input field styling
 const inputStyles =
-  "bg-transparent border-b border-outline/30 focus:border-secondary focus:shadow-[0_2px_8px_rgba(37,99,235,0.15)] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/40 transition-all";
+  "bg-transparent border-b border-outline/30 focus:border-secondary focus:shadow-[0_2px_8px_rgba(37,99,235,0.15)] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/40 transition-all duration-200";
 const inputErrorStyles = "border-red-500 focus:border-red-500 focus:shadow-[0_1px_0_0_#ef4444]";
 const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-surface-variant";
 
@@ -156,7 +156,7 @@ export default function ContactForm() {
                   <KineticText as="span" delay={0.2}>Message Received.</KineticText>
                 </h2>
                 <FloatingMetadata>RESPONSE_TIME: &lt; 24H</FloatingMetadata>
-                <div className="flex gap-3 mt-8">
+                <div className="flex gap-4 mt-8">
                   <span className="w-2 h-2 rounded-full bg-primary animate-[fade_2s_ease-in-out_infinite_alternate]" />
                   <span
                     className="w-2 h-2 rounded-full bg-secondary animate-[fade_2s_ease-in-out_infinite_alternate]"

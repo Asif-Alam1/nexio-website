@@ -53,8 +53,7 @@ export async function submitContactForm(
     });
 
     return { success: true };
-  } catch (err) {
-    console.error("Contact form error:", err);
+  } catch {
     return { success: false, error: "Failed to send message. Please try again." };
   }
 }

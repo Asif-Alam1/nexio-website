@@ -23,6 +23,10 @@
     text-wrap: balance;
   }
 
+  p {
+    text-wrap: pretty;
+  }
+
   ::selection {
     background-color: #F97316;
     color: #080D1A;

@@ -10,7 +10,7 @@ export default function FloatingMetadata({
   className,
 }: FloatingMetadataProps) {
   return (
-    <span className={cn("floating-metadata", className)}>
+    <span className={cn("floating-metadata", className)} aria-hidden="true">
       {children}
     </span>
   );

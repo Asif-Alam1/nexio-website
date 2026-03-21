@@ -93,7 +93,7 @@ export default function NarrativeSection() {
             >
               <Image
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80"
-                alt="Nexio Labs narrative"
+                alt="Code editor displaying clean software architecture"
                 fill
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, 40vw"

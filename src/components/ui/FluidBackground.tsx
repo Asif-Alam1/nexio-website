@@ -243,7 +243,6 @@ function compileShader(
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.warn("Shader compile error:", gl.getShaderInfoLog(shader));
     gl.deleteShader(shader);
     return null;
   }
@@ -266,7 +265,6 @@ function createProgram(
   gl.linkProgram(program);
 
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.warn("Program link error:", gl.getProgramInfoLog(program));
     gl.deleteProgram(program);
     return null;
   }

@@ -35,7 +35,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
                 >
                   Instagram
                 </a>
@@ -43,7 +43,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
                 >
                   LinkedIn
                 </a>
@@ -60,7 +60,7 @@ export default function Footer() {
               <div className="flex flex-col gap-4">
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
                 >
                   Email
                 </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
                 >
                   WhatsApp
                 </a>
@@ -85,13 +85,13 @@ export default function Footer() {
               <div className="flex flex-col gap-4">
                 <Link
                   href="/privacy"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
                 >
                   Privacy
                 </Link>
                 <Link
                   href="/terms"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
                 >
                   Terms
                 </Link>
@@ -107,7 +107,7 @@ export default function Footer() {
         <p className="font-label text-[11px] text-on-surface/30 uppercase tracking-[0.3em]">
           &copy;{new Date().getFullYear()} NEXIO LABS. ALL RIGHTS RESERVED.
         </p>
-        <div className="flex items-center gap-6 glass-panel px-6 py-3">
+        <div className="flex items-center gap-6 glass-panel px-6 py-4">
           <div className="flex gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
             <div className="w-1.5 h-1.5 rounded-full bg-primary" />

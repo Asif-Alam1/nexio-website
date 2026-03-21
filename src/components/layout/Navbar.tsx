@@ -134,7 +134,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <MagneticButton variant="gradient" href="/contact">
-            Start Project
+            Start a Project
           </MagneticButton>
         </div>
 
@@ -216,7 +216,7 @@ export default function Navbar() {
                 href="/contact"
                 onClick={closeMobileMenu}
               >
-                Start Project
+                Start a Project
               </MagneticButton>
             </motion.div>
             <div className="mt-auto pt-12 border-t border-white/5 text-center">

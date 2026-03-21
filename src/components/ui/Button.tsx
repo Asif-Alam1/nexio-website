@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "ghost";
@@ -15,7 +16,7 @@ type ButtonProps = {
 >;
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[1px]";
+  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[1px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-dim focus-visible:outline-none";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
@@ -34,8 +35,26 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
         : undefined;
 
     if (href) {
+      const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
+
+      if (isExternal) {
+        return (
+          <a
+            ref={ref as React.Ref<HTMLAnchorElement>}
+            href={href}
+            className={styles}
+            style={inlineStyle}
+            target="_blank"
+            rel="noopener noreferrer"
+            {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          >
+            {children}
+          </a>
+        );
+      }
+
       return (
-        <a
+        <Link
           ref={ref as React.Ref<HTMLAnchorElement>}
           href={href}
           className={styles}
@@ -43,7 +62,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
           {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {children}
-        </a>
+        </Link>
       );
     }
 

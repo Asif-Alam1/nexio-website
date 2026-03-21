@@ -101,7 +101,7 @@ export default function ServicesHero() {
               fallback={
                 <Image
                   src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80"
-                  alt="Abstract 3D shape"
+                  alt="Abstract fluid visual"
                   fill
                   loading="lazy"
                   sizes="(max-width: 1024px) 0px, 40vw"

@@ -92,7 +92,7 @@ export default function HeroSection() {
           fallback={
             <Image
               src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
-              alt="Abstract visual"
+              alt="Abstract fluid visual"
               fill
               className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
               sizes="(max-width: 1024px) 0px, 45vw"
