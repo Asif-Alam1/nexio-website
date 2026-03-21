@@ -106,14 +106,14 @@ export default function CapabilitiesSection() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-32 gap-12">
           <div className="relative">
             <FloatingMetadata className="absolute -top-6 left-0">
-              MODULAR_CAPABILITIES
+              OUR_SERVICES
             </FloatingMetadata>
             <h2 className="font-headline italic text-5xl md:text-8xl leading-none">
               <KineticText as="span">Capabilities</KineticText>
             </h2>
           </div>
           <div className="relative border-l border-white/10 pl-8">
-            <p className="font-label text-on-surface-variant max-w-xs text-[10px] uppercase tracking-widest leading-relaxed font-light">
+            <p className="font-label text-on-surface-variant max-w-xs text-[11px] uppercase tracking-widest leading-relaxed font-light">
               Specialized focus areas where design meets high-performance
               engineering.
             </p>
@@ -123,51 +123,62 @@ export default function CapabilitiesSection() {
         {/* Grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6"
         >
-          {SERVICES.map((service) => (
-            <GlassPanel
-              key={service.code}
-              className={cn(
-                "capability-card p-8 md:p-12 md:aspect-square flex flex-col justify-between group transition-all duration-700 relative overflow-hidden",
-                service.hoverBg
-              )}
-            >
-              <FloatingMetadata
+          {SERVICES.map((service, index) => {
+            const spanClasses = [
+              "col-span-12 md:col-span-8 min-h-[320px] md:min-h-[400px]",
+              "col-span-12 md:col-span-4 min-h-[280px] md:min-h-[360px]",
+              "col-span-12 md:col-span-4 min-h-[280px] md:min-h-[360px]",
+              "col-span-12 md:col-span-4 min-h-[280px] md:min-h-[360px]",
+              "col-span-12 md:col-span-4 min-h-[280px] md:min-h-[360px]",
+              "col-span-12 md:col-span-8 min-h-[320px] md:min-h-[400px]",
+            ][index];
+
+            return (
+              <GlassPanel
+                key={service.code}
                 className={cn(
-                  "absolute top-4 left-4 transition-colors duration-500",
-                  service.hoverText
+                  "capability-card p-8 md:p-12 flex flex-col justify-between group transition-all duration-700 relative overflow-hidden",
+                  spanClasses,
+                  service.hoverBg
                 )}
               >
-                {service.code}
-              </FloatingMetadata>
-              <div
-                className={cn(
-                  "font-headline italic text-4xl md:text-5xl font-light transition-colors duration-500",
-                  "group-hover:font-bold",
-                  service.hoverText
-                )}
-              >
-                {service.title}
-              </div>
-              <div className="flex flex-col gap-6">
-                <p
+                <FloatingMetadata
                   className={cn(
-                    "text-on-surface-variant text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-all duration-500",
+                    "absolute top-4 left-4 transition-colors duration-500",
                     service.hoverText
                   )}
                 >
-                  {service.description}
-                </p>
+                  {service.code}
+                </FloatingMetadata>
                 <div
                   className={cn(
-                    "w-12 h-px bg-white/20 group-hover:w-full transition-all duration-700",
-                    service.hoverLine
+                    "font-headline italic text-4xl md:text-5xl font-light transition-colors duration-500",
+                    service.hoverText
                   )}
-                />
-              </div>
-            </GlassPanel>
-          ))}
+                >
+                  {service.title}
+                </div>
+                <div className="flex flex-col gap-6">
+                  <p
+                    className={cn(
+                      "text-on-surface-variant text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-all duration-500",
+                      service.hoverText
+                    )}
+                  >
+                    {service.description}
+                  </p>
+                  <div
+                    className={cn(
+                      "w-12 h-px bg-white/20 group-hover:w-full transition-all duration-700",
+                      service.hoverLine
+                    )}
+                  />
+                </div>
+              </GlassPanel>
+            );
+          })}
         </div>
       </div>
     </section>

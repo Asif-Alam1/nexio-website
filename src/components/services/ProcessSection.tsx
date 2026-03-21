@@ -113,7 +113,7 @@ export default function ProcessSection() {
                 data-process-step
                 className="border-t border-black/10 pt-12"
               >
-                <span className="font-label text-[10px] tracking-widest uppercase mb-4 block">
+                <span className="font-label text-[11px] tracking-widest uppercase mb-4 block">
                   Process {step.step}
                 </span>
                 <h3 className="font-headline italic text-3xl md:text-5xl mb-6">

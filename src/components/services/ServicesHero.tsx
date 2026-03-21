@@ -62,7 +62,7 @@ export default function ServicesHero() {
           className="inline-flex items-center gap-4 mb-8"
         >
           <div className="h-px w-12 bg-primary" />
-          <p className="font-label text-primary uppercase tracking-[0.5em] text-[10px]">
+          <p className="font-label text-primary uppercase tracking-[0.5em] text-[11px]">
             Capabilities 2026
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function ServicesHero() {
               define the bleeding edge of the digital dimension.
             </p>
             <div className="flex items-center gap-8">
-              <span className="font-label text-[10px] tracking-widest uppercase text-on-surface/40 italic">
+              <span className="font-label text-[11px] tracking-widest uppercase text-on-surface/40 italic">
                 Scroll to Explore
               </span>
             </div>

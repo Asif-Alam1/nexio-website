@@ -100,7 +100,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className={[
-                "font-label uppercase tracking-widest text-[10px] transition-all duration-300 flex items-center gap-2",
+                "font-label uppercase tracking-widest text-[11px] transition-all duration-300 flex items-center gap-2",
                 isActive(item.href)
                   ? "text-primary"
                   : "text-on-surface/60 hover:text-on-surface",

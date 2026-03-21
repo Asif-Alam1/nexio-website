@@ -44,7 +44,7 @@
 
   .floating-metadata {
     font-family: var(--font-label);
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(226, 232, 240, 0.3);
@@ -91,6 +91,20 @@
 @keyframes subtle-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-15px) rotate(0.5deg); }
+}
+
+@keyframes fade {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-status {
+  animation: status-blink 3s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

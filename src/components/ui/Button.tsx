@@ -19,7 +19,7 @@ const baseStyles =
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "text-white px-8 py-4 hover:scale-[1.02] shadow-[0_0_20px_rgba(249,115,22,0.2)] hover:shadow-[0_0_30px_rgba(249,115,22,0.35)]",
+    "text-white px-8 py-4 hover:scale-[1.02]",
   ghost:
     "border border-outline-variant px-8 py-4 text-on-surface hover:bg-white hover:text-surface-dim hover:border-white",
 };

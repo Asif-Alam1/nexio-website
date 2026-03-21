@@ -55,8 +55,6 @@ export default function HeroSection() {
         <FloatingMetadata className="block">
           LOC / 33.8938° N, 35.5018° E
         </FloatingMetadata>
-        <FloatingMetadata className="block">LATENCY / 14MS</FloatingMetadata>
-        <FloatingMetadata className="block">PROTO / H_KINETIC_V1</FloatingMetadata>
       </div>
 
       {/* Headline */}
@@ -86,9 +84,6 @@ export default function HeroSection() {
         ref={visualRef}
         className="absolute right-[5%] top-[15%] w-[45vw] h-[70vh] z-0 pointer-events-none hidden lg:block"
       >
-        <FloatingMetadata className="absolute -top-4 -left-4">
-          [RENDER_BUFFER: ACTIVE]
-        </FloatingMetadata>
         <Image
           src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
           alt="Abstract visual"
@@ -120,7 +115,7 @@ export default function HeroSection() {
         >
           <div className="flex items-center gap-4">
             <div className="w-16 h-px bg-secondary group-hover:w-32 transition-all duration-700" />
-            <span className="font-label uppercase tracking-widest text-[10px] text-secondary">
+            <span className="font-label uppercase tracking-widest text-[11px] text-secondary">
               Explore Works
             </span>
           </div>

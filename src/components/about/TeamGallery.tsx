@@ -73,13 +73,13 @@ export default function TeamGallery() {
         backgroundSize: "50px 50px",
       }}
     >
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-40 gap-12">
           <div className="relative">
             <div className="absolute -top-12 left-0">
               <FloatingMetadata>
-                MODULAR_CORE_FACULTY // V.2026
+                THE_TEAM
               </FloatingMetadata>
             </div>
             <h2 className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none">
@@ -90,7 +90,7 @@ export default function TeamGallery() {
             </h3>
           </div>
           <div className="max-w-xs border-l border-white/10 pl-8 mb-4">
-            <p className="font-label text-on-surface-variant text-[10px] uppercase tracking-widest leading-relaxed">
+            <p className="font-label text-on-surface-variant text-[11px] uppercase tracking-widest leading-relaxed">
               A synthesis of engineering rigor and high-art aesthetic. Our team
               is our architecture.
             </p>
@@ -134,7 +134,7 @@ export default function TeamGallery() {
               <h5 className="font-headline text-4xl italic mb-2">
                 {team[0].name}
               </h5>
-              <span className="font-label text-[10px] uppercase tracking-[0.4em] text-primary">
+              <span className="font-label text-[11px] uppercase tracking-[0.4em] text-primary">
                 {team[0].role}
               </span>
             </div>
@@ -177,7 +177,7 @@ export default function TeamGallery() {
               <h5 className="font-headline text-4xl italic mb-2">
                 {team[1].name}
               </h5>
-              <span className="font-label text-[10px] uppercase tracking-[0.4em] text-secondary">
+              <span className="font-label text-[11px] uppercase tracking-[0.4em] text-secondary">
                 {team[1].role}
               </span>
             </div>
@@ -196,7 +196,7 @@ export default function TeamGallery() {
                   src={team[2].image}
                   alt={team[2].name}
                   fill
-                  className="object-cover grayscale-0 group-hover:grayscale contrast-[1.2] brightness-[0.85] group-hover:brightness-100 transition-all duration-700"
+                  className="object-cover grayscale group-hover:grayscale-0 contrast-[1.2] brightness-[0.85] group-hover:brightness-100 transition-all duration-700"
                   sizes="(max-width: 768px) 100vw, 40vw"
                 />
               </div>
@@ -210,7 +210,7 @@ export default function TeamGallery() {
                 <p className="font-body text-on-surface-variant text-sm leading-relaxed">
                   {team[2].bio}
                 </p>
-                <span className="font-label text-[9px] uppercase tracking-[0.3em] text-outline block pt-4">
+                <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline block pt-4">
                   {team[2].spec}
                 </span>
               </div>
@@ -227,13 +227,10 @@ export default function TeamGallery() {
         <div className="mt-20 md:mt-40 pt-12 border-t border-white/5 flex justify-between items-center opacity-40">
           <FloatingMetadata>TOTAL_NODES: 03</FloatingMetadata>
           <div className="flex gap-4">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <div
-              className="w-2 h-2 rounded-full bg-secondary animate-pulse"
-              style={{ animationDelay: "0.2s" }}
-            />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-2 h-2 rounded-full bg-secondary" />
           </div>
-          <FloatingMetadata>SYNC_STATUS: OPERATIONAL</FloatingMetadata>
+          <FloatingMetadata>SYSTEMS: ONLINE</FloatingMetadata>
         </div>
       </div>
     </section>

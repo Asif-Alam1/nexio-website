@@ -70,14 +70,14 @@ export default function ServicesCTA() {
           href="/contact"
           className="group relative"
         >
-          <div className="w-48 h-48 md:w-64 md:h-64 border border-white/10 rounded-full flex items-center justify-center group-hover:border-primary/50 transition-all duration-700 bg-surface/40 backdrop-blur-xl">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center transition-all group-hover:scale-[5] group-hover:opacity-0 duration-500" />
-            <span className="absolute font-label uppercase tracking-[0.5em] text-[10px] text-white">
+          <div className="w-48 h-48 md:w-64 md:h-64 border border-white/10 rounded-full flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-all duration-700 bg-surface/40 backdrop-blur-xl">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-[1.2]" />
+            <span className="absolute font-label uppercase tracking-[0.5em] text-[11px] text-white group-hover:text-primary transition-colors duration-500">
               Contact
             </span>
           </div>
           {/* Blueprint circle */}
-          <div className="absolute inset-0 border border-primary/5 rounded-full scale-[1.3] animate-pulse" />
+          <div className="absolute inset-0 border border-primary/5 rounded-full scale-[1.3] opacity-40" />
         </Link>
       </div>
     </section>

@@ -59,7 +59,7 @@ export default function PhilosophyScroller() {
 
       // Staggered card entrance
       const cards = track.querySelectorAll(".philosophy-card");
-      cards.forEach((card, i) => {
+      cards.forEach((card) => {
         gsap.from(card, {
           opacity: 0,
           x: 100,
@@ -67,7 +67,6 @@ export default function PhilosophyScroller() {
           ease: EASE.smooth,
           scrollTrigger: {
             trigger: card,
-            containerAnimation: gsap.getById?.("philosophyScroll") || undefined,
             start: "left 80%",
             toggleActions: "play none none none",
           },

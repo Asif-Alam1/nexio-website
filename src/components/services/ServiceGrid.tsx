@@ -178,7 +178,7 @@ export default function ServiceGrid() {
                       {service.chips.map((chip) => (
                         <span
                           key={chip}
-                          className="px-4 py-2 border border-white/10 text-[10px] font-label uppercase text-white/60 group-hover:border-primary/50 group-hover:text-primary transition-colors"
+                          className="px-4 py-2 border border-white/10 text-[11px] font-label uppercase text-white/60 group-hover:border-primary/50 group-hover:text-primary transition-colors"
                         >
                           {chip}
                         </span>
@@ -197,25 +197,11 @@ export default function ServiceGrid() {
               className={cn(
                 service.span,
                 cardStyles[service.variant],
-                "group relative overflow-hidden p-6 md:p-12 transition-all duration-500"
+                "group relative overflow-hidden p-6 md:p-12 [transform:perspective(1000px)_rotateX(2deg)] hover:[transform:perspective(1000px)_rotateX(0deg)] hover:-translate-y-1 transition-transform duration-500"
               )}
               style={{
                 boxShadow:
                   "0 20px 80px -20px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1)",
-                transform: "perspective(1000px) rotateX(2deg)",
-                transition: "all 0.5s cubic-bezier(0.19, 1, 0.22, 1)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform =
-                  "perspective(1000px) rotateX(0deg) translateY(-5px)";
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 30px 100px -20px rgba(0,0,0,0.9), inset 0 1px 2px rgba(255,255,255,0.15)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform =
-                  "perspective(1000px) rotateX(2deg)";
-                (e.currentTarget as HTMLElement).style.boxShadow =
-                  "0 20px 80px -20px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1)";
               }}
             >
               <FloatingMetadata
@@ -258,7 +244,7 @@ export default function ServiceGrid() {
                     {service.chips.map((chip) => (
                       <span
                         key={chip}
-                        className="px-4 py-2 border border-white/10 text-[10px] font-label uppercase text-white/60 group-hover:border-primary/50 group-hover:text-primary transition-colors"
+                        className="px-4 py-2 border border-white/10 text-[11px] font-label uppercase text-white/60 group-hover:border-primary/50 group-hover:text-primary transition-colors"
                       >
                         {chip}
                       </span>

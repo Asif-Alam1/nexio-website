@@ -22,7 +22,7 @@ export default function AboutPage() {
       {/* About CTA section */}
       <section className="py-40 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
-        <div className="max-w-5xl mx-auto px-8 md:px-10 relative z-10 text-center">
+        <div className="max-w-7xl mx-auto px-8 md:px-10 relative z-10 text-center">
           <h2 className="font-headline text-6xl md:text-9xl italic font-black leading-tight mb-12">
             Ready to build the{" "}
             <span

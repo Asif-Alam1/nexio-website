@@ -10,7 +10,7 @@ export default function PageLoader() {
     // Wait for page to be fully loaded
     const handleLoad = () => {
       // Small delay so the animation feels intentional, not just a flash
-      setTimeout(() => setIsLoading(false), 1800);
+      setTimeout(() => setIsLoading(false), 900);
     };
 
     if (document.readyState === "complete") {
@@ -64,7 +64,7 @@ export default function PageLoader() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            INITIALIZING_SYSTEM // V.2026
+            LOADING
           </motion.span>
         </motion.div>
       )}

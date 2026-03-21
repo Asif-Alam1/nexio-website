@@ -4,7 +4,6 @@ import { useRef, useState, useCallback } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
 import { CONTACT_EMAIL } from "@/lib/constants";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
 import BlueprintGrid from "@/components/ui/BlueprintGrid";
 import TextScramble from "@/components/ui/TextScramble";
 
@@ -63,7 +62,7 @@ export default function CTASection() {
 
       <div ref={contentRef} className="relative z-10">
         {/* Status label */}
-        <span className="font-label text-secondary uppercase tracking-[0.6em] text-[10px] mb-12 block opacity-60">
+        <span className="font-label text-secondary uppercase tracking-[0.6em] text-[11px] mb-12 block opacity-60">
           Status: Available for Q3 2026 Projects
         </span>
 
@@ -119,16 +118,6 @@ export default function CTASection() {
             </svg>
           </button>
         </div>
-      </div>
-
-      {/* Background metadata */}
-      <div className="absolute bottom-10 left-10 text-left pointer-events-none opacity-20 hidden md:block">
-        <FloatingMetadata className="block mb-2">
-          BUILD_QUEUE_04: ACTIVE
-        </FloatingMetadata>
-        <FloatingMetadata className="block">
-          SYSTEM_TICK: 1.024S
-        </FloatingMetadata>
       </div>
 
       {/* Bottom gradient */}

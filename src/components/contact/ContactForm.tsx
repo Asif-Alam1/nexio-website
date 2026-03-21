@@ -26,7 +26,7 @@ const initialState: ContactFormState = { success: false };
 const inputStyles =
   "bg-transparent border-b border-outline/30 focus:border-secondary focus:shadow-[0_1px_0_0_#2563EB] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/40 transition-all";
 const inputErrorStyles = "border-red-500 focus:border-red-500 focus:shadow-[0_1px_0_0_#ef4444]";
-const labelStyles = "font-label text-[10px] uppercase tracking-widest text-on-surface-variant";
+const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-surface-variant";
 
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
@@ -136,7 +136,7 @@ export default function ContactForm() {
         <div className="lg:col-span-7">
           <GlassPanel className="p-8 md:p-12 relative">
             <FloatingMetadata className="absolute top-6 right-6 md:top-8 md:right-8">
-              {"TRANSMISSION_PROTOCOL // V.2026"}
+              {"SECURE_FORM // ENCRYPTED"}
             </FloatingMetadata>
 
             {/* Success state */}
@@ -147,9 +147,9 @@ export default function ContactForm() {
                 </h2>
                 <FloatingMetadata>RESPONSE_TIME: &lt; 24H</FloatingMetadata>
                 <div className="flex gap-3 mt-8">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-primary animate-[fade_2s_ease-in-out_infinite_alternate]" />
                   <span
-                    className="w-2 h-2 rounded-full bg-secondary animate-pulse"
+                    className="w-2 h-2 rounded-full bg-secondary animate-[fade_2s_ease-in-out_infinite_alternate]"
                     style={{ animationDelay: "0.5s" }}
                   />
                 </div>

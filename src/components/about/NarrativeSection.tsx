@@ -56,7 +56,7 @@ export default function NarrativeSection() {
       ref={sectionRef}
       className="py-32 bg-surface-low"
     >
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
           {/* Left column: text */}
           <div className="md:col-span-7">
@@ -100,10 +100,10 @@ export default function NarrativeSection() {
               className="absolute -bottom-10 -left-10 bg-primary p-12 hidden lg:block"
             >
               <span className="font-headline text-surface text-6xl italic font-black">
-                10+
+                10
               </span>
               <span className="block font-label text-surface text-xs tracking-widest mt-2 uppercase">
-                Projects Delivered
+                Projects. Zero Compromises.
               </span>
             </div>
           </div>
