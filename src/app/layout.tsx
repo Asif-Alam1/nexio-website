@@ -11,6 +11,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 import PageLoader from "@/components/layout/PageLoader";
+import ConsoleEasterEgg from "@/components/layout/ConsoleEasterEgg";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -538,6 +539,7 @@ export default function RootLayout({
           <Footer />
           <FloatingWhatsApp />
         </SmoothScrollProvider>
+        <ConsoleEasterEgg />
         <Analytics />
         <SpeedInsights />
       </body>

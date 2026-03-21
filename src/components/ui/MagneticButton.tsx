@@ -17,7 +17,7 @@ type MagneticButtonProps = {
 >;
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[1px]";
+  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[2px] active:scale-[0.98] transition-transform duration-100";
 
 const variantStyles: Record<MagneticButtonVariant, string> = {
   gradient:

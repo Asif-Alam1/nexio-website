@@ -1,10 +1,15 @@
 import Link from "next/link";
 import MagneticButton from "@/components/ui/MagneticButton";
 import AmbientBlob from "@/components/ui/AmbientBlob";
+import FloatingMetadata from "@/components/ui/FloatingMetadata";
+import BlueprintGrid from "@/components/ui/BlueprintGrid";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-surface-dim flex flex-col items-center justify-center relative overflow-hidden px-6">
+      {/* Blueprint grid background */}
+      <BlueprintGrid opacity={0.03} />
+
       {/* Ambient blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <AmbientBlob
@@ -32,9 +37,12 @@ export default function NotFound() {
         >
           404
         </h1>
-        <p className="font-body text-lg text-on-surface/60 mt-6 mb-10 max-w-md">
-          This page doesn&apos;t exist yet.
+        <p className="font-body text-lg text-on-surface/60 mt-6 mb-4 max-w-md">
+          This page wandered off the grid.
         </p>
+        <FloatingMetadata className="mb-10 block">
+          {"ERROR_CODE: 404 // PAGE_NOT_FOUND"}
+        </FloatingMetadata>
         <MagneticButton variant="gradient" href="/">
           Return Home
         </MagneticButton>

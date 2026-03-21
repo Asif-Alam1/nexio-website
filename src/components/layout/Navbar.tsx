@@ -61,6 +61,17 @@ export default function Navbar() {
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
 
+  const handleLogoClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      closeMobileMenu();
+      if (pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    },
+    [pathname, closeMobileMenu]
+  );
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
@@ -88,7 +99,7 @@ export default function Navbar() {
         <Link
           href="/"
           className="font-headline italic font-bold tracking-tighter text-xl select-none"
-          onClick={closeMobileMenu}
+          onClick={handleLogoClick}
         >
           NEXIO LABS
         </Link>
@@ -100,16 +111,19 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className={[
-                "font-label uppercase tracking-widest text-[11px] transition-all duration-300 flex items-center gap-2",
+                "font-label uppercase tracking-widest text-[11px] transition-all duration-300 flex items-center gap-2 hover-underline",
                 isActive(item.href)
                   ? "text-primary"
                   : "text-on-surface/60 hover:text-on-surface",
               ].join(" ")}
               aria-current={isActive(item.href) ? "page" : undefined}
             >
-              {isActive(item.href) && (
-                <span className="w-1 h-1 bg-primary rounded-full" />
-              )}
+              <span
+                className={[
+                  "w-1 h-1 bg-primary rounded-full transition-transform duration-300",
+                  isActive(item.href) ? "scale-100" : "scale-0",
+                ].join(" ")}
+              />
               {item.label}
             </Link>
           ))}

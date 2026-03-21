@@ -13,6 +13,7 @@ import GlassPanel from "@/components/ui/GlassPanel";
 import FloatingMetadata from "@/components/ui/FloatingMetadata";
 import MagneticButton from "@/components/ui/MagneticButton";
 import TextScramble from "@/components/ui/TextScramble";
+import KineticText from "@/components/ui/KineticText";
 
 interface ContactFormState {
   success: boolean;
@@ -24,7 +25,7 @@ const initialState: ContactFormState = { success: false };
 
 // Input field styling
 const inputStyles =
-  "bg-transparent border-b border-outline/30 focus:border-secondary focus:shadow-[0_1px_0_0_#2563EB] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/40 transition-all";
+  "bg-transparent border-b border-outline/30 focus:border-secondary focus:shadow-[0_2px_8px_rgba(37,99,235,0.15)] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/40 transition-all";
 const inputErrorStyles = "border-red-500 focus:border-red-500 focus:shadow-[0_1px_0_0_#ef4444]";
 const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-surface-variant";
 
@@ -142,8 +143,8 @@ export default function ContactForm() {
             {/* Success state */}
             {state.success ? (
               <div className="flex flex-col items-center justify-center min-h-[400px] animate-[fadeIn_0.6s_ease-out]">
-                <h2 className="font-headline italic text-4xl text-on-surface mb-4">
-                  Message Received.
+                <h2 className="text-4xl text-on-surface mb-4">
+                  <KineticText as="span" delay={0.2}>Message Received.</KineticText>
                 </h2>
                 <FloatingMetadata>RESPONSE_TIME: &lt; 24H</FloatingMetadata>
                 <div className="flex gap-3 mt-8">

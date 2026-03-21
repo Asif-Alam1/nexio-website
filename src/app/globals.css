@@ -42,6 +42,25 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   }
 
+  .hover-underline {
+    position: relative;
+  }
+
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-underline:hover::after {
+    width: 100%;
+  }
+
   .floating-metadata {
     font-family: var(--font-label);
     font-size: 11px;
