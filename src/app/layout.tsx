@@ -1,29 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Lora, DM_Mono } from "next/font/google";
+import { Outfit, Newsreader, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-headline",
+  display: "swap",
+  axes: ["opsz"],
+  style: ["italic", "normal"],
+});
+
 const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-body",
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const lora = Lora({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-lora",
+  variable: "--font-label",
   display: "swap",
-  style: ["italic"],
-  weight: ["400"],
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  variable: "--font-dm-mono",
-  display: "swap",
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const BASE_URL = "https://nexiolabs.co";
@@ -480,7 +480,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${lora.variable} ${dmMono.variable}`}
+      className={`${newsreader.variable} ${outfit.variable} ${spaceGrotesk.variable}`}
     >
       <head>
         <script
