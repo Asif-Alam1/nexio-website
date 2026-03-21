@@ -41,6 +41,9 @@ export default function ContactHero() {
           <p className="text-on-surface-variant mt-8 text-body-lg max-w-md mx-auto">
             Currently accepting projects for Q3 2026
           </p>
+          <p className="text-on-surface-variant/60 font-label text-[11px] uppercase tracking-widest mt-6">
+            No commitment required — just a conversation
+          </p>
         </ScrollReveal>
       </div>
     </section>

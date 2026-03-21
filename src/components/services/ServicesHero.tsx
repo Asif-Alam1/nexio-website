@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -119,13 +120,16 @@ export default function ServicesHero() {
             className="col-start-1 md:col-start-7 col-span-12 md:col-span-5"
           >
             <p className="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed font-light mb-12">
-              A synthesis of engineering precision and high-art aesthetic. We
-              define the bleeding edge of the digital dimension.
+              We design and engineer websites, mobile apps, and AI-powered
+              systems for brands that refuse to settle for templates.
             </p>
             <div className="flex items-center gap-8">
-              <span className="font-label text-[11px] tracking-widest uppercase text-on-surface/40 italic">
-                Scroll to Explore
-              </span>
+              <Link
+                href="/contact"
+                className="font-label text-[11px] tracking-widest uppercase text-primary hover-underline transition-colors"
+              >
+                Discuss Your Project &rarr;
+              </Link>
             </div>
           </div>
         </div>

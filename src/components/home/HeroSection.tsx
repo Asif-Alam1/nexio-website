@@ -10,6 +10,7 @@ import FloatingMetadata from "@/components/ui/FloatingMetadata";
 import AmbientBlob from "@/components/ui/AmbientBlob";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import FluidBackground from "@/components/ui/FluidBackground";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -103,7 +104,7 @@ export default function HeroSection() {
         <div className="absolute bottom-10 right-0 w-px h-32 bg-gradient-to-b from-primary/0 to-primary/40" />
       </div>
 
-      {/* Bottom section: manifesto + explore link */}
+      {/* Bottom section: manifesto + CTAs + explore link */}
       <div className="mt-12 md:mt-20 flex flex-col md:flex-row gap-10 md:gap-20 items-end w-full">
         <ScrollReveal className="relative max-w-md" delay={0}>
           <FloatingMetadata className="absolute -top-6 -left-4 hidden md:block">
@@ -116,6 +117,17 @@ export default function HeroSection() {
             </span>{" "}
             and high-end craftsmanship. No templates. No shortcuts. Just intent.
           </p>
+          <div className="flex items-center gap-8 mt-8">
+            <MagneticButton variant="gradient" href="/contact">
+              Start a Project
+            </MagneticButton>
+            <Link
+              href="/services"
+              className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors"
+            >
+              Explore Services
+            </Link>
+          </div>
         </ScrollReveal>
         <div className="flex-grow" />
         <ScrollReveal delay={0.15}>
@@ -134,6 +146,16 @@ export default function HeroSection() {
             </FloatingMetadata>
           </Link>
         </ScrollReveal>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        <span className="font-label text-[11px] uppercase tracking-widest">
+          Scroll
+        </span>
+        <div className="w-px h-8 bg-on-surface/30 relative overflow-hidden">
+          <div className="w-full h-full bg-primary animate-[scrollDown_2s_ease-in-out_infinite]" />
+        </div>
       </div>
     </section>
   );

@@ -46,6 +46,11 @@ export default function NotFound() {
         <MagneticButton variant="gradient" href="/">
           Return Home
         </MagneticButton>
+        <div className="mt-12 flex flex-wrap gap-6 justify-center">
+          <Link href="/services" className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors">Our Services</Link>
+          <Link href="/about" className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors">About Us</Link>
+          <Link href="/contact" className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors">Get In Touch</Link>
+        </div>
       </div>
     </div>
   );

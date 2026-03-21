@@ -170,7 +170,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-surface-dim z-[200] flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 bg-surface-dim z-[200] flex flex-col items-center px-8 pt-28 pb-12 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -219,6 +219,14 @@ export default function Navbar() {
                 Start Project
               </MagneticButton>
             </motion.div>
+            <div className="mt-auto pt-12 border-t border-white/5 text-center">
+              <p className="font-body text-on-surface-variant text-sm mb-4">
+                Web development, mobile apps, and AI systems for ambitious brands.
+              </p>
+              <a href="mailto:hello@nexiolabs.co" className="font-label text-[11px] uppercase tracking-widest text-primary hover-underline">
+                hello@nexiolabs.co
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

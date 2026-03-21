@@ -273,7 +273,7 @@ export default function ContactForm() {
                   disabled={isPending}
                   className="w-full"
                 >
-                  {isPending ? "SENDING..." : "TRANSMIT"}
+                  {isPending ? "SENDING..." : "SEND MESSAGE"}
                 </MagneticButton>
               </form>
             )}
