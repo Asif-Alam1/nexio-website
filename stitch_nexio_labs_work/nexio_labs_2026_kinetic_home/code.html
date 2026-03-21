@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXIO LABS | Hyper-Tactile Digital Curators</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,opsz,wght@1,6..72,200;1,6..72,400;1,6..72,700;1,6..72,800&amp;family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error": "#ffb4ab",
+              "tertiary-container": "#0d0d0d",
+              "primary-container": "#210400",
+              "surface-dim": "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container": "#201f1f",
+              "on-tertiary": "#313030",
+              "surface": "#131313",
+              "on-error-container": "#ffdad6",
+              "inverse-on-surface": "#313030",
+              "primary-fixed-dim": "#ffb59e",
+              "on-tertiary-fixed": "#1c1b1b",
+              "tertiary": "#c8c6c5",
+              "secondary-container": "#00e3fd",
+              "on-secondary-fixed-variant": "#004f58",
+              "on-surface": "#e5e2e1",
+              "on-background": "#e5e2e1",
+              "on-tertiary-fixed-variant": "#474746",
+              "error-container": "#93000a",
+              "surface-bright": "#3a3939",
+              "surface-variant": "#353534",
+              "surface-container-high": "#2a2a2a",
+              "secondary-fixed-dim": "#006d74",
+              "surface-tint": "#ffb59e",
+              "surface-container-low": "#1c1b1b",
+              "primary": "#ffb59e",
+              "background": "#131313",
+              "on-secondary-fixed": "#001f24",
+              "on-surface-variant": "#c4c7c7",
+              "secondary-fixed": "#9cf0ff",
+              "on-primary-fixed-variant": "#852400",
+              "on-error": "#690005",
+              "inverse-primary": "#ae3200",
+              "primary-fixed": "#ffdbd0",
+              "inverse-surface": "#e5e2e1",
+              "on-primary-container": "#df4200",
+              "tertiary-fixed": "#e5e2e1",
+              "outline": "#8e9192",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed-dim": "#c8c6c5",
+              "on-primary": "#5e1700",
+              "on-secondary": "#00363d",
+              "on-tertiary-container": "#7c7a7a",
+              "secondary": "#bdf4ff",
+              "outline-variant": "#444748",
+              "on-secondary-container": "#00616d",
+              "on-primary-fixed": "#3a0b00"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBO8CVG63qUu_5iqg2d1QUNI7tuvW-QzUUsDvVfNX2mK0t9xr0p7u14oayWUhoCWHkGkTNxaqO4JABjzFGJFSL70bfyO6-fEi37ire0nc35qn_4ZZ-kkEUJuEL9lIF8ZQAvPnlHn275qpxMaxCcob29eRRauiPgmBl6mpv2mEtwnJdJ23tFTZGQ_gHykAs5VxVphQQy4qh9YemYx1xA5hldS9U030pOyZOxRlb9r8InuFMn5gdJ_lL249oa1LgX54Y6AP2bECxyFg);
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+            animation: grain 8s steps(10) infinite;
+        }
+        @keyframes grain {
+            0%, 100% { transform:translate(0, 0) }
+            10% { transform:translate(-5%, -10%) }
+            20% { transform:translate(-15%, 5%) }
+            30% { transform:translate(7%, -25%) }
+            40% { transform:translate(-5%, 25%) }
+            50% { transform:translate(-15%, 10%) }
+            60% { transform:translate(15%, 0%) }
+            70% { transform:translate(0%, 15%) }
+            80% { transform:translate(3%, 35%) }
+            90% { transform:translate(-10%, 10%) }
+        }
+        .kinetic-text {
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none }
+        
+        .floating-metadata {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(229, 226, 225, 0.3);
+            pointer-events: none;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .fluid-headline {
+            font-variation-settings: 'opsz' 40, 'wght' 200;
+            transition: font-variation-settings 0.6s ease;
+        }
+        .fluid-headline:hover {
+            font-variation-settings: 'opsz' 72, 'wght' 800;
+        }
+        
+        #custom-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 181, 158, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease-out, background-color 0.3s ease;
+            mix-blend-difference: difference;
+        }
+
+        .non-linear-blob {
+            filter: blur(100px);
+            animation: float 20s infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(10%, 5%) scale(1.1); }
+            100% { transform: translate(-5%, 15%) scale(0.9); }
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary selection:text-on-secondary-fixed">
+<div class="grain-overlay"></div>
+<div id="custom-cursor"></div>
+<!-- Navigation Shell -->
+<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex justify-between items-center px-8 h-16 glass-panel mx-auto w-[calc(100%-4rem)] max-w-6xl">
+<div class="text-xl font-headline italic font-bold tracking-tighter">NEXIO LABS</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-[#ffb59e] font-label uppercase tracking-widest text-[10px] flex items-center gap-2" href="#">
+<span class="w-1 h-1 bg-primary rounded-full"></span> Work
+        </a>
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Studio</a>
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Journal</a>
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Contact</a>
+</div>
+<button class="bg-primary px-6 py-2 text-on-primary-fixed font-label text-[10px] uppercase tracking-widest font-bold hover:bg-secondary transition-colors duration-500">
+        Inquire
+    </button>
+</nav>
+<main>
+<!-- Non-Linear Background Elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="non-linear-blob absolute top-[10%] right-[15%] w-96 h-96 bg-primary/10 rounded-full"></div>
+<div class="non-linear-blob absolute bottom-[20%] left-[10%] w-[500px] h-[500px] bg-secondary/10 rounded-full" style="animation-delay: -5s;"></div>
+</div>
+<!-- Kinetic Hero Section -->
+<section class="relative min-h-screen flex flex-col justify-center items-start px-12 pt-40 pb-20">
+<!-- Metadata Annotations -->
+<div class="absolute top-40 right-12 text-right hidden lg:block">
+<p class="floating-metadata">LOC / 34.0522° N, 118.2437° W</p>
+<p class="floating-metadata">LATENCY / 14MS</p>
+<p class="floating-metadata">PROTO / H_TACTILE_V4</p>
+</div>
+<div class="z-10 max-w-7xl">
+<span class="font-label text-secondary tracking-[0.4em] uppercase text-[10px] mb-12 block opacity-80 border-l border-secondary/30 pl-4">Digital Curators // Spec 0.1</span>
+<h1 class="font-headline italic kinetic-text text-[13vw] md:text-[11vw] font-extrabold text-on-surface">
+<span class="fluid-headline block">Curating</span>
+<span class="ml-[12vw] text-outline-variant fluid-headline block opacity-40">The Future</span>
+<span class="text-primary fluid-headline block">of Code.</span>
+</h1>
+</div>
+<!-- Kinetic Sculpture -->
+<div class="absolute right-[5%] top-[15%] w-[45vw] h-[70vh] z-0 mix-blend-screen pointer-events-none opacity-60">
+<div class="absolute -top-4 -left-4 floating-metadata">[RENDER_BUFFER: ACTIVE]</div>
+<img alt="" class="w-full h-full object-cover grayscale brightness-125 contrast-75" data-alt="Abstract 3D iridescent glass sculpture moving fluidly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl8Z3JlIrzxXd03AUYIgrbA1aZsJXu-7Hp7SaVD9w4ZxL1yiMbl2vsHV2LUGCPWcV_b2gvXQ_4JR9SFDqGcUsuvpn1cCxMlpggIgCMMu59V83irtdIikMmVoSL9PL6sfOakos_xk41guZ6xxvg1fNwPWlV-dZaAX0axboF5XxW69yigzel_HVXUTMyVrtBgnIbEIAhb_0FDPE_LO_kaobRlrYhjwf9qowFWTxjMyiApU4NdMlcT85bicK2L9LVGr7kfGQ7P8cJmw"/>
+<div class="absolute bottom-10 right-0 w-px h-32 bg-gradient-to-b from-primary/0 to-primary/40"></div>
+</div>
+<div class="mt-20 flex flex-col md:flex-row gap-20 items-end w-full">
+<div class="relative max-w-md group">
+<div class="absolute -top-6 -left-4 floating-metadata">01_MANIFESTO</div>
+<p class="font-body text-on-surface-variant text-lg leading-relaxed font-light">
+                    We bridge the chasm between <span class="text-on-surface font-medium">raw technical power</span> and high-end craftsmanship. No templates. No shortcuts. Just intent.
+                </p>
+</div>
+<div class="flex-grow"></div>
+<div class="flex flex-col items-end gap-6 group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-16 h-px bg-secondary group-hover:w-32 transition-all duration-700"></div>
+<span class="font-label uppercase tracking-widest text-[10px] text-secondary">Explore Works</span>
+</div>
+<p class="floating-metadata">SCROLL TO NAVIGATE (AUTO_DYNAMICS ON)</p>
+</div>
+</div>
+</section>
+<!-- Layered Parallax Content -->
+<section class="py-60 px-12 relative">
+<div class="grid grid-cols-12 gap-10 items-start">
+<div class="col-span-12 md:col-span-5 relative z-20 md:sticky md:top-40">
+<div class="mb-4 floating-metadata">ENGINEERING_PHILOSOPHY_V2.PDF</div>
+<h2 class="font-headline italic text-7xl md:text-8xl mb-12 leading-tight fluid-headline">Human-Made<br/>Systems.</h2>
+<p class="text-on-surface-variant font-body mb-12 text-lg font-light max-w-sm">
+                    Our process is architectural. We build digital foundations that are as resilient as they are beautiful, treating every line of code as a brushstroke on a wider canvas.
+                </p>
+<button class="font-label uppercase tracking-[0.2em] text-[10px] border border-outline-variant/30 px-12 py-5 hover:bg-white hover:text-black hover:border-white transition-all duration-700 flex items-center gap-4">
+                    Read the Journal
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="col-span-12 md:col-span-7 relative">
+<div class="aspect-[4/5] w-full glass-panel p-4 overflow-hidden group">
+<img alt="" class="w-full h-full object-cover grayscale brightness-90 contrast-125 group-hover:scale-105 transition-transform duration-[3000ms] ease-out" data-alt="Retro computer parts arranged artfully in dark light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZfZn0I5Bk-AHfbNPfB8OzsLy5GzFoXrETjC8whINcjX59LCYqodUybUTBtQjmuHoNHsQNR-NlZCxF4dAstyiBPnlIqWcvsM5HrIAY7LWWpZQPTd7GEkJ7HmDhYPsdgxgvTFHMRl7XAeFv7HIaQsHJamWLZw4lMUGHNDRf0J4B6TyZ_PiKnvXCMHQ9nyV1ZBVkc9ocVM-JCGXXdI8bP-a89sdCa3K1_Ga0g5H7K8BpmZJOhdZq3X6CR1xqqbx9Ei31b6f9OD7IZA"/>
+</div>
+<!-- Overlapping Floating Element -->
+<div class="absolute -bottom-16 -left-12 w-72 p-10 glass-panel z-30 hidden lg:block hover:translate-y-[-10px] transition-transform duration-700">
+<div class="absolute top-4 right-4 flex gap-1">
+<div class="w-1 h-1 bg-secondary rounded-full"></div>
+<div class="w-1 h-1 bg-primary rounded-full"></div>
+</div>
+<span class="font-label text-[9px] uppercase tracking-tighter text-secondary mb-4 block">Metrics // Cycle_2024</span>
+<div class="text-5xl font-headline italic mb-4 font-light">98%</div>
+<div class="text-[9px] font-label uppercase tracking-widest text-on-surface-variant leading-relaxed">User Retention average across 40+ launched decentralized protocols.</div>
+</div>
+<div class="absolute -top-20 -right-10 floating-metadata vertical-text transform rotate-90 origin-right whitespace-nowrap hidden md:block">
+                    ARRAY_MAPPING_SYSTEM_ENABLED // VERSION_7.4.2
+                </div>
+</div>
+</div>
+</section>
+<!-- Horizontal Scroll Project Showcase -->
+<section class="py-40 bg-surface-container-lowest/50 border-y border-white/5">
+<div class="px-12 mb-24 flex justify-between items-end">
+<div class="relative">
+<div class="absolute -top-6 left-0 floating-metadata">INDEX // PROJECTS</div>
+<span class="font-label text-primary uppercase text-[10px] tracking-[0.4em]">Selected Case Studies</span>
+<h3 class="font-headline italic text-7xl mt-4 fluid-headline">Selected Works</h3>
+</div>
+<div class="flex items-center gap-12 mb-2">
+<span class="font-label text-outline text-[10px] uppercase tracking-widest">[ SHIFT_SCROLL ]</span>
+<div class="w-32 h-px bg-outline-variant/30"></div>
+</div>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-20 px-12 snap-x snap-mandatory">
+<!-- Project 01 -->
+<div class="min-w-[85vw] md:min-w-[50vw] snap-center group relative">
+<div class="absolute -top-4 right-0 floating-metadata">01_LUMIERE_NOIRE</div>
+<div class="relative aspect-[16/9] overflow-hidden mb-10 glass-panel p-2">
+<img alt="" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" data-alt="Abstract deep blue and black minimalist motion graphic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpRZ_XKxNsOMPKut3P7nSxAtkNqYay8-pew3HFrR4fV503ObENlgKrb25Jib0bnRlnOX_zWSjlhUTS3p1Aw5hJ7CrPI-jiLZMFq3GYbbdvX7N33TgBnnJo_dpKu0DsCYevxfF2wY1thsRyFL5j8abt700ONhjUVkgS65lSpsO9mnrofi2BPEvv7VVzkySEg0ULz_ohKnR_F2R62ZO9UTaAcjjRHjxmXDj-91oiFtvMwiGZ2JB_ZNFmkqw6_Qm24_EsK4IDB3LD0w"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-7xl text-on-primary font-extralight transform -rotate-45">arrow_forward</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline italic text-5xl mb-4 fluid-headline">Lumiere Noire</h4>
+<div class="flex gap-4">
+<span class="text-[9px] font-label uppercase tracking-widest border border-outline-variant/30 px-4 py-2 hover:border-primary transition-colors">FINTECH_SYS</span>
+<span class="text-[9px] font-label uppercase tracking-widest border border-outline-variant/30 px-4 py-2 hover:border-primary transition-colors">WEB3_ARCH</span>
+</div>
+</div>
+<span class="font-label text-outline text-[10px] italic pt-2">CY_2023</span>
+</div>
+</div>
+<!-- Project 02 -->
+<div class="min-w-[85vw] md:min-w-[50vw] snap-center group relative">
+<div class="absolute -top-4 right-0 floating-metadata">02_CYPHER_PRTCL</div>
+<div class="relative aspect-[16/9] overflow-hidden mb-10 glass-panel p-2">
+<img alt="" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" data-alt="Complex circuit board pattern with blue neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLr3aiaaBYh4G7wQVKxK0LVCM4QhYNglv5o6sbdP4QAbHg8Wdpk_dpPtlx6ShTF-3C3VqkIjolYr0y3uldQOsXeQBmkRAaJZdVEnE0XZ_fJEXuLNjwTH0Ce7DJ9-is_G567oGx-VnHJeTYLptbUgwPbz7w3czbcf2DTDDVPjverW9xMVjMaKWOx7KkBqBPd6NOypRYkgs9e5OpRXGZSiEpIaYphERLpcTspecLvOYs5qenSTPLH6aTGTMmv40RTHgBe15fwEUUcA"/>
+<div class="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
+<span class="material-symbols-outlined text-7xl text-on-secondary font-extralight transform -rotate-45">arrow_forward</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline italic text-5xl mb-4 fluid-headline">Cypher Protocol</h4>
+<div class="flex gap-4">
+<span class="text-[9px] font-label uppercase tracking-widest border border-outline-variant/30 px-4 py-2">ID_INFRA</span>
+<span class="text-[9px] font-label uppercase tracking-widest border border-outline-variant/30 px-4 py-2">SECURITY_NODE</span>
+</div>
+</div>
+<span class="font-label text-outline text-[10px] italic pt-2">CY_2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Services Section -->
+<section class="py-40 px-12">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-32 gap-12">
+<div class="relative">
+<div class="absolute -top-6 left-0 floating-metadata">MODULAR_CAPABILITIES</div>
+<h2 class="font-headline italic text-8xl leading-none fluid-headline">Capabilities</h2>
+</div>
+<div class="relative border-l border-white/10 pl-8">
+<p class="font-label text-on-surface-variant max-w-xs text-[10px] uppercase tracking-widest leading-relaxed font-light">
+                        Specialized focus areas where design meets high-performance engineering.
+                    </p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-panel p-12 aspect-square flex flex-col justify-between group hover:bg-primary transition-all duration-700 relative overflow-hidden">
+<div class="absolute top-4 left-4 floating-metadata group-hover:text-on-primary-fixed">01_BRAND</div>
+<div class="font-headline italic text-5xl group-hover:text-on-primary-fixed transition-colors duration-500 font-light group-hover:font-bold">Strategic Identity</div>
+<div class="flex flex-col gap-6">
+<p class="text-on-surface-variant group-hover:text-on-primary-fixed text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-all duration-500">Defining the visual DNA of disruptive products.</p>
+<div class="w-12 h-px bg-white/20 group-hover:w-full group-hover:bg-on-primary-fixed transition-all duration-700"></div>
+</div>
+</div>
+<div class="glass-panel p-12 aspect-square flex flex-col justify-between group hover:bg-secondary transition-all duration-700 relative overflow-hidden">
+<div class="absolute top-4 left-4 floating-metadata group-hover:text-on-secondary-fixed">02_PRODUCT</div>
+<div class="font-headline italic text-5xl group-hover:text-on-secondary-fixed transition-colors duration-500 font-light group-hover:font-bold">UI/UX Craft</div>
+<div class="flex flex-col gap-6">
+<p class="text-on-surface-variant group-hover:text-on-secondary-fixed text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-all duration-500">Interfaces that feel like a seamless extension of thought.</p>
+<div class="w-12 h-px bg-white/20 group-hover:w-full group-hover:bg-on-secondary-fixed transition-all duration-700"></div>
+</div>
+</div>
+<div class="glass-panel p-12 aspect-square flex flex-col justify-between group hover:bg-white transition-all duration-700 relative overflow-hidden">
+<div class="absolute top-4 left-4 floating-metadata group-hover:text-black">03_CODE</div>
+<div class="font-headline italic text-5xl group-hover:text-black transition-colors duration-500 font-light group-hover:font-bold">Creative Dev</div>
+<div class="flex flex-col gap-6">
+<p class="text-on-surface-variant group-hover:text-black text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-all duration-500">Fast, immersive experiences using modern stack architectures.</p>
+<div class="w-12 h-px bg-white/20 group-hover:w-full group-hover:bg-black transition-all duration-700"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-80 px-12 text-center relative overflow-hidden">
+<div class="relative z-10">
+<span class="font-label text-secondary uppercase tracking-[0.6em] text-[10px] mb-12 block opacity-60">Status: Available for Q3_2024 Projects</span>
+<h2 class="font-headline italic text-[10vw] leading-none mb-20 fluid-headline">Let's build<br/>the <span class="text-outline-variant opacity-30">Unseen.</span></h2>
+<div class="flex flex-col md:flex-row justify-center items-center gap-12 group">
+<a class="text-7xl font-headline italic hover:text-primary transition-all duration-700 font-extralight hover:font-bold" href="mailto:hello@nexio.labs">hello@nexio.labs</a>
+<div class="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+<span class="material-symbols-outlined text-sm group-hover:text-on-primary">arrow_outward</span>
+</div>
+</div>
+</div>
+<!-- Background Metadata Noise -->
+<div class="absolute bottom-10 left-10 text-left pointer-events-none opacity-20">
+<p class="floating-metadata mb-2">BUILD_QUEUE_04: ACTIVE</p>
+<p class="floating-metadata">SYSTEM_TICK: 1.024S</p>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-40"></div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full pt-40 pb-16 px-12 flex flex-col gap-32 border-t border-white/5 relative bg-surface-container-lowest/80 backdrop-blur-xl">
+<div class="flex flex-col lg:flex-row justify-between items-start gap-24">
+<div class="relative">
+<div class="text-[12rem] font-headline italic text-white/5 select-none leading-none tracking-tighter">NEXIO</div>
+<div class="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col gap-2 pl-4">
+<p class="floating-metadata">CURATED_DIGITAL_EXPERIENCES</p>
+<p class="floating-metadata">EST_2022_V_FINAL</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-24 lg:gap-40">
+<div class="flex flex-col gap-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-outline">Social_Map</span>
+<div class="flex flex-col gap-4">
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Instagram</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">LinkedIn</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Behance</a>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-outline">Contact_CH</span>
+<div class="flex flex-col gap-4">
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Direct_Mail</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Hq_Studio</a>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-outline">Legal_Meta</span>
+<div class="flex flex-col gap-4">
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Privacy_Pol</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Terms_Cond</a>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+<p class="font-label text-[9px] text-on-surface/30 uppercase tracking-[0.3em]">©2024 NEXIO LABS. BUILT FOR THE HYPER-TACTILE WEB. [CORE_STABLE]</p>
+<div class="flex items-center gap-6 glass-panel px-6 py-3">
+<div class="flex gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" style="animation-delay: 0.2s"></div>
+</div>
+<span class="font-label text-[9px] text-on-surface/60 uppercase tracking-widest">Global Network Status: Operational</span>
+</div>
+</div>
+</footer>
+<script>
+    // Hyper-tactile cursor interaction
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX - 20 + 'px';
+        cursor.style.top = e.clientY - 20 + 'px';
+        
+        // Dynamic Grid Reactivity (Simulated)
+        const elements = document.querySelectorAll('.glass-panel');
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const dist = Math.sqrt(x*x + y*y);
+            
+            if (dist < 400) {
+                const moveX = x / 25;
+                const moveY = y / 25;
+                el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+            } else {
+                el.style.transform = `translate3d(0, 0, 0)`;
+            }
+        });
+    });
+
+    document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'scale(0.8)';
+        cursor.style.backgroundColor = 'rgba(255, 181, 158, 0.1)';
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'scale(1)';
+        cursor.style.backgroundColor = 'transparent';
+    });
+
+    // Hover effect for links
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(1.5)';
+            cursor.style.borderColor = '#ffb59e';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.borderColor = 'rgba(255, 181, 158, 0.4)';
+        });
+    });
+</script>
+</body></html>

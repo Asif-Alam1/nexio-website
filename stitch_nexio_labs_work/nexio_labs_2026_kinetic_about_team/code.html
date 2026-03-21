@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About | Nexio Labs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@100..900&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary": "#5e1700",
+              "on-background": "#e5e2e1",
+              "tertiary-fixed": "#e5e2e1",
+              "surface-variant": "#353534",
+              "on-tertiary-container": "#7c7a7a",
+              "on-primary-fixed": "#3a0b00",
+              "outline": "#8e9192",
+              "on-surface-variant": "#c4c7c7",
+              "on-secondary-fixed-variant": "#004f58",
+              "surface-container-highest": "#353534",
+              "on-secondary-fixed": "#001f24",
+              "outline-variant": "#444748",
+              "secondary": "#bdf4ff",
+              "primary-container": "#210400",
+              "inverse-primary": "#ae3200",
+              "primary-fixed-dim": "#ffb59e",
+              "on-tertiary-fixed-variant": "#474746",
+              "on-secondary": "#00363d",
+              "secondary-fixed-dim": "#00daf3",
+              "on-error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#c8c6c5",
+              "primary": "#ffb59e",
+              "tertiary-container": "#0d0d0d",
+              "on-primary-fixed-variant": "#852400",
+              "on-tertiary-fixed": "#1c1b1b",
+              "on-primary-container": "#df4200",
+              "surface-tint": "#ffb59e",
+              "secondary-fixed": "#9cf0ff",
+              "inverse-surface": "#e5e2e1",
+              "tertiary": "#c8c6c5",
+              "error": "#ffb4ab",
+              "surface-container-lowest": "#0e0e0e",
+              "on-error": "#690005",
+              "error-container": "#93000a",
+              "surface-container-high": "#2a2a2a",
+              "surface": "#131313",
+              "inverse-on-surface": "#313030",
+              "background": "#131313",
+              "surface-container-low": "#1c1b1b",
+              "secondary-container": "#00e3fd",
+              "primary-fixed": "#ffdbd0",
+              "surface-bright": "#3a3939",
+              "surface-container": "#201f1f",
+              "on-tertiary": "#313030",
+              "on-surface": "#e5e2e1",
+              "on-secondary-container": "#00616d",
+              "surface-dim": "#131313"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAcWC3ESVdmctw1U84LiPR4r5y8vt-VlVaKukf5GSJXcmiiu8T6n1Z5iJOQNZJvq4cwCmX0NcN1fVIXxgNTf7bwl-8QLUe3oY34VlvCIQKp-BNXsg9bc4RgwC8VQ93bGVaN54Cyzq6Qv7kNr9TzDxvyEdD1-jzg4as7lX-rbN4Hgio38lk_PNiiR0j2k8acrc664uXzvYJoTfQKSsFvA5ifdWw5N1jY1rFfkpxiDeLpHN2kc4FMU--bAdDnf_EILyNjiB7Fz4tRTQ);
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(229, 226, 225, 0.3);
+            color: transparent;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        .blueprint-lines {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .cinematic-img {
+            filter: contrast(1.2) grayscale(1) brightness(0.85);
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .cinematic-img:hover {
+            filter: contrast(1.1) grayscale(0.8) brightness(1);
+        }
+        .floating-metadata {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(229, 226, 225, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<div class="grain-overlay"></div>
+<!-- Navigation Shell (Nexus Obsidian Style) -->
+<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex justify-between items-center px-8 h-16 glass-panel mx-auto w-[calc(100%-4rem)] max-w-6xl">
+<div class="text-xl font-headline italic font-bold tracking-tighter">NEXIO LABS</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Home</a>
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Work</a>
+<a class="text-primary font-label uppercase tracking-widest text-[10px] flex items-center gap-2" href="#">
+<span class="w-1 h-1 bg-primary rounded-full"></span> About
+            </a>
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Services</a>
+<a class="text-on-surface/60 font-label uppercase tracking-widest text-[10px] hover:text-on-surface transition-all duration-300" href="#">Contact</a>
+</div>
+<button class="bg-primary px-6 py-2 text-on-primary-fixed font-label text-[10px] uppercase tracking-widest font-bold hover:bg-secondary transition-colors duration-500">
+            Start Project
+        </button>
+</nav>
+<main class="pt-32">
+<!-- Hero Section: The Collective -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden px-10">
+<div class="absolute inset-0 z-0 flex items-center justify-center opacity-40">
+<div class="w-[80vw] h-[819px] bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1964&amp;q=80')] bg-cover bg-center mix-blend-overlay grayscale transition-transform duration-1000"></div>
+</div>
+<div class="relative z-10 text-center max-w-[1200px]">
+<span class="font-label text-secondary tracking-[0.5em] uppercase text-xs mb-8 block">Est. 2018 — Global Collective</span>
+<h1 class="font-headline text-[12vw] md:text-[10vw] leading-[0.85] font-black italic tracking-tighter text-on-surface">
+                    THE<br/>COLLECTIVE
+                </h1>
+<div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-10">
+<p class="font-body text-lg text-on-surface-variant max-w-md text-left leading-relaxed">
+                        We are a distributed lab of curators, engineers, and dreamers redefining the digital frontier through intentional craftsmanship.
+                    </p>
+<div class="flex items-center gap-4 group cursor-pointer">
+<span class="font-label text-xs uppercase tracking-widest text-secondary">Discover our essence</span>
+<div class="w-12 h-12 flex items-center justify-center border border-outline/30 rounded-full group-hover:bg-secondary group-hover:text-on-secondary transition-all duration-500">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Narrative Section: Editorial Layout -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-[1600px] mx-auto px-10">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-20">
+<div class="md:col-span-7">
+<h2 class="font-headline text-5xl md:text-7xl leading-tight mb-16 italic font-medium">
+                            Nexio Labs was born out of a <span class="text-primary">rebellion</span> against the templated web.
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+                                We believe the browser is a canvas, not a container. Our journey began in a small studio in Lisbon, fueled by the desire to merge technical precision with the soul of editorial design.
+                            </p>
+<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+                                Today, we partner with visionaries worldwide to build digital artifacts that don't just function—they resonate. Every line of code is a brushstroke.
+                            </p>
+</div>
+</div>
+<div class="md:col-span-5 relative mt-20 md:mt-0">
+<div class="aspect-[3/4] bg-surface-container-high overflow-hidden shadow-[0_40px_60px_rgba(0,0,0,0.4)]">
+<img alt="Process detail" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxgsay6a-nTM-7lWALDkJs4xGx9IizbvkUaRwnzds6ecWmzSjBXsM89eRxlHM19doGjLJpLZ2Xc5AlzwkG-5o-XSLvvYq7JgAvzuJf9vzH1qJoPjB2IxDOXBIa2KgP_hRSUzNJtpEDONUpJYVTowoNamSry1VwvezvkuS_-NA8YArnNChYMYHLbTvOJC8lZG_y-5b_GUS4H6l2RpYmHidNTEXLNxTzckb4PsPikMcb7rxnWPmzmQw5JOJT6Mj0eb7EuuqlF-NCGw"/>
+</div>
+<div class="absolute -bottom-10 -left-10 bg-primary p-12 hidden lg:block">
+<span class="font-headline text-on-primary text-6xl italic font-black">240+</span>
+<span class="block font-label text-on-primary text-xs tracking-widest mt-2 uppercase">Awards won</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission: Kinetic Scroller -->
+<section class="py-40 bg-surface overflow-hidden">
+<div class="px-10 mb-20">
+<span class="font-label text-xs tracking-[0.4em] uppercase text-outline mb-4 block">Our Philosophy</span>
+<h3 class="font-headline text-4xl italic text-on-surface">Core Mandates</h3>
+</div>
+<div class="flex overflow-x-auto custom-scrollbar gap-20 px-10 pb-20">
+<!-- Value Card 1 -->
+<div class="flex-none w-[80vw] md:w-[40vw] group">
+<div class="border-l border-outline/20 pl-10">
+<span class="font-headline text-8xl text-stroke block mb-8 group-hover:text-secondary transition-colors duration-500">01</span>
+<h4 class="font-headline text-4xl mb-6 italic">Intentional Friction</h4>
+<p class="font-body text-on-surface-variant text-lg max-w-sm">
+                            Ease of use is standard. We focus on ease of *understanding*. Sometimes, a slow reveal creates a deeper connection.
+                        </p>
+</div>
+</div>
+<!-- Value Card 2 -->
+<div class="flex-none w-[80vw] md:w-[40vw] group">
+<div class="border-l border-outline/20 pl-10">
+<span class="font-headline text-8xl text-stroke block mb-8 group-hover:text-primary transition-colors duration-500">02</span>
+<h4 class="font-headline text-4xl mb-6 italic">Tactile Engineering</h4>
+<p class="font-body text-on-surface-variant text-lg max-w-sm">
+                            We build software that feels like physical material. Weight, depth, and texture are our primary tools.
+                        </p>
+</div>
+</div>
+<!-- Value Card 3 -->
+<div class="flex-none w-[80vw] md:w-[40vw] group">
+<div class="border-l border-outline/20 pl-10">
+<span class="font-headline text-8xl text-stroke block mb-8 group-hover:text-secondary transition-colors duration-500">03</span>
+<h4 class="font-headline text-4xl mb-6 italic">Future Proofing</h4>
+<p class="font-body text-on-surface-variant text-lg max-w-sm">
+                            Trends fade. We design for the decade, not the quarter. Timeless typography meets cutting-edge tech.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Updated Team Section: 2026 Kinetic Style -->
+<section class="py-60 bg-surface-container-lowest relative overflow-hidden blueprint-lines">
+<div class="max-w-[1600px] mx-auto px-12 relative z-10">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row justify-between items-end mb-40 gap-12">
+<div class="relative">
+<div class="absolute -top-12 left-0 floating-metadata">MODULAR_CORE_FACULTY // V.2026</div>
+<h2 class="font-headline italic text-[12vw] md:text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none">THE FACULTY</h2>
+<h3 class="font-headline italic text-7xl md:text-9xl relative z-10">Collaborators</h3>
+</div>
+<div class="max-w-xs border-l border-white/10 pl-8 mb-4">
+<p class="font-label text-on-surface-variant text-[10px] uppercase tracking-widest leading-relaxed">
+                            A synthesis of engineering rigor and high-art aesthetic. Our team is our architecture.
+                        </p>
+</div>
+</div>
+<!-- Non-Linear Asymmetric Gallery -->
+<div class="grid grid-cols-12 gap-y-32 md:gap-y-64">
+<!-- Member 01: Marcus -->
+<div class="col-span-12 md:col-span-6 lg:col-span-5 relative group">
+<div class="absolute -top-6 left-0 floating-metadata">UNIT 01 // FOUNDER &amp; CD</div>
+<div class="relative">
+<!-- Large Scale Headline Overlap -->
+<h4 class="absolute -bottom-16 -right-12 font-headline italic text-[8vw] leading-none text-white/10 group-hover:text-primary/20 transition-all duration-1000 select-none pointer-events-none z-20">MARCUS</h4>
+<!-- Tactical Card -->
+<div class="glass-panel p-3 relative z-10 overflow-hidden group">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Marcus Thorne" class="w-full h-full object-cover cinematic-img group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXkpX-uIaNxKJoKDiEuhkD7FM-Q_f958M_0m8O-eDTomKMbKDJLQxPGmcEz0HUpp2ffEEWcpBhivT5OH4aP-kA02Om9ZMCSLoKFjpbP0azItffraQSwxMIQvkmxiAxjQQltNTmx7TFlSO_eTSmBagkmOT_z4Ihgngm_tg69p5kEIu4rzqrfE-Ug6hq9vJwKpSP52yu47Z5xx20P6xXbMqlmwb7waVhTHitclCbMouM3EAzeYojW6rYo3JyZRlXMdETdaevXikwkw"/>
+</div>
+<!-- Blueprint Annotation -->
+<div class="absolute bottom-6 right-6 flex flex-col items-end opacity-40 group-hover:opacity-100 transition-opacity">
+<div class="h-px w-24 bg-primary mb-2"></div>
+<span class="floating-metadata">SPEC 1.0 // ARCH_LEAD</span>
+</div>
+</div>
+</div>
+<div class="mt-12">
+<h5 class="font-headline text-4xl italic mb-2">Marcus Thorne</h5>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-primary">Creative Visionary</span>
+</div>
+</div>
+<!-- Member 02: Elena (Shifted Right) -->
+<div class="col-span-12 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5 relative group md:-mt-32">
+<div class="absolute -top-6 right-0 text-right floating-metadata">UNIT 02 // EXPERIENCE ARCH</div>
+<div class="relative">
+<h4 class="absolute -top-24 -left-20 font-headline italic text-[10vw] leading-none text-white/5 vertical-text group-hover:text-secondary/10 transition-all duration-1000 select-none pointer-events-none z-20">ELENA</h4>
+<div class="glass-panel p-3 relative z-10 overflow-hidden">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Elena Voss" class="w-full h-full object-cover cinematic-img group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-hcfMgbdbWvRLDhANpz7DHUc5vGhLu3pFIjQzcIOo86zJNKo6Xe9ktIuXG0pfAOWmkfk5CjbFboSQCr83M8h6Vg1ymcftDFaNKMGQb6zdChUUm-Vn2lOEPkBOiXCnwWgAM08JKd0BgppG1Nj1IwBzgHtgSZoRZKr3AX2pEzot0NRIxNfAUc1L9odncdf1xjlSMtxFC8E08NOI23_73GayaOA4tzNTij8IZcDYhvb-oOd1lfhpauDz7HHzfCyojXWgta89Qb0Hlg"/>
+</div>
+<div class="absolute top-1/2 left-0 w-full h-px bg-white/10 -rotate-12 pointer-events-none"></div>
+<div class="absolute top-6 left-6 opacity-40">
+<span class="floating-metadata">PROTO / H_TACTILE_V.4</span>
+</div>
+</div>
+</div>
+<div class="mt-12 md:text-right">
+<h5 class="font-headline text-4xl italic mb-2">Elena Voss</h5>
+<span class="font-label text-[10px] uppercase tracking-[0.4em] text-secondary">Lead Experience Architect</span>
+</div>
+</div>
+<!-- Member 03: Julian (Central / Overlapping) -->
+<div class="col-span-12 md:col-start-3 md:col-span-7 lg:col-start-4 lg:col-span-6 relative group md:-mt-20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 floating-metadata">UNIT 03 // SYSTEMS ENGINEER</div>
+<div class="relative glass-panel p-4 flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2 aspect-square overflow-hidden">
+<img alt="Julian Klay" class="w-full h-full object-cover cinematic-img grayscale-0 group-hover:grayscale transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZbZk0MOg9AkXnzGo5qxGRYfHD4x0M2LlFwhwZuSiAIs8BanVW965Pg1kmOfD19HWZzZBCpkZe-YBXEtr44WTzdD7vsKqYd3EfXElArPz0FVN2agfTsUQwCQVXWwmxXptj7Z20w_KR5T48L60y-kYALkXj98swj_ktGsAN2JIyBK_nT5sxFfcIHuU4MBbfCa4BWc-5ImK3z3js-BamqWRlp5WohHud6T0yC0XKk4zhMgRLLbguNGV5oqb5jjtF0GHgz5esdFMOsg"/>
+</div>
+<div class="flex-1 space-y-6">
+<h4 class="font-headline italic text-6xl leading-tight">Julian <br/> Klay</h4>
+<div class="h-px w-12 bg-primary"></div>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed">
+                                    Optimizing for 144Hz+ cognition. Julian bridges the gap between binary logic and visual poetry.
+                                </p>
+<span class="font-label text-[9px] uppercase tracking-[0.3em] text-outline block pt-4">SPEC 0.9 // CODE_SYSTEMS</span>
+</div>
+<!-- Background Decor -->
+<h4 class="absolute -right-20 top-1/2 -translate-y-1/2 font-headline italic text-[15vw] leading-none text-white/5 select-none pointer-events-none -z-10">LOGIC</h4>
+</div>
+</div>
+</div>
+<!-- Section Footer Metadata -->
+<div class="mt-40 pt-12 border-t border-white/5 flex justify-between items-center opacity-40">
+<span class="floating-metadata">TOTAL_NODES: 03</span>
+<div class="flex gap-4">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse" style="animation-delay: 0.2s"></div>
+</div>
+<span class="floating-metadata">SYNC_STATUS: OPERATIONAL</span>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-40 bg-surface relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+<div class="max-w-[1200px] mx-auto px-10 relative z-10 text-center">
+<h2 class="font-headline text-6xl md:text-9xl italic font-black leading-tight mb-12">
+                    Ready to build the <span class="text-stroke">impossible?</span>
+</h2>
+<div class="flex flex-col md:flex-row items-center justify-center gap-8">
+<button class="bg-primary text-on-primary px-16 py-6 font-label text-sm uppercase tracking-[0.3em] font-bold hover:scale-105 transition-all duration-400">
+                        Inquire Now
+                    </button>
+<a class="font-label text-xs uppercase tracking-[0.2em] text-on-surface hover:text-secondary transition-colors border-b border-outline/20 pb-2" href="#">
+                        View our portfolio
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Nexus Obsidian Style) -->
+<footer class="w-full pt-40 pb-16 px-12 flex flex-col gap-32 border-t border-white/5 relative bg-surface-container-lowest/80 backdrop-blur-xl">
+<div class="flex flex-col lg:flex-row justify-between items-start gap-24">
+<div class="relative">
+<div class="text-[12rem] font-headline italic text-white/5 select-none leading-none tracking-tighter">NEXIO</div>
+<div class="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col gap-2 pl-4">
+<p class="floating-metadata">CURATED_DIGITAL_EXPERIENCES</p>
+<p class="floating-metadata">EST_2022_V_FINAL</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-24 lg:gap-40">
+<div class="flex flex-col gap-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-outline">Social_Map</span>
+<div class="flex flex-col gap-4">
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Instagram</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">LinkedIn</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Behance</a>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-outline">Contact_CH</span>
+<div class="flex flex-col gap-4">
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Direct_Mail</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Hq_Studio</a>
+</div>
+</div>
+<div class="flex flex-col gap-8">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-outline">Legal_Meta</span>
+<div class="flex flex-col gap-4">
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Privacy_Pol</a>
+<a class="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-secondary transition-all" href="#">Terms_Cond</a>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+<p class="font-label text-[9px] text-on-surface/30 uppercase tracking-[0.3em]">©2024 NEXIO LABS. BUILT FOR THE HYPER-TACTILE WEB. [CORE_STABLE]</p>
+<div class="flex items-center gap-6 glass-panel px-6 py-3">
+<div class="flex gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" style="animation-delay: 0.2s"></div>
+</div>
+<span class="font-label text-[9px] text-on-surface/60 uppercase tracking-widest">Global Network Status: Operational</span>
+</div>
+</div>
+</footer>
+</body></html>
