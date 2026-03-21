@@ -83,6 +83,11 @@
   100% { transform: translate(-5%, 15%) scale(0.9); }
 }
 
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(0.5deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
