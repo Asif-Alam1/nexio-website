@@ -1,0 +1,119 @@
+"use client";
+
+import { useRef } from "react";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { EASE } from "@/lib/animations";
+
+const values = [
+  {
+    number: "01",
+    title: "Intentional Craft",
+    description:
+      "Every line of code is a brushstroke on a wider canvas. We don't ship fast — we ship with purpose.",
+    borderColor: "border-primary/20",
+    hoverColor: "group-hover:text-secondary",
+  },
+  {
+    number: "02",
+    title: "Technical Precision",
+    description:
+      "We build digital foundations as resilient as they are beautiful. Performance is not optional — it's the baseline.",
+    borderColor: "border-secondary/20",
+    hoverColor: "group-hover:text-primary",
+  },
+  {
+    number: "03",
+    title: "Future-Proof Engineering",
+    description:
+      "We design for the decade, not the quarter. Timeless typography meets cutting-edge technology.",
+    borderColor: "border-primary/20",
+    hoverColor: "group-hover:text-secondary",
+  },
+];
+
+export default function PhilosophyScroller() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current || !scrollContainerRef.current) return;
+
+      const cards =
+        scrollContainerRef.current.querySelectorAll(".philosophy-card");
+      cards.forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0,
+          x: 60,
+          duration: 0.8,
+          ease: EASE.smooth,
+          delay: i * 0.15,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section ref={sectionRef} className="py-40 overflow-hidden">
+      {/* Header */}
+      <div className="px-8 md:px-10 mb-20">
+        <span className="font-label text-xs tracking-[0.4em] uppercase text-outline mb-4 block">
+          Our Philosophy
+        </span>
+        <h3 className="font-headline text-4xl italic text-on-surface">
+          Core Mandates
+        </h3>
+      </div>
+
+      {/* Horizontal scroll container */}
+      <div
+        ref={scrollContainerRef}
+        className="flex overflow-x-auto gap-20 px-8 md:px-10 pb-20"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          WebkitOverflowScrolling: "touch",
+          scrollSnapType: "x mandatory",
+        }}
+      >
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+
+        {values.map((value) => (
+          <div
+            key={value.number}
+            className="philosophy-card flex-none w-[80vw] md:w-[40vw] group"
+            style={{ scrollSnapAlign: "start" }}
+          >
+            <div className={`border-l ${value.borderColor} pl-10`}>
+              <span
+                className={`font-headline text-8xl block mb-8 transition-colors duration-500 ${value.hoverColor}`}
+                style={{
+                  WebkitTextStroke: "1px rgba(226, 232, 240, 0.3)",
+                  color: "transparent",
+                }}
+              >
+                {value.number}
+              </span>
+              <h4 className="font-headline text-4xl mb-6 italic">
+                {value.title}
+              </h4>
+              <p className="font-body text-on-surface-variant text-lg max-w-sm">
+                {value.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
