@@ -1,19 +1,29 @@
-import dynamic from "next/dynamic";
-import Hero from "@/components/sections/Hero";
+import HeroSection from "@/components/home/HeroSection";
+import CapabilitiesSection from "@/components/home/CapabilitiesSection";
+import CTASection from "@/components/home/CTASection";
+import TextMarquee from "@/components/ui/TextMarquee";
 
-const Services = dynamic(() => import("@/components/sections/Services"));
-const Process = dynamic(() => import("@/components/sections/Process"));
-const Team = dynamic(() => import("@/components/sections/Team"));
-const Contact = dynamic(() => import("@/components/sections/Contact"));
-
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <Hero />
-      <Services />
-      <Process />
-      <Team />
-      <Contact />
+      <HeroSection />
+      <CapabilitiesSection />
+
+      {/* Marquee band */}
+      <div className="py-16 border-y border-white/5 overflow-hidden">
+        <TextMarquee
+          speed={40}
+          pauseOnHover
+          outlined
+          className="font-headline italic"
+        >
+          <span style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
+            DESIGN — ENGINEERING — CRAFT — STRATEGY — INNOVATION —
+          </span>
+        </TextMarquee>
+      </div>
+
+      <CTASection />
     </>
   );
 }
