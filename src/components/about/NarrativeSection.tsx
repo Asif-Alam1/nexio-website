@@ -87,7 +87,7 @@ export default function NarrativeSection() {
               style={{ clipPath: "inset(100% 0 0 0)" }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1722083308588-c39e0a862cf4?w=1920&q=80"
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80"
                 alt="Nexio Labs narrative"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700"

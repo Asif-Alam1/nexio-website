@@ -95,7 +95,7 @@ export default function ServicesHero() {
             style={{ animation: "subtle-float 10s ease-in-out infinite" }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1727791949033-780c17e38783?w=1920&q=80"
+              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80"
               alt="Abstract 3D shape"
               fill
               className="object-cover opacity-80"

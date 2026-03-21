@@ -90,7 +90,7 @@ export default function HeroSection() {
           [RENDER_BUFFER: ACTIVE]
         </FloatingMetadata>
         <Image
-          src="https://images.unsplash.com/photo-1735139099204-c9dfcbea0647?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
           alt="Abstract visual"
           fill
           className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
