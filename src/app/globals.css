@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-cloud text-midnight font-body antialiased;
+    @apply bg-surface-dim text-on-surface font-body antialiased;
   }
 
   .cursor-custom * {
