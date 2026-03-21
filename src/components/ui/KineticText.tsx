@@ -48,6 +48,7 @@ export default function KineticText({
       className={cn(
         "font-headline italic kinetic-text inline-block overflow-hidden",
         "transition-[font-variation-settings] duration-[600ms] ease-in-out",
+        "py-[0.1em]", // prevent ascender/descender clipping from overflow-hidden
         className
       )}
     >

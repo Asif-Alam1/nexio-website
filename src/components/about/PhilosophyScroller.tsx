@@ -33,24 +33,42 @@ const values = [
 
 export default function PhilosophyScroller() {
   const sectionRef = useRef<HTMLElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (!sectionRef.current || !scrollContainerRef.current) return;
+      if (!sectionRef.current || !trackRef.current) return;
 
-      const cards =
-        scrollContainerRef.current.querySelectorAll(".philosophy-card");
+      const track = trackRef.current;
+      const totalScrollWidth = track.scrollWidth - track.clientWidth;
+
+      // Pin section and translate track horizontally as user scrolls vertically
+      gsap.to(track, {
+        x: -totalScrollWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => `+=${totalScrollWidth}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Staggered card entrance
+      const cards = track.querySelectorAll(".philosophy-card");
       cards.forEach((card, i) => {
         gsap.from(card, {
           opacity: 0,
-          x: 60,
+          x: 100,
           duration: 0.8,
           ease: EASE.smooth,
-          delay: i * 0.15,
           scrollTrigger: {
             trigger: card,
-            start: "top 85%",
+            containerAnimation: gsap.getById?.("philosophyScroll") || undefined,
+            start: "left 80%",
             toggleActions: "play none none none",
           },
         });
@@ -60,9 +78,9 @@ export default function PhilosophyScroller() {
   );
 
   return (
-    <section ref={sectionRef} className="py-40 overflow-hidden">
-      {/* Header */}
-      <div className="px-8 md:px-10 mb-20">
+    <section ref={sectionRef} className="relative overflow-hidden">
+      {/* Header - fixed at top of pinned section */}
+      <div className="px-8 md:px-10 pt-40 pb-20">
         <span className="font-label text-xs tracking-[0.4em] uppercase text-outline mb-4 block">
           Our Philosophy
         </span>
@@ -71,28 +89,15 @@ export default function PhilosophyScroller() {
         </h3>
       </div>
 
-      {/* Horizontal scroll container */}
+      {/* Horizontal scroll track */}
       <div
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto gap-20 px-8 md:px-10 pb-20"
-        style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          WebkitOverflowScrolling: "touch",
-          scrollSnapType: "x mandatory",
-        }}
+        ref={trackRef}
+        className="flex gap-20 px-8 md:px-10 pb-40 will-change-transform"
       >
-        <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
-
         {values.map((value) => (
           <div
             key={value.number}
             className="philosophy-card flex-none w-[80vw] md:w-[40vw] group"
-            style={{ scrollSnapAlign: "start" }}
           >
             <div className={`border-l ${value.borderColor} pl-10`}>
               <span

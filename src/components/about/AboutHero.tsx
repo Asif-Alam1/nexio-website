@@ -54,7 +54,7 @@ export default function AboutHero() {
         </span>
 
         <h1
-          className="font-headline italic font-black tracking-tighter text-on-surface leading-[0.85]"
+          className="font-headline italic font-black tracking-tighter text-on-surface leading-[0.95]"
           style={{ fontSize: "clamp(4rem, 12vw, 10rem)" }}
         >
           <KineticText as="span" delay={0.1}>

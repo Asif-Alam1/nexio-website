@@ -94,7 +94,7 @@ export default function ProcessSection() {
           {/* Left: sticky headline */}
           <div className="max-w-2xl md:sticky md:top-24">
             <h2
-              className="font-headline italic leading-[0.85] tracking-[-0.06em]"
+              className="font-headline italic leading-[0.95] tracking-[-0.06em]"
               style={{
                 fontSize: "clamp(3rem, 12vw, 10rem)",
               }}
