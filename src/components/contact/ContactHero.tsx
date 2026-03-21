@@ -5,7 +5,7 @@ import AmbientBlob from "@/components/ui/AmbientBlob";
 
 export default function ContactHero() {
   return (
-    <section className="py-32 md:py-40 px-8 md:px-12 text-center relative">
+    <section className="py-32 md:py-40 px-6 md:px-12 text-center relative">
       {/* Ambient blobs behind text */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
         <AmbientBlob

@@ -100,10 +100,10 @@ export default function CapabilitiesSection() {
   );
 
   return (
-    <section ref={sectionRef} className="py-40 px-8 md:px-12">
+    <section ref={sectionRef} className="py-20 md:py-40 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-32 gap-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-32 gap-12">
           <div className="relative">
             <FloatingMetadata className="absolute -top-6 left-0">
               MODULAR_CAPABILITIES
@@ -129,7 +129,7 @@ export default function CapabilitiesSection() {
             <GlassPanel
               key={service.code}
               className={cn(
-                "capability-card p-12 md:aspect-square flex flex-col justify-between group transition-all duration-700 relative overflow-hidden",
+                "capability-card p-8 md:p-12 md:aspect-square flex flex-col justify-between group transition-all duration-700 relative overflow-hidden",
                 service.hoverBg
               )}
             >

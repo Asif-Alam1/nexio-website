@@ -58,7 +58,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <section className="px-8 md:px-12 pb-20">
+    <section className="px-6 md:px-12 pb-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         {/* Left side - Contact Info (5 cols) */}
         <div className="lg:col-span-5 space-y-0">

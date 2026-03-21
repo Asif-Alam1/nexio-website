@@ -135,7 +135,7 @@ export default function ServiceGrid() {
   );
 
   return (
-    <section className="py-48 px-8 md:px-24">
+    <section className="py-24 md:py-48 px-6 md:px-24">
       <div
         ref={gridRef}
         className="grid grid-cols-12 gap-4"
@@ -149,7 +149,7 @@ export default function ServiceGrid() {
                 data-service-card
                 className={cn(
                   service.span,
-                  "group relative overflow-hidden p-12 transition-all duration-500"
+                  "group relative overflow-hidden p-6 md:p-12 transition-all duration-500"
                 )}
                 style={{
                   boxShadow:
@@ -166,7 +166,7 @@ export default function ServiceGrid() {
                 </FloatingMetadata>
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
-                    <h2 className="font-headline italic text-6xl md:text-7xl mb-6 leading-none">
+                    <h2 className="font-headline italic text-4xl md:text-7xl mb-6 leading-none">
                       {service.title}
                     </h2>
                     <p className="font-body text-on-surface-variant text-sm max-w-xs leading-relaxed mb-8">
@@ -197,7 +197,7 @@ export default function ServiceGrid() {
               className={cn(
                 service.span,
                 cardStyles[service.variant],
-                "group relative overflow-hidden p-12 transition-all duration-500"
+                "group relative overflow-hidden p-6 md:p-12 transition-all duration-500"
               )}
               style={{
                 boxShadow:
@@ -232,10 +232,10 @@ export default function ServiceGrid() {
                     className={cn(
                       "font-headline italic mb-6 leading-none",
                       service.variant === "core"
-                        ? "text-7xl md:text-9xl mb-8"
+                        ? "text-5xl md:text-9xl mb-8"
                         : service.variant === "wide"
-                          ? "text-6xl md:text-8xl mb-8"
-                          : "text-6xl"
+                          ? "text-4xl md:text-8xl mb-8"
+                          : "text-4xl md:text-6xl"
                     )}
                   >
                     {service.title}

@@ -37,7 +37,7 @@ export default function AboutHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden px-8 md:px-10"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-10"
     >
       {/* Abstract gradient background */}
       <div className="absolute inset-0 z-0 flex items-center justify-center">

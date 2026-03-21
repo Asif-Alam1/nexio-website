@@ -43,7 +43,7 @@ export default function ServicesCTA() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-64 px-8 overflow-hidden"
+      className="relative py-32 md:py-64 px-6 md:px-8 overflow-hidden"
     >
       {/* Decorative diagonal lines */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden">
@@ -55,7 +55,7 @@ export default function ServicesCTA() {
         {/* Headline */}
         <h2
           ref={headlineRef}
-          className="font-headline italic leading-none tracking-[-0.06em] text-center mb-24"
+          className="font-headline italic leading-none tracking-[-0.06em] text-center mb-12 md:mb-24"
           style={{
             fontSize: "clamp(3rem, 10vw, 10rem)",
           }}
@@ -70,7 +70,7 @@ export default function ServicesCTA() {
           href="/contact"
           className="group relative"
         >
-          <div className="w-64 h-64 border border-white/10 rounded-full flex items-center justify-center group-hover:border-primary/50 transition-all duration-700 bg-surface/40 backdrop-blur-xl">
+          <div className="w-48 h-48 md:w-64 md:h-64 border border-white/10 rounded-full flex items-center justify-center group-hover:border-primary/50 transition-all duration-700 bg-surface/40 backdrop-blur-xl">
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center transition-all group-hover:scale-[5] group-hover:opacity-0 duration-500" />
             <span className="absolute font-label uppercase tracking-[0.5em] text-[10px] text-white">
               Contact

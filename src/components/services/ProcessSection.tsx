@@ -71,7 +71,7 @@ export default function ProcessSection() {
     <section
       ref={sectionRef}
       data-navbar-theme="light"
-      className="bg-white text-black py-48 relative overflow-hidden"
+      className="bg-white text-black py-24 md:py-48 relative overflow-hidden"
     >
       {/* Blueprint grid with black-tinted lines on white bg */}
       <div
@@ -89,8 +89,8 @@ export default function ProcessSection() {
         aria-hidden="true"
       />
 
-      <div className="px-8 md:px-24 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-24">
+      <div className="px-6 md:px-24 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12 md:gap-24">
           {/* Left: sticky headline */}
           <div className="max-w-2xl md:sticky md:top-24">
             <h2
@@ -106,7 +106,7 @@ export default function ProcessSection() {
           </div>
 
           {/* Right: scrolling process steps */}
-          <div ref={stepsRef} className="flex-1 space-y-32 py-24">
+          <div ref={stepsRef} className="flex-1 space-y-16 md:space-y-32 py-12 md:py-24">
             {processSteps.map((step) => (
               <div
                 key={step.step}
@@ -116,7 +116,7 @@ export default function ProcessSection() {
                 <span className="font-label text-[10px] tracking-widest uppercase mb-4 block">
                   Process {step.step}
                 </span>
-                <h3 className="font-headline italic text-5xl mb-6">
+                <h3 className="font-headline italic text-3xl md:text-5xl mb-6">
                   {step.title}
                 </h3>
                 <p className="font-body text-black/60 text-xl leading-relaxed max-w-md">

@@ -73,9 +73,9 @@ export default function TeamGallery() {
         backgroundSize: "50px 50px",
       }}
     >
-      <div className="max-w-[1600px] mx-auto px-8 md:px-12 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-40 gap-12">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-40 gap-12">
           <div className="relative">
             <div className="absolute -top-12 left-0">
               <FloatingMetadata>
@@ -85,7 +85,7 @@ export default function TeamGallery() {
             <h2 className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none">
               THE FACULTY
             </h2>
-            <h3 className="font-headline italic text-5xl md:text-9xl relative z-10">
+            <h3 className="font-headline italic text-4xl md:text-9xl relative z-10">
               Collaborators
             </h3>
           </div>
@@ -98,7 +98,7 @@ export default function TeamGallery() {
         </div>
 
         {/* Non-Linear Asymmetric Gallery */}
-        <div className="grid grid-cols-12 gap-y-32 md:gap-y-64">
+        <div className="grid grid-cols-12 gap-y-20 md:gap-y-64">
           {/* Member 01: Asif */}
           <div className="team-card col-span-12 md:col-span-6 lg:col-span-5 relative group">
             <div className="absolute -top-6 left-0">
@@ -224,7 +224,7 @@ export default function TeamGallery() {
         </div>
 
         {/* Section Footer Metadata */}
-        <div className="mt-40 pt-12 border-t border-white/5 flex justify-between items-center opacity-40">
+        <div className="mt-20 md:mt-40 pt-12 border-t border-white/5 flex justify-between items-center opacity-40">
           <FloatingMetadata>TOTAL_NODES: 03</FloatingMetadata>
           <div className="flex gap-4">
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />

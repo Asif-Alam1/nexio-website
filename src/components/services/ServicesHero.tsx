@@ -51,7 +51,7 @@ export default function ServicesHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center px-8 md:px-24 overflow-hidden pt-24"
+      className="relative min-h-screen flex items-center px-6 md:px-24 overflow-hidden pt-24"
     >
       <BlueprintGrid />
 

@@ -6,11 +6,11 @@ import { SOCIAL_LINKS, CONTACT_EMAIL, WHATSAPP_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="w-full pt-40 pb-16 px-8 md:px-12 flex flex-col gap-32 border-t border-white/5 relative bg-surface backdrop-blur-xl">
+    <footer className="w-full pt-20 md:pt-40 pb-16 px-6 md:px-12 flex flex-col gap-16 md:gap-32 border-t border-white/5 relative bg-surface backdrop-blur-xl">
       <div className="flex flex-col lg:flex-row justify-between items-start gap-24">
         {/* Giant watermark with metadata */}
         <div className="relative">
-          <div className="text-[8rem] md:text-[12rem] font-headline italic text-white/5 select-none pointer-events-none leading-none tracking-tighter">
+          <div className="text-[4rem] md:text-[8rem] lg:text-[12rem] font-headline italic text-white/5 select-none pointer-events-none leading-none tracking-tighter">
             NEXIO
           </div>
           <div className="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col gap-2 pl-4">
@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
 
         {/* 3-column link grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-16 lg:gap-24">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
           {/* Social */}
           <div className="flex flex-col gap-8">
             <span className="font-label text-[10px] uppercase tracking-[0.3em] text-outline">

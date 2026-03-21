@@ -40,7 +40,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-dvh flex flex-col justify-center px-8 md:px-12 pt-40 pb-20"
+      className="relative min-h-dvh flex flex-col justify-center px-6 md:px-12 pt-28 md:pt-40 pb-20"
     >
       {/* Ambient Blobs */}
       <div ref={blob1Ref} className="absolute top-[10%] right-[15%] -z-10">
@@ -100,9 +100,9 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom section: manifesto + explore link */}
-      <div className="mt-20 flex flex-col md:flex-row gap-20 items-end w-full">
+      <div className="mt-12 md:mt-20 flex flex-col md:flex-row gap-10 md:gap-20 items-end w-full">
         <div className="relative max-w-md">
-          <FloatingMetadata className="absolute -top-6 -left-4">
+          <FloatingMetadata className="absolute -top-6 -left-4 hidden md:block">
             01_MANIFESTO
           </FloatingMetadata>
           <p className="font-body text-on-surface-variant text-lg leading-relaxed font-light">

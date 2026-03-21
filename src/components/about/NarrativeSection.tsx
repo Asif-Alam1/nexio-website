@@ -56,7 +56,7 @@ export default function NarrativeSection() {
       ref={sectionRef}
       className="py-32 bg-surface-low"
     >
-      <div className="max-w-[1600px] mx-auto px-8 md:px-10">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
           {/* Left column: text */}
           <div className="md:col-span-7">

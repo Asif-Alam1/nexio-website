@@ -80,7 +80,7 @@ export default function PhilosophyScroller() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden">
       {/* Header - fixed at top of pinned section */}
-      <div className="px-8 md:px-10 pt-40 pb-20">
+      <div className="px-6 md:px-10 pt-40 pb-20">
         <span className="font-label text-xs tracking-[0.4em] uppercase text-outline mb-4 block">
           Our Philosophy
         </span>
@@ -92,7 +92,7 @@ export default function PhilosophyScroller() {
       {/* Horizontal scroll track */}
       <div
         ref={trackRef}
-        className="flex gap-20 px-8 md:px-10 pb-40 will-change-transform"
+        className="flex gap-10 md:gap-20 px-6 md:px-10 pb-40 will-change-transform"
       >
         {values.map((value) => (
           <div
@@ -101,7 +101,7 @@ export default function PhilosophyScroller() {
           >
             <div className={`border-l ${value.borderColor} pl-10`}>
               <span
-                className={`font-headline text-8xl block mb-8 transition-colors duration-500 ${value.hoverColor}`}
+                className={`font-headline text-6xl md:text-8xl block mb-8 transition-colors duration-500 ${value.hoverColor}`}
                 style={{
                   WebkitTextStroke: "1px rgba(226, 232, 240, 0.3)",
                   color: "transparent",

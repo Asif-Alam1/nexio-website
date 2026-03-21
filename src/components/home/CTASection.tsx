@@ -57,7 +57,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="py-40 md:py-80 px-8 md:px-12 text-center relative overflow-hidden"
+      className="py-24 md:py-80 px-6 md:px-12 text-center relative overflow-hidden"
     >
       <BlueprintGrid opacity={0.03} />
 
@@ -69,7 +69,7 @@ export default function CTASection() {
 
         {/* Headline */}
         <h2
-          className="font-headline italic leading-none mb-20"
+          className="font-headline italic leading-none mb-12 md:mb-20"
           style={{ fontSize: "clamp(3rem, 10vw, 10rem)" }}
         >
           Let&apos;s build
@@ -87,7 +87,7 @@ export default function CTASection() {
         </h2>
 
         {/* Email link */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-12 group">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 group">
           <button
             onClick={handleCopyEmail}
             className="text-2xl sm:text-4xl md:text-7xl font-headline italic hover:text-primary transition-all duration-700 font-extralight hover:font-bold cursor-pointer break-all md:break-normal"
@@ -122,7 +122,7 @@ export default function CTASection() {
       </div>
 
       {/* Background metadata */}
-      <div className="absolute bottom-10 left-10 text-left pointer-events-none opacity-20">
+      <div className="absolute bottom-10 left-10 text-left pointer-events-none opacity-20 hidden md:block">
         <FloatingMetadata className="block mb-2">
           BUILD_QUEUE_04: ACTIVE
         </FloatingMetadata>
