@@ -63,6 +63,27 @@ export default function ProcessSection() {
         start: "top 85%",
         once: true,
       });
+
+      // Center-slit clip-path reveal — white section splits open from center
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (!prefersReduced && sectionRef.current) {
+        gsap.fromTo(
+          sectionRef.current,
+          { clipPath: "inset(0 50% 0 50%)" },
+          {
+            clipPath: "inset(0 0% 0 0%)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 95%",
+              end: "top 30%",
+              scrub: 0.5,
+            },
+          }
+        );
+      }
     },
     { scope: sectionRef }
   );

@@ -95,6 +95,27 @@ export default function CapabilitiesSection() {
         },
         once: true,
       });
+
+      // Clip-path viewport reveal — section expands from a smaller frame
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (!prefersReduced && sectionRef.current) {
+        gsap.fromTo(
+          sectionRef.current,
+          { clipPath: "inset(5% 3% 5% 3%)" },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 90%",
+              end: "top 20%",
+              scrub: true,
+            },
+          }
+        );
+      }
     },
     { scope: sectionRef }
   );

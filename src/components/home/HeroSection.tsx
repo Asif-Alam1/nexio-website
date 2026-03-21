@@ -44,10 +44,10 @@ export default function HeroSection() {
       className="relative min-h-dvh flex flex-col justify-center px-6 md:px-12 pt-28 md:pt-40 pb-20"
     >
       {/* Ambient Blobs */}
-      <div ref={blob1Ref} className="absolute top-[10%] right-[15%] -z-10">
+      <div ref={blob1Ref} className="absolute top-[10%] right-[15%] -z-10 parallax-slow">
         <AmbientBlob color="rgba(249,115,22,0.10)" size="384px" />
       </div>
-      <div ref={blob2Ref} className="absolute bottom-[20%] left-[10%] -z-10">
+      <div ref={blob2Ref} className="absolute bottom-[20%] left-[10%] -z-10 parallax-medium">
         <AmbientBlob color="rgba(37,99,235,0.10)" size="500px" delay={-5} />
       </div>
 
@@ -83,7 +83,7 @@ export default function HeroSection() {
       {/* Right side abstract visual (desktop only) */}
       <div
         ref={visualRef}
-        className="absolute right-[5%] top-[15%] w-[45vw] h-[70vh] z-0 pointer-events-none hidden lg:block"
+        className="absolute right-[5%] top-[15%] w-[45vw] h-[70vh] z-0 pointer-events-none hidden lg:block parallax-fast"
       >
         <Image
           src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"

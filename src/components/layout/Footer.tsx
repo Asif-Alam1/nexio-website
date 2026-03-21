@@ -12,7 +12,7 @@ export default function Footer() {
         {/* Giant watermark with metadata */}
         <ScrollReveal direction="up" delay={0}>
           <div className="relative">
-            <div className="text-[4rem] md:text-[8rem] lg:text-[12rem] font-headline italic text-white/5 select-none pointer-events-none leading-none tracking-tighter">
+            <div className="text-[4rem] md:text-[8rem] lg:text-[12rem] font-headline italic text-white/5 select-none pointer-events-none leading-none tracking-tighter parallax-slow">
               NEXIO
             </div>
             <div className="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col gap-2 pl-4">

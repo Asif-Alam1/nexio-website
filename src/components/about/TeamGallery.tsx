@@ -45,19 +45,23 @@ export default function TeamGallery() {
       if (!sectionRef.current) return;
 
       const cards = sectionRef.current.querySelectorAll(".team-card");
-      cards.forEach((card, i) => {
-        gsap.from(card, {
-          opacity: 0,
-          y: 80,
-          duration: DURATION.slow,
-          ease: EASE.smooth,
-          delay: i * 0.2,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        });
+      if (!cards.length) return;
+
+      gsap.set(cards, { y: 80, opacity: 0, scale: 0.95 });
+
+      ScrollTrigger.batch(cards, {
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: DURATION.slow,
+            stagger: 0.15,
+            ease: EASE.smooth,
+          });
+        },
+        start: "top 85%",
+        once: true,
       });
     },
     { scope: sectionRef }

@@ -88,7 +88,7 @@ export default function NarrativeSection() {
           <div className="md:col-span-5 relative mt-20 md:mt-0">
             <div
               ref={imageRef}
-              className="aspect-[3/4] bg-surface-high overflow-hidden shadow-[0_40px_60px_rgba(0,0,0,0.4)]"
+              className="aspect-[3/4] bg-surface-high overflow-hidden shadow-[0_40px_60px_rgba(0,0,0,0.4)] parallax-medium"
               style={{ clipPath: "inset(100% 0 0 0)" }}
             >
               <Image
@@ -104,7 +104,7 @@ export default function NarrativeSection() {
             {/* Overlapping stat block */}
             <div
               ref={statRef}
-              className="absolute -bottom-10 -left-10 bg-primary p-12 hidden lg:block"
+              className="absolute -bottom-10 -left-10 bg-primary p-12 hidden lg:block parallax-slow"
             >
               <span className="font-headline text-surface text-6xl italic font-black">
                 10
