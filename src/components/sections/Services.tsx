@@ -176,10 +176,9 @@ export default function Services() {
     <section id="services" aria-label="Our digital services" className="bg-cloud py-4xl">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
-          label="OUR SERVICES"
+          metadata="OUR SERVICES"
           title="What We Build"
           subtitle="Everything your business needs online, built with care and precision."
-          animateOnView={true}
         />
 
         <div

@@ -42,7 +42,7 @@ export default function Team() {
     <section id="team" aria-label="Meet our team" className="bg-white py-4xl border-t border-border/50">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
-          label="THE TEAM"
+          metadata="THE TEAM"
           title="The People Behind Nexio."
           subtitle="A small team that gives every project our full attention."
         />

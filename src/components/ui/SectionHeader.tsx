@@ -1,69 +1,55 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import KineticText from "./KineticText";
+import FloatingMetadata from "./FloatingMetadata";
 
 interface SectionHeaderProps {
-  label: string;
   title: string;
   subtitle?: string;
-  dark?: boolean;
-  centered?: boolean;
-  animateOnView?: boolean;
+  metadata?: string;
+  align?: "left" | "center";
+  className?: string;
 }
 
 export default function SectionHeader({
-  label,
   title,
   subtitle,
-  dark = false,
-  centered = true,
-  animateOnView = true,
+  metadata,
+  align = "left",
+  className,
 }: SectionHeaderProps) {
-  const animationProps = animateOnView
-    ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "200px" },
-        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-      }
-    : {};
-
   return (
-    <motion.div
-      className={cn("mb-2xl", centered && "text-center")}
-      {...animationProps}
-    >
-      {!centered && (
-        <div className="w-8 h-[2px] bg-blue mb-s" aria-hidden="true" />
+    <div
+      className={cn(
+        "relative mb-2xl",
+        align === "center" && "text-center",
+        className
       )}
-      <p
-        className={cn(
-          "font-mono text-label uppercase tracking-[0.14em] mb-s",
-          dark ? "text-blue" : "text-blue-dark"
-        )}
-      >
-        {label}
-      </p>
-      <h2
-        className={cn(
-          "font-display text-h1 mb-m",
-          dark ? "text-white" : "text-midnight"
-        )}
+    >
+      {metadata && (
+        <FloatingMetadata className="block mb-4">
+          {metadata}
+        </FloatingMetadata>
+      )}
+
+      <KineticText
+        as="h2"
+        className="text-hero-tablet md:text-hero leading-none"
       >
         {title}
-      </h2>
+      </KineticText>
+
       {subtitle && (
         <p
           className={cn(
-            "text-body-lg max-w-2xl",
-            centered && "mx-auto",
-            dark ? "text-slate-light" : "text-slate"
+            "mt-6 text-on-surface-variant text-body-lg font-light max-w-md border-l border-primary/30 pl-6",
+            align === "center" && "mx-auto border-l-0 pl-0"
           )}
         >
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 }

@@ -151,7 +151,7 @@ export default function ContactForm() {
           {isPending ? "Sending your message..." : ""}
         </div>
 
-        <Button variant="submit" type="submit" disabled={isPending}>
+        <Button variant="primary" type="submit" disabled={isPending} className="w-full">
           {isPending ? (
             <>
               <Loader2 size={16} className="animate-spin" />

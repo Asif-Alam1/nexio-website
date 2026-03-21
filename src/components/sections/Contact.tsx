@@ -21,9 +21,9 @@ export default function Contact() {
             className="flex flex-col justify-center"
           >
             <SectionHeader
-              label="GET IN TOUCH"
+              metadata="GET IN TOUCH"
               title="Let's Build Something Together."
-              centered={false}
+              align="left"
             />
 
             <p className="text-body-lg text-slate mb-xl max-w-md">
@@ -32,7 +32,7 @@ export default function Contact() {
 
             <div className="flex flex-col sm:flex-row items-start gap-m">
               <Button
-                variant="whatsapp"
+                variant="primary"
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"

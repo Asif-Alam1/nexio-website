@@ -41,10 +41,9 @@ export default function Process() {
     <section id="process" aria-label="Our development process" className="noise-overlay relative bg-midnight py-4xl overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <SectionHeader
-          label="HOW WE WORK"
+          metadata="HOW WE WORK"
           title="From Vision to Digital Reality."
-          dark
-          centered={false}
+          align="left"
         />
 
         {/* Zigzag timeline */}

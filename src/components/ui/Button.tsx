@@ -1,47 +1,59 @@
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "whatsapp" | "submit";
+type ButtonVariant = "primary" | "ghost";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = {
   variant?: ButtonVariant;
   href?: string;
-  target?: string;
-  rel?: string;
+  className?: string;
   children: React.ReactNode;
-}
+} & Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement> &
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  "className" | "children"
+>;
+
+const baseStyles =
+  "inline-flex items-center justify-center gap-2 font-label uppercase tracking-[0.14em] text-label cursor-pointer transition-all duration-hover active:translate-y-[1px]";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-orange text-white hover:brightness-[0.92] rounded-button py-3.5 px-6 font-semibold focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-midnight",
-  secondary:
-    "border border-white/30 text-white hover:bg-white/10 rounded-button py-3.5 px-6 font-semibold focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-midnight",
+    "text-white px-8 py-4 hover:scale-[1.02] shadow-[0_0_20px_rgba(249,115,22,0.2)] hover:shadow-[0_0_30px_rgba(249,115,22,0.35)]",
   ghost:
-    "border border-border text-midnight hover:bg-blue-tint rounded-button py-3.5 px-6 font-medium focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2",
-  whatsapp:
-    "bg-green text-white hover:brightness-[0.92] rounded-button py-3.5 px-6 font-semibold focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 focus:ring-offset-midnight",
-  submit:
-    "bg-blue text-white hover:brightness-[0.92] rounded-button py-3.5 px-6 font-semibold w-full focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-midnight",
+    "border border-outline-variant px-8 py-4 text-on-surface hover:bg-white hover:text-surface-dim hover:border-white",
 };
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", href, target, rel, className, children, ...props }, ref) => {
-    const styles = cn(
-      "inline-flex items-center justify-center gap-2 transition-all duration-hover text-body font-display cursor-pointer active:translate-y-[1px]",
-      variantStyles[variant],
-      className
-    );
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ variant = "primary", href, className, children, ...props }, ref) => {
+    const styles = cn(baseStyles, variantStyles[variant], className);
+
+    const inlineStyle =
+      variant === "primary"
+        ? { background: "linear-gradient(135deg, #F97316, #EA580C)" }
+        : undefined;
 
     if (href) {
       return (
-        <a href={href} target={target} rel={rel} className={styles}>
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={styles}
+          style={inlineStyle}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
           {children}
         </a>
       );
     }
 
     return (
-      <button ref={ref} className={styles} {...props}>
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        className={styles}
+        style={inlineStyle}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
         {children}
       </button>
     );
