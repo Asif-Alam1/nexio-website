@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import AboutHero from "@/components/about/AboutHero";
-import NarrativeSection from "@/components/about/NarrativeSection";
-import PhilosophyScroller from "@/components/about/PhilosophyScroller";
-import TeamGallery from "@/components/about/TeamGallery";
 import MagneticButton from "@/components/ui/MagneticButton";
+
+const NarrativeSection = dynamic(() => import("@/components/about/NarrativeSection"));
+const PhilosophyScroller = dynamic(() => import("@/components/about/PhilosophyScroller"));
+const TeamGallery = dynamic(() => import("@/components/about/TeamGallery"));
 
 export const metadata: Metadata = {
   title: "The Collective | Nexio Labs",

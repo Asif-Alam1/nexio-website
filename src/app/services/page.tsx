@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ServicesHero from "@/components/services/ServicesHero";
-import ServiceGrid from "@/components/services/ServiceGrid";
-import ProcessSection from "@/components/services/ProcessSection";
-import ServicesCTA from "@/components/services/ServicesCTA";
+
+const ServiceGrid = dynamic(() => import("@/components/services/ServiceGrid"));
+const ProcessSection = dynamic(() => import("@/components/services/ProcessSection"));
+const ServicesCTA = dynamic(() => import("@/components/services/ServicesCTA"));
 
 export const metadata: Metadata = {
   title: "Our Craft | Nexio Labs",

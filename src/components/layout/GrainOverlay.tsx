@@ -3,17 +3,20 @@
 import { useEffect, useState } from "react";
 
 export default function GrainOverlay() {
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    setReducedMotion(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    );
+    const isHighPerf = !window.matchMedia("(pointer: coarse)").matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setShouldRender(isHighPerf && !prefersReducedMotion);
   }, []);
+
+  if (!shouldRender) return null;
 
   return (
     <div
       className="fixed inset-0 z-[9999] pointer-events-none opacity-[0.04]"
+      style={{ willChange: "auto" }}
       aria-hidden="true"
     >
       <svg width="100%" height="100%">
@@ -29,11 +32,7 @@ export default function GrainOverlay() {
           width="100%"
           height="100%"
           filter="url(#grain-filter)"
-          style={
-            reducedMotion
-              ? undefined
-              : { animation: "grain 8s steps(10) infinite" }
-          }
+          style={{ animation: "grain 8s steps(10) infinite" }}
         />
       </svg>
     </div>

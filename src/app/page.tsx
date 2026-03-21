@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/home/HeroSection";
-import CapabilitiesSection from "@/components/home/CapabilitiesSection";
-import CTASection from "@/components/home/CTASection";
 import TextMarquee from "@/components/ui/TextMarquee";
+
+const CapabilitiesSection = dynamic(() => import("@/components/home/CapabilitiesSection"));
+const CTASection = dynamic(() => import("@/components/home/CTASection"));
 
 export const metadata: Metadata = {
   title: "Nexio Labs — Curating the Future of Code",

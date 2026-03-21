@@ -90,6 +90,8 @@ export default function NarrativeSection() {
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80"
                 alt="Nexio Labs narrative"
                 fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
             </div>

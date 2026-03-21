@@ -84,6 +84,9 @@ const useCanvasCursor = () => {
   let f: any;
   let pos: any = {};
   let lines: any[] = [];
+  let lastMoveTime = 0;
+  let idleTimeout: ReturnType<typeof setTimeout> | null = null;
+  const IDLE_DELAY = 2000;
   const E = {
     debug: true,
     friction: 0.5,
@@ -100,6 +103,22 @@ const useCanvasCursor = () => {
     this.vx = 0;
   }
 
+  function scheduleIdle() {
+    if (idleTimeout) clearTimeout(idleTimeout);
+    idleTimeout = setTimeout(() => {
+      if (ctx) ctx.running = false;
+    }, IDLE_DELAY);
+  }
+
+  function resumeIfIdle() {
+    lastMoveTime = Date.now();
+    if (ctx && !ctx.running) {
+      ctx.running = true;
+      render();
+    }
+    scheduleIdle();
+  }
+
   function onMousemove(e: any) {
     function o() {
       lines = [];
@@ -111,12 +130,14 @@ const useCanvasCursor = () => {
         ? ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
         : ((pos.x = e.clientX), (pos.y = e.clientY));
       e.preventDefault();
+      resumeIfIdle();
     }
     function l(e: any) {
       if (e.touches.length === 1) {
         pos.x = e.touches[0].pageX;
         pos.y = e.touches[0].pageY;
       }
+      resumeIfIdle();
     }
     document.removeEventListener("mousemove", onMousemove);
     document.removeEventListener("touchstart", onMousemove);
@@ -193,6 +214,7 @@ const useCanvasCursor = () => {
 
     return () => {
       if (ctx) ctx.running = false;
+      if (idleTimeout) clearTimeout(idleTimeout);
     };
   }, []);
 };

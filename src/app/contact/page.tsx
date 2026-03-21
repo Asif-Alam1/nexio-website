@@ -1,7 +1,9 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ContactHero from "@/components/contact/ContactHero";
-import ContactForm from "@/components/contact/ContactForm";
 import MagneticButton from "@/components/ui/MagneticButton";
+
+const ContactForm = dynamic(() => import("@/components/contact/ContactForm"));
 
 export const metadata: Metadata = {
   title: "Get In Touch | Nexio Labs",

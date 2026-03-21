@@ -98,6 +98,8 @@ export default function ServicesHero() {
               src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80"
               alt="Abstract 3D shape"
               fill
+              loading="lazy"
+              sizes="(max-width: 1024px) 0px, 40vw"
               className="object-cover opacity-80"
               style={{ filter: "blur(40px)" }}
             />

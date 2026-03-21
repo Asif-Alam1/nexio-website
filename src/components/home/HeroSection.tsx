@@ -90,6 +90,8 @@ export default function HeroSection() {
           fill
           className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
           priority
+          fetchPriority="high"
+          sizes="(max-width: 1024px) 0px, 45vw"
         />
         <div className="absolute bottom-10 right-0 w-px h-32 bg-gradient-to-b from-primary/0 to-primary/40" />
       </div>
