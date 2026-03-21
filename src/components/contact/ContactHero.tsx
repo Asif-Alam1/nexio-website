@@ -2,6 +2,7 @@
 
 import KineticText from "@/components/ui/KineticText";
 import AmbientBlob from "@/components/ui/AmbientBlob";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function ContactHero() {
   return (
@@ -36,9 +37,11 @@ export default function ContactHero() {
           </KineticText>
         </h1>
 
-        <p className="text-on-surface-variant mt-8 text-body-lg max-w-md mx-auto">
-          Currently accepting projects for Q3 2026
-        </p>
+        <ScrollReveal delay={0.2}>
+          <p className="text-on-surface-variant mt-8 text-body-lg max-w-md mx-auto">
+            Currently accepting projects for Q3 2026
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

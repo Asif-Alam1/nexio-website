@@ -12,9 +12,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [darkTint, setDarkTint] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const prevScrollY = useRef(0);
 
-  // Hide/reveal on scroll direction
+  // Hide/reveal on scroll direction + track scroll position for bg opacity
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -23,6 +24,7 @@ export default function Navbar() {
       } else {
         setHidden(false);
       }
+      setScrolled(currentY > 50);
       prevScrollY.current = currentY;
     };
 
@@ -83,9 +85,9 @@ export default function Navbar() {
       <nav
         className={[
           "fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex justify-between items-center mx-auto max-w-6xl w-[calc(100%-4rem)]",
-          "glass-panel transition-transform",
+          "glass-panel transition-[transform,background-color,backdrop-filter] duration-500",
           "h-16 px-8 max-md:h-14 max-md:px-6",
-          darkTint ? "bg-black/20" : "",
+          darkTint ? "bg-black/20" : scrolled ? "bg-surface/60 backdrop-blur-xl" : "bg-surface/40 backdrop-blur-md",
         ].join(" ")}
         style={{
           transform: hidden && !mobileMenuOpen

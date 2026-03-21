@@ -14,6 +14,7 @@ import FloatingMetadata from "@/components/ui/FloatingMetadata";
 import MagneticButton from "@/components/ui/MagneticButton";
 import TextScramble from "@/components/ui/TextScramble";
 import KineticText from "@/components/ui/KineticText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 interface ContactFormState {
   success: boolean;
@@ -64,77 +65,85 @@ export default function ContactForm() {
         {/* Left side - Contact Info (5 cols) */}
         <div className="lg:col-span-5 space-y-0">
           {/* Email block */}
-          <div className="bg-surface-dim py-10 px-8">
-            <FloatingMetadata className="mb-4 block">
-              DIRECT_LINE
-            </FloatingMetadata>
-            <button
-              type="button"
-              onClick={copyEmail}
-              className="font-headline italic text-2xl md:text-3xl text-on-surface hover:text-primary transition-colors duration-hover cursor-pointer text-left"
-            >
-              {copied ? (
-                <TextScramble text="Copied to clipboard" trigger="mount" className="text-primary" />
-              ) : (
-                CONTACT_EMAIL
-              )}
-            </button>
-          </div>
+          <ScrollReveal delay={0}>
+            <div className="bg-surface-dim py-10 px-8">
+              <FloatingMetadata className="mb-4 block">
+                DIRECT_LINE
+              </FloatingMetadata>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="font-headline italic text-2xl md:text-3xl text-on-surface hover:text-primary transition-colors duration-hover cursor-pointer text-left"
+              >
+                {copied ? (
+                  <TextScramble text="Copied to clipboard" trigger="mount" className="text-primary" />
+                ) : (
+                  CONTACT_EMAIL
+                )}
+              </button>
+            </div>
+          </ScrollReveal>
 
           {/* WhatsApp block */}
-          <div className="bg-surface-low py-10 px-8">
-            <FloatingMetadata className="mb-4 block">
-              SIGNAL_CHANNEL
-            </FloatingMetadata>
-            <p className="font-headline italic text-xl text-on-surface mb-4">
-              {WHATSAPP_NUMBER}
-            </p>
-            <MagneticButton variant="ghost" href={WHATSAPP_URL}>
-              Message on WhatsApp
-            </MagneticButton>
-          </div>
+          <ScrollReveal delay={0.1}>
+            <div className="bg-surface-low py-10 px-8">
+              <FloatingMetadata className="mb-4 block">
+                SIGNAL_CHANNEL
+              </FloatingMetadata>
+              <p className="font-headline italic text-xl text-on-surface mb-4">
+                {WHATSAPP_NUMBER}
+              </p>
+              <MagneticButton variant="ghost" href={WHATSAPP_URL}>
+                Message on WhatsApp
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
 
           {/* Social block */}
-          <div className="bg-surface-dim py-10 px-8">
-            <FloatingMetadata className="mb-4 block">
-              PROTOCOLS
-            </FloatingMetadata>
-            <div className="space-y-3">
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors duration-hover"
-              >
-                <TextScramble text="Instagram" trigger="hover" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors duration-hover"
-              >
-                <TextScramble text="LinkedIn" trigger="hover" />
-              </a>
+          <ScrollReveal delay={0.2}>
+            <div className="bg-surface-dim py-10 px-8">
+              <FloatingMetadata className="mb-4 block">
+                PROTOCOLS
+              </FloatingMetadata>
+              <div className="space-y-3">
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors duration-hover"
+                >
+                  <TextScramble text="Instagram" trigger="hover" />
+                </a>
+                <a
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors duration-hover"
+                >
+                  <TextScramble text="LinkedIn" trigger="hover" />
+                </a>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Location block */}
-          <div className="bg-surface-low py-10 px-8">
-            <FloatingMetadata className="mb-4 block">
-              COORDINATES
-            </FloatingMetadata>
-            <p className="font-headline italic text-xl text-on-surface mb-2">
-              Beirut, Lebanon
-            </p>
-            <FloatingMetadata>
-              {"33.8938\u00B0 N, 35.5018\u00B0 E"}
-            </FloatingMetadata>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="bg-surface-low py-10 px-8">
+              <FloatingMetadata className="mb-4 block">
+                COORDINATES
+              </FloatingMetadata>
+              <p className="font-headline italic text-xl text-on-surface mb-2">
+                Beirut, Lebanon
+              </p>
+              <FloatingMetadata>
+                {"33.8938\u00B0 N, 35.5018\u00B0 E"}
+              </FloatingMetadata>
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* Right side - The Form (7 cols) */}
-        <div className="lg:col-span-7">
+        <ScrollReveal direction="right" className="lg:col-span-7">
           <GlassPanel className="p-8 md:p-12 relative">
             <FloatingMetadata className="absolute top-6 right-6 md:top-8 md:right-8">
               {"SECURE_FORM // ENCRYPTED"}
@@ -269,7 +278,7 @@ export default function ContactForm() {
               </form>
             )}
           </GlassPanel>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

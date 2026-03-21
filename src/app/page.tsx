@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import HeroSection from "@/components/home/HeroSection";
 import TextMarquee from "@/components/ui/TextMarquee";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const CapabilitiesSection = dynamic(() => import("@/components/home/CapabilitiesSection"));
 const CTASection = dynamic(() => import("@/components/home/CTASection"));
@@ -19,18 +20,20 @@ export default function HomePage() {
       <CapabilitiesSection />
 
       {/* Marquee band */}
-      <div className="py-16 border-y border-white/5 overflow-hidden">
-        <TextMarquee
-          speed={40}
-          pauseOnHover
-          outlined
-          className="font-headline italic"
-        >
-          <span style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
-            DESIGN — ENGINEERING — CRAFT — STRATEGY — INNOVATION —
-          </span>
-        </TextMarquee>
-      </div>
+      <ScrollReveal>
+        <div className="py-16 border-y border-white/5 overflow-hidden">
+          <TextMarquee
+            speed={40}
+            pauseOnHover
+            outlined
+            className="font-headline italic"
+          >
+            <span style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
+              DESIGN — ENGINEERING — CRAFT — STRATEGY — INNOVATION —
+            </span>
+          </TextMarquee>
+        </div>
+      </ScrollReveal>
 
       <CTASection />
     </>

@@ -8,6 +8,7 @@ import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import KineticText from "@/components/ui/KineticText";
 import FloatingMetadata from "@/components/ui/FloatingMetadata";
 import AmbientBlob from "@/components/ui/AmbientBlob";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -98,7 +99,7 @@ export default function HeroSection() {
 
       {/* Bottom section: manifesto + explore link */}
       <div className="mt-12 md:mt-20 flex flex-col md:flex-row gap-10 md:gap-20 items-end w-full">
-        <div className="relative max-w-md">
+        <ScrollReveal className="relative max-w-md" delay={0}>
           <FloatingMetadata className="absolute -top-6 -left-4 hidden md:block">
             01_MANIFESTO
           </FloatingMetadata>
@@ -109,22 +110,24 @@ export default function HeroSection() {
             </span>{" "}
             and high-end craftsmanship. No templates. No shortcuts. Just intent.
           </p>
-        </div>
+        </ScrollReveal>
         <div className="flex-grow" />
-        <Link
-          href="/services"
-          className="flex flex-col items-end gap-6 group cursor-pointer"
-        >
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-px bg-secondary group-hover:w-32 transition-all duration-700" />
-            <span className="font-label uppercase tracking-widest text-[11px] text-secondary">
-              Explore Works
-            </span>
-          </div>
-          <FloatingMetadata>
-            SCROLL TO NAVIGATE (AUTO_DYNAMICS ON)
-          </FloatingMetadata>
-        </Link>
+        <ScrollReveal delay={0.15}>
+          <Link
+            href="/services"
+            className="flex flex-col items-end gap-6 group cursor-pointer"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-px bg-secondary group-hover:w-32 transition-all duration-700" />
+              <span className="font-label uppercase tracking-widest text-[11px] text-secondary">
+                Explore Works
+              </span>
+            </div>
+            <FloatingMetadata>
+              SCROLL TO NAVIGATE (AUTO_DYNAMICS ON)
+            </FloatingMetadata>
+          </Link>
+        </ScrollReveal>
       </div>
     </section>
   );

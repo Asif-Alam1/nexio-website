@@ -117,7 +117,7 @@ export default function TeamGallery() {
                     src={team[0].image}
                     alt={team[0].name}
                     fill
-                    className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 transition-all duration-1000 group-hover:scale-105"
+                    className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
                   />
                 </div>
@@ -160,7 +160,7 @@ export default function TeamGallery() {
                     src={team[1].image}
                     alt={team[1].name}
                     fill
-                    className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 transition-all duration-1000 group-hover:scale-110"
+                    className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
                   />
                 </div>
@@ -196,7 +196,7 @@ export default function TeamGallery() {
                   src={team[2].image}
                   alt={team[2].name}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 contrast-[1.2] brightness-[0.85] group-hover:brightness-100 transition-all duration-700"
+                  className="object-cover grayscale group-hover:grayscale-0 contrast-[1.2] brightness-[0.85] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   sizes="(max-width: 768px) 100vw, 40vw"
                 />
               </div>

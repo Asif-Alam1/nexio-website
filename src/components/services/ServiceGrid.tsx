@@ -99,7 +99,7 @@ const services = [
 ];
 
 const cardStyles: Record<string, string> = {
-  core: "bg-surface-low border border-white/5",
+  core: "bg-surface-low border border-white/5 bg-gradient-to-br from-surface-low via-surface-low to-primary/5",
   commerce: "bg-surface-container border border-white/5",
   synth: "bg-primary/5 border border-primary/20",
   glass: "",
