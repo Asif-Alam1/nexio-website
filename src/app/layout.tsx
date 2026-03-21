@@ -10,6 +10,7 @@ import ScrollProgress from "@/components/layout/ScrollProgress";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
+import PageLoader from "@/components/layout/PageLoader";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -527,6 +528,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <PageLoader />
         <SmoothScrollProvider>
           <GrainOverlay />
           <CustomCursor />
