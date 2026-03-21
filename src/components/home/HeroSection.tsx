@@ -9,6 +9,7 @@ import KineticText from "@/components/ui/KineticText";
 import FloatingMetadata from "@/components/ui/FloatingMetadata";
 import AmbientBlob from "@/components/ui/AmbientBlob";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import FluidBackground from "@/components/ui/FluidBackground";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -85,14 +86,19 @@ export default function HeroSection() {
         ref={visualRef}
         className="absolute right-[5%] top-[15%] w-[45vw] h-[70vh] z-0 pointer-events-none hidden lg:block parallax-fast"
       >
-        <Image
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
-          alt="Abstract visual"
-          fill
-          className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
-          priority
-          fetchPriority="high"
-          sizes="(max-width: 1024px) 0px, 45vw"
+        <FluidBackground
+          className="absolute inset-0 opacity-70 mix-blend-screen"
+          fallback={
+            <Image
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
+              alt="Abstract visual"
+              fill
+              className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
+              sizes="(max-width: 1024px) 0px, 45vw"
+              priority
+              fetchPriority="high"
+            />
+          }
         />
         <div className="absolute bottom-10 right-0 w-px h-32 bg-gradient-to-b from-primary/0 to-primary/40" />
       </div>
