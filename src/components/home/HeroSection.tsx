@@ -6,7 +6,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import KineticText from "@/components/ui/KineticText";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import AmbientBlob from "@/components/ui/AmbientBlob";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import FluidBackground from "@/components/ui/FluidBackground";
@@ -51,13 +51,6 @@ export default function HeroSection() {
       </div>
       <div ref={blob2Ref} className="absolute bottom-[20%] left-[10%] -z-10 parallax-medium">
         <AmbientBlob color="rgba(37,99,235,0.10)" size="500px" delay={-5} />
-      </div>
-
-      {/* Floating metadata top-right */}
-      <div className="absolute top-40 right-12 text-right hidden lg:block">
-        <FloatingMetadata className="block">
-          LOC / 33.8938° N, 35.5018° E
-        </FloatingMetadata>
       </div>
 
       {/* Headline */}
@@ -106,10 +99,7 @@ export default function HeroSection() {
 
       {/* Bottom section: manifesto + CTAs + explore link */}
       <div className="mt-12 md:mt-20 flex flex-col md:flex-row gap-10 md:gap-20 items-end w-full">
-        <ScrollReveal className="relative max-w-md" delay={0}>
-          <FloatingMetadata className="absolute -top-6 -left-4 hidden md:block">
-            01_MANIFESTO
-          </FloatingMetadata>
+        <ScrollReveal className="max-w-md" delay={0}>
           <p className="font-body text-on-surface-variant text-lg leading-relaxed font-light">
             We bridge the chasm between{" "}
             <span className="text-on-surface font-medium">
@@ -141,9 +131,6 @@ export default function HeroSection() {
                 Explore Works
               </span>
             </div>
-            <FloatingMetadata>
-              SCROLL TO NAVIGATE (AUTO_DYNAMICS ON)
-            </FloatingMetadata>
           </Link>
         </ScrollReveal>
       </div>

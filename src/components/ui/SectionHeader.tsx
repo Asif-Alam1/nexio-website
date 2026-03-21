@@ -2,12 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import KineticText from "./KineticText";
-import FloatingMetadata from "./FloatingMetadata";
 
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
-  metadata?: string;
   align?: "left" | "center";
   className?: string;
 }
@@ -15,7 +13,6 @@ interface SectionHeaderProps {
 export default function SectionHeader({
   title,
   subtitle,
-  metadata,
   align = "left",
   className,
 }: SectionHeaderProps) {
@@ -27,12 +24,6 @@ export default function SectionHeader({
         className
       )}
     >
-      {metadata && (
-        <FloatingMetadata className="block mb-4">
-          {metadata}
-        </FloatingMetadata>
-      )}
-
       <KineticText
         as="h2"
         className="text-hero-tablet md:text-hero leading-none"

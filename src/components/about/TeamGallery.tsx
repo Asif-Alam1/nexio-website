@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import GlassPanel from "@/components/ui/GlassPanel";
 
 const team = [
@@ -12,8 +12,6 @@ const team = [
     name: "Asif Alam",
     firstName: "ASIF",
     role: "Co-Founder & Lead Engineer",
-    unit: "UNIT 01 // CO-FOUNDER & LEAD ENGINEER",
-    spec: "SPEC 1.0 // ARCH_LEAD",
     image: "/images/team/asif.jpeg",
     bio: "Writes the code, architects the systems, and makes sure every pixel works.",
   },
@@ -21,8 +19,6 @@ const team = [
     name: "Joseph Attieh",
     firstName: "JOSEPH",
     role: "Co-Founder & Business Development",
-    unit: "UNIT 02 // BUSINESS DEVELOPMENT",
-    spec: "PROTO / BIZ_TACTILE_V.4",
     image: "/images/team/joseph.jpeg",
     bio: "Finds the right clients, shapes the right projects, and makes sure every partnership creates real value.",
   },
@@ -30,8 +26,6 @@ const team = [
     name: "Karl Abou Jaoude",
     firstName: "KARL",
     role: "E-Commerce Expert",
-    unit: "UNIT 03 // E-COMMERCE",
-    spec: "SPEC 0.9 // COMMERCE_SYS",
     image: "/images/team/karl.jpeg",
     bio: "Turns online stores into revenue machines. Knows payments, inventory, and conversion inside out.",
   },
@@ -81,11 +75,6 @@ export default function TeamGallery() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-40 gap-12">
           <div className="relative">
-            <div className="absolute -top-12 left-0">
-              <FloatingMetadata>
-                THE_TEAM
-              </FloatingMetadata>
-            </div>
             <h2 className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none">
               THE FACULTY
             </h2>
@@ -94,7 +83,7 @@ export default function TeamGallery() {
             </h3>
           </div>
           <div className="max-w-xs border-l border-white/10 pl-8 mb-4">
-            <p className="font-label text-on-surface-variant text-[11px] uppercase tracking-widest leading-relaxed">
+            <p className="font-body text-on-surface-variant text-sm leading-relaxed">
               A synthesis of engineering rigor and high-art aesthetic. Our team
               is our architecture.
             </p>
@@ -105,9 +94,6 @@ export default function TeamGallery() {
         <div className="grid grid-cols-12 gap-y-20 md:gap-y-64">
           {/* Member 01: Asif */}
           <div className="team-card col-span-12 md:col-span-6 lg:col-span-5 relative group">
-            <div className="absolute -top-6 left-0">
-              <FloatingMetadata>{team[0].unit}</FloatingMetadata>
-            </div>
             <div className="relative">
               {/* Giant name behind card */}
               <h4 className="hidden md:block absolute -bottom-16 -right-12 font-headline italic text-[8vw] leading-none text-white/10 group-hover:text-primary/20 transition-all duration-1000 select-none pointer-events-none z-20">
@@ -126,11 +112,6 @@ export default function TeamGallery() {
                   />
                 </div>
 
-                {/* Blueprint Annotation */}
-                <div className="absolute bottom-6 right-6 flex flex-col items-end opacity-40 group-hover:opacity-100 transition-opacity">
-                  <div className="h-px w-24 bg-primary mb-2" />
-                  <FloatingMetadata>{team[0].spec}</FloatingMetadata>
-                </div>
               </GlassPanel>
             </div>
 
@@ -146,9 +127,6 @@ export default function TeamGallery() {
 
           {/* Member 02: Joseph (Shifted Right) */}
           <div className="team-card col-span-12 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5 relative group md:-mt-32">
-            <div className="absolute -top-6 right-0 text-right">
-              <FloatingMetadata>{team[1].unit}</FloatingMetadata>
-            </div>
             <div className="relative">
               {/* Vertical ghost text */}
               <h4
@@ -171,9 +149,6 @@ export default function TeamGallery() {
 
                 {/* Diagonal line accent */}
                 <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 -rotate-12 pointer-events-none" />
-                <div className="absolute top-6 left-6 opacity-40">
-                  <FloatingMetadata>{team[1].spec}</FloatingMetadata>
-                </div>
               </GlassPanel>
             </div>
 
@@ -189,10 +164,6 @@ export default function TeamGallery() {
 
           {/* Member 03: Karl (Central / Overlapping) */}
           <div className="team-card col-span-12 md:col-start-3 md:col-span-7 lg:col-start-4 lg:col-span-6 relative group md:-mt-20">
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-              <FloatingMetadata>{team[2].unit}</FloatingMetadata>
-            </div>
-
             <GlassPanel className="p-4 relative flex flex-col md:flex-row items-center gap-12">
               {/* Image */}
               <div className="w-full md:w-1/2 aspect-square overflow-hidden relative">
@@ -214,9 +185,6 @@ export default function TeamGallery() {
                 <p className="font-body text-on-surface-variant text-sm leading-relaxed">
                   {team[2].bio}
                 </p>
-                <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline block pt-4">
-                  {team[2].spec}
-                </span>
               </div>
 
               {/* Background ghost text */}
@@ -227,15 +195,6 @@ export default function TeamGallery() {
           </div>
         </div>
 
-        {/* Section Footer Metadata */}
-        <div className="mt-20 md:mt-40 pt-12 border-t border-white/5 flex justify-between items-center opacity-40">
-          <FloatingMetadata>TOTAL_NODES: 03</FloatingMetadata>
-          <div className="flex gap-4">
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-2 h-2 rounded-full bg-secondary" />
-          </div>
-          <FloatingMetadata>SYSTEMS: ONLINE</FloatingMetadata>
-        </div>
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, STAGGER } from "@/lib/animations";
 import KineticText from "@/components/ui/KineticText";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import GlassPanel from "@/components/ui/GlassPanel";
 
 interface ServiceCard {
@@ -125,16 +125,13 @@ export default function CapabilitiesSection() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-32 gap-12">
-          <div className="relative">
-            <FloatingMetadata className="absolute -top-6 left-0">
-              OUR_SERVICES
-            </FloatingMetadata>
+          <div>
             <h2 className="font-headline italic text-5xl md:text-8xl leading-none">
               <KineticText as="span">Capabilities</KineticText>
             </h2>
           </div>
-          <div className="relative border-l border-white/10 pl-8">
-            <p className="font-label text-on-surface-variant max-w-xs text-[11px] uppercase tracking-widest leading-relaxed font-light">
+          <div className="border-l border-white/10 pl-8">
+            <p className="font-body text-on-surface-variant max-w-xs text-sm leading-relaxed">
               Specialized focus areas where design meets high-performance
               engineering.
             </p>
@@ -165,14 +162,6 @@ export default function CapabilitiesSection() {
                   service.hoverBg
                 )}
               >
-                <FloatingMetadata
-                  className={cn(
-                    "absolute top-4 left-4 transition-colors duration-500",
-                    service.hoverText
-                  )}
-                >
-                  {service.code}
-                </FloatingMetadata>
                 <div
                   className={cn(
                     "font-headline italic text-4xl md:text-5xl font-light transition-colors duration-500",

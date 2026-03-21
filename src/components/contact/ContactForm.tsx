@@ -10,7 +10,7 @@ import {
   SOCIAL_LINKS,
 } from "@/lib/constants";
 import GlassPanel from "@/components/ui/GlassPanel";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import MagneticButton from "@/components/ui/MagneticButton";
 import TextScramble from "@/components/ui/TextScramble";
 import KineticText from "@/components/ui/KineticText";
@@ -67,9 +67,6 @@ export default function ContactForm() {
           {/* Email block */}
           <ScrollReveal delay={0}>
             <div className="bg-surface-dim py-10 px-8">
-              <FloatingMetadata className="mb-4 block">
-                DIRECT_LINE
-              </FloatingMetadata>
               <button
                 type="button"
                 onClick={copyEmail}
@@ -87,9 +84,6 @@ export default function ContactForm() {
           {/* WhatsApp block */}
           <ScrollReveal delay={0.1}>
             <div className="bg-surface-low py-10 px-8">
-              <FloatingMetadata className="mb-4 block">
-                SIGNAL_CHANNEL
-              </FloatingMetadata>
               <p className="font-headline italic text-xl text-on-surface mb-4">
                 {WHATSAPP_NUMBER}
               </p>
@@ -102,9 +96,6 @@ export default function ContactForm() {
           {/* Social block */}
           <ScrollReveal delay={0.2}>
             <div className="bg-surface-dim py-10 px-8">
-              <FloatingMetadata className="mb-4 block">
-                PROTOCOLS
-              </FloatingMetadata>
               <div className="space-y-3">
                 <a
                   href={SOCIAL_LINKS.instagram}
@@ -129,15 +120,9 @@ export default function ContactForm() {
           {/* Location block */}
           <ScrollReveal delay={0.3}>
             <div className="bg-surface-low py-10 px-8">
-              <FloatingMetadata className="mb-4 block">
-                COORDINATES
-              </FloatingMetadata>
-              <p className="font-headline italic text-xl text-on-surface mb-2">
+              <p className="font-headline italic text-xl text-on-surface">
                 Beirut, Lebanon
               </p>
-              <FloatingMetadata>
-                {"33.8938\u00B0 N, 35.5018\u00B0 E"}
-              </FloatingMetadata>
             </div>
           </ScrollReveal>
         </div>
@@ -145,24 +130,12 @@ export default function ContactForm() {
         {/* Right side - The Form (7 cols) */}
         <ScrollReveal direction="right" className="lg:col-span-7">
           <GlassPanel className="p-8 md:p-12 relative">
-            <FloatingMetadata className="absolute top-6 right-6 md:top-8 md:right-8">
-              {"SECURE_FORM // ENCRYPTED"}
-            </FloatingMetadata>
-
             {/* Success state */}
             {state.success ? (
               <div className="flex flex-col items-center justify-center min-h-[400px] animate-[fadeIn_0.6s_ease-out]">
                 <h2 className="text-4xl text-on-surface mb-4">
                   <KineticText as="span" delay={0.2}>Message Received.</KineticText>
                 </h2>
-                <FloatingMetadata>RESPONSE_TIME: &lt; 24H</FloatingMetadata>
-                <div className="flex gap-4 mt-8">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-[fade_2s_ease-in-out_infinite_alternate]" />
-                  <span
-                    className="w-2 h-2 rounded-full bg-secondary animate-[fade_2s_ease-in-out_infinite_alternate]"
-                    style={{ animationDelay: "0.5s" }}
-                  />
-                </div>
               </div>
             ) : (
               <form ref={formRef} action={formAction} noValidate className="pt-8">

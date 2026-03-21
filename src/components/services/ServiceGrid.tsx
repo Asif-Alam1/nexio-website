@@ -4,14 +4,12 @@ import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, STAGGER } from "@/lib/animations";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import GlassPanel from "@/components/ui/GlassPanel";
 
 const services = [
   {
     id: "web",
-    label: "001 // CORE",
-    labelColor: "text-primary/40",
     title: (
       <>
         Web <br /> Archi-
@@ -27,8 +25,6 @@ const services = [
   },
   {
     id: "ecommerce",
-    label: "002 // COMMERCE",
-    labelColor: "text-secondary/40",
     title: (
       <>
         Digital <br /> Boutique
@@ -42,8 +38,6 @@ const services = [
   },
   {
     id: "ai",
-    label: "003 // SYNTH",
-    labelColor: "text-primary/40",
     title: (
       <>
         Neural <br /> Systems
@@ -57,8 +51,6 @@ const services = [
   },
   {
     id: "mobile",
-    label: "004 // MOBILE",
-    labelColor: "text-on-surface/30",
     title: (
       <>
         Pocket <br /> Machines
@@ -72,8 +64,6 @@ const services = [
   },
   {
     id: "desktop",
-    label: "005 // DESKTOP",
-    labelColor: "text-on-surface/30",
     title: (
       <>
         Power <br /> Tools
@@ -87,8 +77,6 @@ const services = [
   },
   {
     id: "automation",
-    label: "006 // FLOW",
-    labelColor: "text-primary/40",
     title: <>Automated Futures</>,
     description:
       "Connect your tools, eliminate friction, reclaim hours. Custom workflows that scale your operations without scaling your team.",
@@ -156,14 +144,6 @@ export default function ServiceGrid() {
                     "0 20px 80px -20px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1)",
                 }}
               >
-                <FloatingMetadata
-                  className={cn(
-                    "absolute top-0 right-0 p-8",
-                    service.labelColor
-                  )}
-                >
-                  {service.label}
-                </FloatingMetadata>
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
                     <h2 className="font-headline italic text-4xl md:text-7xl mb-6 leading-none">
@@ -204,14 +184,6 @@ export default function ServiceGrid() {
                   "0 20px 80px -20px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1)",
               }}
             >
-              <FloatingMetadata
-                className={cn(
-                  "absolute top-0 right-0 p-8",
-                  service.labelColor
-                )}
-              >
-                {service.label}
-              </FloatingMetadata>
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
                   <h2

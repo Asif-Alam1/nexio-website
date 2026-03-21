@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { SOCIAL_LINKS, CONTACT_EMAIL, WHATSAPP_URL } from "@/lib/constants";
 
@@ -15,10 +15,6 @@ export default function Footer() {
             <div className="text-[4rem] md:text-[8rem] lg:text-[12rem] font-headline italic text-white/5 select-none pointer-events-none leading-none tracking-tighter parallax-slow">
               NEXIO
             </div>
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col gap-2 pl-4">
-              <FloatingMetadata>NEXIO_LABS</FloatingMetadata>
-              <FloatingMetadata>EST_2024</FloatingMetadata>
-            </div>
           </div>
         </ScrollReveal>
 
@@ -28,7 +24,7 @@ export default function Footer() {
           <ScrollReveal delay={0.1}>
             <div className="flex flex-col gap-8">
               <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline">
-                Social_Map
+                Social
               </span>
               <div className="flex flex-col gap-4">
                 <a
@@ -55,7 +51,7 @@ export default function Footer() {
           <ScrollReveal delay={0.2}>
             <div className="flex flex-col gap-8">
               <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline">
-                Contact_CH
+                Contact
               </span>
               <div className="flex flex-col gap-4">
                 <a
@@ -80,7 +76,7 @@ export default function Footer() {
           <ScrollReveal delay={0.3}>
             <div className="flex flex-col gap-8">
               <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline">
-                Legal_Meta
+                Legal
               </span>
               <div className="flex flex-col gap-4">
                 <Link
@@ -107,15 +103,6 @@ export default function Footer() {
         <p className="font-label text-[11px] text-on-surface/30 uppercase tracking-[0.3em]">
           &copy;{new Date().getFullYear()} NEXIO LABS. ALL RIGHTS RESERVED.
         </p>
-        <div className="flex items-center gap-6 glass-panel px-6 py-4">
-          <div className="flex gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-          </div>
-          <span className="font-label text-[11px] text-on-surface/60 uppercase tracking-widest">
-            Global Network Status: Operational
-          </span>
-        </div>
         </div>
       </ScrollReveal>
     </footer>

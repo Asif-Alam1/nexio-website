@@ -1,7 +1,7 @@
 import Link from "next/link";
 import MagneticButton from "@/components/ui/MagneticButton";
 import AmbientBlob from "@/components/ui/AmbientBlob";
-import FloatingMetadata from "@/components/ui/FloatingMetadata";
+
 import BlueprintGrid from "@/components/ui/BlueprintGrid";
 
 export default function NotFound() {
@@ -40,9 +40,6 @@ export default function NotFound() {
         <p className="font-body text-lg text-on-surface/60 mt-6 mb-4 max-w-md">
           This page wandered off the grid.
         </p>
-        <FloatingMetadata className="mb-10 block">
-          {"ERROR_CODE: 404 // PAGE_NOT_FOUND"}
-        </FloatingMetadata>
         <MagneticButton variant="gradient" href="/">
           Return Home
         </MagneticButton>
