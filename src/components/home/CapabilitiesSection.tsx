@@ -108,7 +108,7 @@ export default function CapabilitiesSection() {
             <FloatingMetadata className="absolute -top-6 left-0">
               MODULAR_CAPABILITIES
             </FloatingMetadata>
-            <h2 className="font-headline italic text-7xl md:text-8xl leading-none">
+            <h2 className="font-headline italic text-5xl md:text-8xl leading-none">
               <KineticText as="span">Capabilities</KineticText>
             </h2>
           </div>

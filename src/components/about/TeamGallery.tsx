@@ -85,7 +85,7 @@ export default function TeamGallery() {
             <h2 className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none">
               THE FACULTY
             </h2>
-            <h3 className="font-headline italic text-7xl md:text-9xl relative z-10">
+            <h3 className="font-headline italic text-5xl md:text-9xl relative z-10">
               Collaborators
             </h3>
           </div>

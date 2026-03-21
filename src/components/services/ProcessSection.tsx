@@ -100,7 +100,7 @@ export default function ProcessSection() {
               }}
             >
               LOGIC <br />
-              <span className="pl-24">MEETS</span> <br />
+              <span className="pl-8 md:pl-24">MEETS</span> <br />
               LUXURY.
             </h2>
           </div>

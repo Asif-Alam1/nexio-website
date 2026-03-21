@@ -6,7 +6,7 @@ import { SOCIAL_LINKS, CONTACT_EMAIL, WHATSAPP_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="w-full pt-40 pb-16 px-6 md:px-12 flex flex-col gap-32 border-t border-white/5 relative bg-surface backdrop-blur-xl">
+    <footer className="w-full pt-40 pb-16 px-8 md:px-12 flex flex-col gap-32 border-t border-white/5 relative bg-surface backdrop-blur-xl">
       <div className="flex flex-col lg:flex-row justify-between items-start gap-24">
         {/* Giant watermark with metadata */}
         <div className="relative">

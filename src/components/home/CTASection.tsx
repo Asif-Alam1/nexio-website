@@ -90,7 +90,7 @@ export default function CTASection() {
         <div className="flex flex-col md:flex-row justify-center items-center gap-12 group">
           <button
             onClick={handleCopyEmail}
-            className="text-5xl md:text-7xl font-headline italic hover:text-primary transition-all duration-700 font-extralight hover:font-bold cursor-pointer"
+            className="text-2xl sm:text-4xl md:text-7xl font-headline italic hover:text-primary transition-all duration-700 font-extralight hover:font-bold cursor-pointer break-all md:break-normal"
           >
             {copied ? (
               <TextScramble
