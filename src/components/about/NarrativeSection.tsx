@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
 
 export default function NarrativeSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -67,20 +68,12 @@ export default function NarrativeSection() {
               templated web.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <ScrollReveal direction="up" delay={0}>
-                <p className="font-body text-lg leading-relaxed text-on-surface-variant">
-                  We believe the browser is a canvas, not a container. Our journey
-                  began in Beirut, fueled by the desire to merge technical
-                  precision with the soul of editorial design.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal direction="up" delay={0.15}>
-                <p className="font-body text-lg leading-relaxed text-on-surface-variant">
-                  Today, we partner with visionaries worldwide to build digital
-                  artifacts that don&apos;t just function&mdash;they resonate.
-                  Every line of code is a brushstroke.
-                </p>
-              </ScrollReveal>
+              <ScrollTextReveal className="font-body text-lg leading-relaxed text-on-surface-variant">
+                We believe the browser is a canvas, not a container. Our journey began in Beirut, fueled by the desire to merge technical precision with the soul of editorial design.
+              </ScrollTextReveal>
+              <ScrollTextReveal className="font-body text-lg leading-relaxed text-on-surface-variant">
+                {`Today, we partner with visionaries worldwide to build digital artifacts that don\u2019t just function\u2014they resonate. Every line of code is a brushstroke.`}
+              </ScrollTextReveal>
             </div>
           </div>
 

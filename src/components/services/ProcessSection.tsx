@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
+import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
 
 const processSteps = [
   {
@@ -140,9 +141,9 @@ export default function ProcessSection() {
                 <h3 className="font-headline italic text-3xl md:text-5xl mb-6">
                   {step.title}
                 </h3>
-                <p className="font-body text-black/60 text-xl leading-relaxed max-w-md">
+                <ScrollTextReveal className="font-body text-black/60 text-xl leading-relaxed max-w-md">
                   {step.description}
-                </p>
+                </ScrollTextReveal>
               </div>
             ))}
           </div>

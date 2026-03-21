@@ -9,14 +9,19 @@ import KineticText from "@/components/ui/KineticText";
 
 import AmbientBlob from "@/components/ui/AmbientBlob";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
 import FluidBackground from "@/components/ui/FluidBackground";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { useMagneticChars } from "@/hooks/useMagneticChars";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
   const blob1Ref = useRef<HTMLDivElement>(null);
   const blob2Ref = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
+
+  useMagneticChars(headlineRef, { strength: 12, radius: 200 });
 
   useGSAP(
     () => {
@@ -54,7 +59,7 @@ export default function HeroSection() {
       </div>
 
       {/* Headline */}
-      <div className="z-10 max-w-7xl">
+      <div ref={headlineRef} className="z-10 max-w-7xl">
         <h1
           className="font-headline italic kinetic-text"
           style={{ fontSize: "clamp(3rem, 13vw, 12rem)" }}
@@ -99,14 +104,10 @@ export default function HeroSection() {
 
       {/* Bottom section: manifesto + CTAs + explore link */}
       <div className="mt-12 md:mt-20 flex flex-col md:flex-row gap-10 md:gap-20 items-end w-full">
-        <ScrollReveal className="max-w-md" delay={0}>
-          <p className="font-body text-on-surface-variant text-lg leading-relaxed font-light">
-            We bridge the chasm between{" "}
-            <span className="text-on-surface font-medium">
-              raw technical power
-            </span>{" "}
-            and high-end craftsmanship. No templates. No shortcuts. Just intent.
-          </p>
+        <div className="max-w-md">
+          <ScrollTextReveal className="font-body text-on-surface-variant text-lg leading-relaxed font-light">
+            We bridge the chasm between raw technical power and high-end craftsmanship. No templates. No shortcuts. Just intent.
+          </ScrollTextReveal>
           <div className="flex items-center gap-8 mt-8">
             <MagneticButton variant="gradient" href="/contact">
               Start a Project
@@ -118,32 +119,12 @@ export default function HeroSection() {
               Explore Services
             </Link>
           </div>
-        </ScrollReveal>
+        </div>
         <div className="flex-grow" />
-        <ScrollReveal delay={0.15}>
-          <Link
-            href="/services"
-            className="flex flex-col items-end gap-6 group cursor-pointer"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-px bg-secondary group-hover:w-32 transition-all duration-700" />
-              <span className="font-label uppercase tracking-widest text-[11px] text-secondary">
-                Explore Works
-              </span>
-            </div>
-          </Link>
-        </ScrollReveal>
+    
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span className="font-label text-[11px] uppercase tracking-widest">
-          Scroll
-        </span>
-        <div className="w-px h-8 bg-on-surface/30 relative overflow-hidden">
-          <div className="w-full h-full bg-primary animate-[scrollDown_2s_ease-in-out_infinite]" />
-        </div>
-      </div>
+
     </section>
   );
 }

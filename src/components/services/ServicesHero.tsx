@@ -9,12 +9,16 @@ import { EASE, DURATION } from "@/lib/animations";
 import KineticText from "@/components/ui/KineticText";
 import BlueprintGrid from "@/components/ui/BlueprintGrid";
 import FluidBackground from "@/components/ui/FluidBackground";
+import { useMagneticChars } from "@/hooks/useMagneticChars";
 
 export default function ServicesHero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   const shapeRef = useRef<HTMLDivElement>(null);
+
+  useMagneticChars(headlineRef, { strength: 12, radius: 200 });
 
   useGSAP(
     () => {
@@ -70,7 +74,7 @@ export default function ServicesHero() {
         </div>
 
         {/* Headline */}
-        <div className="relative">
+        <div ref={headlineRef} className="relative">
           <h1
             className="font-headline italic text-white leading-[0.75] tracking-[-0.06em]"
             style={{
