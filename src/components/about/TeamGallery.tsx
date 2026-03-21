@@ -189,7 +189,7 @@ export default function TeamGallery() {
 
               {/* Background ghost text */}
               <h4 className="hidden md:block absolute -right-20 top-1/2 -translate-y-1/2 font-headline italic text-[15vw] leading-none text-white/5 select-none pointer-events-none -z-10">
-                LOGIC
+                KAJ
               </h4>
             </GlassPanel>
           </div>

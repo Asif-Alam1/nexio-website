@@ -75,30 +75,7 @@ export default function AboutHero() {
             redefining the digital frontier through intentional craftsmanship.
           </p>
 
-          <a
-            href="#narrative"
-            className="flex items-center gap-4 group cursor-pointer"
-          >
-            <span className="font-label text-xs uppercase tracking-widest text-secondary">
-              Discover our essence
-            </span>
-            <div className="w-12 h-12 flex items-center justify-center border border-outline/30 rounded-full group-hover:bg-secondary group-hover:text-surface transition-all duration-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 5v14" />
-                <path d="m19 12-7 7-7-7" />
-              </svg>
-            </div>
-          </a>
+        
         </div>
       </div>
     </section>

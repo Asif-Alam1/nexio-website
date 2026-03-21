@@ -8,7 +8,6 @@ import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import KineticText from "@/components/ui/KineticText";
 
 import AmbientBlob from "@/components/ui/AmbientBlob";
-import ScrollReveal from "@/components/ui/ScrollReveal";
 import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
 import FluidBackground from "@/components/ui/FluidBackground";
 import MagneticButton from "@/components/ui/MagneticButton";

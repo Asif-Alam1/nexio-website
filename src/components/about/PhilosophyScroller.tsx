@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
-import { EASE } from "@/lib/animations";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 const values = [
   {
@@ -57,21 +56,7 @@ export default function PhilosophyScroller() {
         },
       });
 
-      // Staggered card entrance
-      const cards = track.querySelectorAll(".philosophy-card");
-      cards.forEach((card) => {
-        gsap.from(card, {
-          opacity: 0,
-          x: 100,
-          duration: 0.8,
-          ease: EASE.smooth,
-          scrollTrigger: {
-            trigger: card,
-            start: "left 80%",
-            toggleActions: "play none none none",
-          },
-        });
-      });
+      // Cards are visible during horizontal scroll — no entrance animation needed
     },
     { scope: sectionRef }
   );

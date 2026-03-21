@@ -76,9 +76,9 @@ export default function ServicesHero() {
         {/* Headline */}
         <div ref={headlineRef} className="relative">
           <h1
-            className="font-headline italic text-white leading-[0.75] tracking-[-0.06em]"
+            className="font-headline italic text-white leading-[0.95] tracking-[-0.06em]"
             style={{
-              fontSize: "clamp(4rem, 18vw, 16rem)",
+              fontSize: "clamp(3.5rem, 15vw, 14rem)",
               mixBlendMode: "difference",
             }}
           >
