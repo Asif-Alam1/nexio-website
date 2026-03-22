@@ -25,14 +25,14 @@ const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-label",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400"],
 });
 
 const BASE_URL = "https://nexiolabs.co";
@@ -510,6 +510,8 @@ export default function RootLayout({
       className={`${newsreader.variable} ${outfit.variable} ${spaceGrotesk.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
