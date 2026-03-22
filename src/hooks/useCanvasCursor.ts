@@ -1,3 +1,4 @@
+
 // @ts-nocheck
 "use client";
 
@@ -201,7 +202,17 @@ const useCanvasCursor = () => {
       }
     });
     window.addEventListener("blur", () => {
-      if (ctx) ctx.running = true;
+      if (ctx) ctx.running = false;
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        if (ctx) ctx.running = false;
+      } else {
+        if (ctx && !ctx.running) {
+          ctx.running = true;
+          render();
+        }
+      }
     });
     resizeCanvas();
   };

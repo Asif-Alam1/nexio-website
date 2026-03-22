@@ -510,6 +510,8 @@ export default function RootLayout({
       className={`${newsreader.variable} ${outfit.variable} ${spaceGrotesk.variable}`}
     >
       <head>
+         <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
