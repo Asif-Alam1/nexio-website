@@ -533,7 +533,7 @@ export default function RootLayout({
         </a>
         <PageLoader />
         <SmoothScrollProvider>
-          <GrainOverlay />
+
           <CustomCursor />
           <ScrollProgress />
           <Navbar />
