@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
@@ -22,6 +22,7 @@ export default function KineticText({
   as: Tag = "span",
 }: KineticTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
+  const [animationDone, setAnimationDone] = useState(!animate);
 
   useGSAP(
     () => {
@@ -38,6 +39,7 @@ export default function KineticText({
         stagger: 0.03,
         ease: EASE.smooth,
         delay,
+        onComplete: () => setAnimationDone(true),
       });
     },
     { scope: containerRef, dependencies: [animate, delay, children] }
@@ -46,9 +48,10 @@ export default function KineticText({
   return (
     <Tag
       className={cn(
-        "font-headline italic kinetic-text inline-block overflow-hidden",
+        "font-headline italic kinetic-text inline-block",
+        !animationDone && "overflow-hidden",
         "transition-[font-variation-settings] duration-[600ms] ease-in-out",
-        "py-[0.1em]", // prevent ascender/descender clipping from overflow-hidden
+        "py-[0.1em]",
         className
       )}
     >

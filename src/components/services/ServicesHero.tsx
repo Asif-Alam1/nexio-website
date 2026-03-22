@@ -57,7 +57,7 @@ export default function ServicesHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center px-6 md:px-24 overflow-hidden pt-24"
+      className="relative min-h-screen flex items-center px-6 md:px-24 overflow-x-clip pt-24"
     >
       <BlueprintGrid />
 
@@ -76,7 +76,7 @@ export default function ServicesHero() {
         {/* Headline */}
         <div ref={headlineRef} className="relative">
           <h1
-            className="font-headline italic text-white leading-[0.95] tracking-[-0.06em]"
+            className="font-headline italic text-white leading-[0.95] tracking-[-0.06em] pr-[0.05em]"
             style={{
               fontSize: "clamp(3.5rem, 15vw, 14rem)",
               mixBlendMode: "difference",
