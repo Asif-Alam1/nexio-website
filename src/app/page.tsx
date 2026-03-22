@@ -21,15 +21,26 @@ export default function HomePage() {
 
       {/* Marquee band */}
       <ScrollReveal>
-        <div className="py-16 border-y border-white/5 overflow-hidden">
+        <div className="py-12 md:py-20 bg-surface/50 overflow-hidden space-y-4">
           <TextMarquee
             speed={40}
             pauseOnHover
             outlined
             className="font-headline italic"
           >
-            <span style={{ fontSize: "clamp(3rem, 8vw, 8rem)" }}>
+            <span style={{ fontSize: "clamp(2rem, 6vw, 6rem)" }}>
               DESIGN — ENGINEERING — CRAFT — STRATEGY — INNOVATION —
+            </span>
+          </TextMarquee>
+          <TextMarquee
+            speed={25}
+            pauseOnHover
+            outlined
+            className="font-headline italic opacity-30"
+            direction="right"
+          >
+            <span style={{ fontSize: "clamp(1.5rem, 4vw, 4rem)" }}>
+              WEBSITES — MOBILE APPS — AI SYSTEMS — E-COMMERCE — AUTOMATIONS —
             </span>
           </TextMarquee>
         </div>

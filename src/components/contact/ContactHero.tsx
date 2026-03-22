@@ -1,10 +1,15 @@
 "use client";
 
+import { useRef } from "react";
 import KineticText from "@/components/ui/KineticText";
 import AmbientBlob from "@/components/ui/AmbientBlob";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { useMagneticChars } from "@/hooks/useMagneticChars";
 
 export default function ContactHero() {
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  useMagneticChars(headlineRef, { strength: 10, radius: 180 });
+
   return (
     <section className="py-32 md:py-40 px-6 md:px-12 text-center relative">
       {/* Ambient blobs behind text */}
@@ -27,7 +32,7 @@ export default function ContactHero() {
           Get In Touch
         </p>
 
-        <h1 style={{ fontSize: "clamp(3rem, 10vw, 8rem)", lineHeight: 1 }}>
+        <h1 ref={headlineRef} style={{ fontSize: "clamp(3rem, 10vw, 8rem)", lineHeight: 1 }}>
           <KineticText className="text-on-surface">
             {"Let's Start"}
           </KineticText>

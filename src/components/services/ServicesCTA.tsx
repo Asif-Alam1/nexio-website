@@ -9,6 +9,7 @@ export default function ServicesCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -36,6 +37,21 @@ export default function ServicesCTA() {
         },
         "-=0.3"
       );
+
+      // Circle CTA scales up on scroll
+      if (circleRef.current) {
+        gsap.from(circleRef.current, {
+          scale: 0.8,
+          opacity: 0,
+          duration: 1,
+          ease: EASE.smooth,
+          scrollTrigger: {
+            trigger: circleRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
     },
     { scope: sectionRef }
   );
@@ -65,6 +81,7 @@ export default function ServicesCTA() {
         </h2>
 
         {/* Circular CTA button */}
+        <div ref={circleRef}>
         <Link
           ref={buttonRef}
           href="/contact"
@@ -79,6 +96,7 @@ export default function ServicesCTA() {
           {/* Blueprint circle */}
           <div className="absolute inset-0 border border-primary/5 rounded-full scale-[1.3] opacity-40" />
         </Link>
+        </div>
       </div>
     </section>
   );

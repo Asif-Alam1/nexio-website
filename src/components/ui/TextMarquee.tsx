@@ -9,6 +9,7 @@ interface TextMarqueeProps {
   pauseOnHover?: boolean;
   className?: string;
   outlined?: boolean;
+  direction?: "left" | "right";
 }
 
 export default function TextMarquee({
@@ -17,12 +18,14 @@ export default function TextMarquee({
   pauseOnHover = true,
   className,
   outlined = false,
+  direction = "left",
 }: TextMarqueeProps) {
   return (
     <Marquee
       speed={speed}
       pauseOnHover={pauseOnHover}
       className={cn(className)}
+      direction={direction}
       autoFill
     >
       <span

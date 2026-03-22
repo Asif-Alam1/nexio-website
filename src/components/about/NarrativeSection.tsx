@@ -11,6 +11,7 @@ export default function NarrativeSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const statRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(
     () => {
@@ -29,6 +30,23 @@ export default function NarrativeSection() {
               trigger: imageRef.current,
               start: "top 85%",
               toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Headline brightens on scroll
+      if (headlineRef.current) {
+        gsap.fromTo(
+          headlineRef.current,
+          { opacity: 0.2 },
+          {
+            opacity: 1,
+            scrollTrigger: {
+              trigger: headlineRef.current,
+              start: "top 85%",
+              end: "top 40%",
+              scrub: 1,
             },
           }
         );
@@ -62,7 +80,7 @@ export default function NarrativeSection() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
           {/* Left column: text */}
           <div className="md:col-span-7">
-            <h2 className="font-headline text-5xl md:text-7xl leading-tight mb-16 italic font-medium">
+            <h2 ref={headlineRef} className="font-headline text-5xl md:text-7xl leading-tight mb-16 italic font-medium">
               Nexio Labs was born out of a{" "}
               <span className="text-primary">rebellion</span> against the
               templated web.

@@ -4,11 +4,15 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
 import KineticText from "@/components/ui/KineticText";
+import { useMagneticChars } from "@/hooks/useMagneticChars";
 
 export default function AboutHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLDivElement>(null);
+
+  useMagneticChars(headlineRef, { strength: 12, radius: 200 });
 
   useGSAP(
     () => {
@@ -54,6 +58,7 @@ export default function AboutHero() {
         </span>
 
         <h1
+          ref={headlineRef}
           className="font-headline italic font-black tracking-tighter text-on-surface leading-[0.95]"
           style={{ fontSize: "clamp(4rem, 12vw, 10rem)" }}
         >
