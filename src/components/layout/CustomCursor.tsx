@@ -71,7 +71,7 @@ export default function CustomCursor() {
       {/* Canvas for trailing line animations */}
       <canvas
         id="canvas-cursor"
-        className="pointer-events-none fixed inset-0 z-[9998]"
+        className="pointer-events-none fixed inset-0 z-[9998] will-change-transform"
         aria-hidden="true"
       />
 

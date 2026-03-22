@@ -87,10 +87,11 @@ const useCanvasCursor = () => {
   let lastMoveTime = 0;
   let idleTimeout: ReturnType<typeof setTimeout> | null = null;
   const IDLE_DELAY = 2000;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const E = {
     debug: true,
     friction: 0.5,
-    trails: 20,
+    trails: 12,
     size: 50,
     dampening: 0.25,
     tension: 0.98,
@@ -167,8 +168,12 @@ const useCanvasCursor = () => {
 
   function resizeCanvas() {
     if (ctx && ctx.canvas) {
-      ctx.canvas.width = window.innerWidth;
-      ctx.canvas.height = window.innerHeight;
+      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+      ctx.canvas.width = window.innerWidth * dpr;
+      ctx.canvas.height = window.innerHeight * dpr;
+      ctx.canvas.style.width = window.innerWidth + "px";
+      ctx.canvas.style.height = window.innerHeight + "px";
+      ctx.scale(dpr, dpr);
     }
   }
 

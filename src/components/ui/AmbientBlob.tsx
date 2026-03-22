@@ -17,7 +17,7 @@ export default function AmbientBlob({
 }: AmbientBlobProps) {
   return (
     <div
-      className={cn("rounded-full blur-[100px] pointer-events-none", className)}
+      className={cn("rounded-full blur-[100px] pointer-events-none blob-hue-shift", className)}
       style={{
         width: size,
         height: size,

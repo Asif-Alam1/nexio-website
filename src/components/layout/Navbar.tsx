@@ -87,6 +87,7 @@ export default function Navbar() {
           "fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex justify-between items-center mx-auto max-w-6xl w-[calc(100%-4rem)]",
           "glass-panel transition-[transform,background-color,backdrop-filter] duration-500",
           "h-16 px-8 max-md:h-14 max-md:px-6",
+          "navbar-fixed",
           darkTint ? "bg-black/20" : scrolled ? "bg-surface/60 backdrop-blur-xl" : "bg-surface/40 backdrop-blur-md",
         ].join(" ")}
         style={{
@@ -170,7 +171,7 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-surface-dim z-[200] flex flex-col items-center px-8 pt-28 pb-12 md:hidden"
+            className="fixed inset-0 bg-surface-dim z-[200] flex flex-col items-center px-8 pt-28 pb-12 md:hidden entry-animate"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

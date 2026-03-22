@@ -22,7 +22,7 @@ const baseStyles =
 
 const variantStyles: Record<MagneticButtonVariant, string> = {
   gradient:
-    "text-white px-8 py-4 hover:scale-[1.02]",
+    "text-white px-8 py-4 hover:scale-[1.02] gradient-animated",
   ghost:
     "border border-outline-variant px-8 py-4 text-on-surface hover:bg-white hover:text-surface-dim hover:border-white",
 };
@@ -38,12 +38,9 @@ export default function MagneticButton({
 
   const styles = cn(baseStyles, variantStyles[variant], className);
 
-  const magneticStyle = {
+  const magneticStyle: React.CSSProperties = {
     transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
     transition: transform.x === 0 && transform.y === 0 ? "transform 0.4s ease-out" : "none",
-    ...(variant === "gradient"
-      ? { background: "linear-gradient(135deg, #F97316, #EA580C)" }
-      : {}),
   };
 
   if (href) {

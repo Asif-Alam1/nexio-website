@@ -211,6 +211,113 @@ section {
   }
 }
 
+/* ============================================
+   OVERDRIVE: @property Animated Gradients
+   ============================================ */
+
+/* Register custom properties for gradient animation */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 135deg;
+  inherits: false;
+}
+
+@property --gradient-color-1 {
+  syntax: "<color>";
+  initial-value: #F97316;
+  inherits: false;
+}
+
+@property --gradient-color-2 {
+  syntax: "<color>";
+  initial-value: #EA580C;
+  inherits: false;
+}
+
+@property --blob-hue {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+/* Animated gradient button — shifts angle on hover */
+.gradient-animated {
+  background: linear-gradient(var(--gradient-angle), var(--gradient-color-1), var(--gradient-color-2));
+  transition: --gradient-angle 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gradient-animated:hover {
+  --gradient-angle: 315deg;
+}
+
+/* Slow hue-shifting ambient effect for blobs */
+@keyframes hue-shift {
+  0% { --blob-hue: 0; }
+  50% { --blob-hue: 15; }
+  100% { --blob-hue: 0; }
+}
+.blob-hue-shift {
+  animation: hue-shift 20s ease-in-out infinite;
+  filter: hue-rotate(calc(var(--blob-hue) * 1deg));
+}
+
+/* ============================================
+   OVERDRIVE: @starting-style Entry Animations
+   ============================================ */
+
+@supports (selector(:open)) {
+  .entry-animate {
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @starting-style {
+    .entry-animate {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+}
+
+/* ============================================
+   OVERDRIVE: View Transitions for Page Navigation
+   ============================================ */
+
+@supports (view-transition-name: auto) {
+  /* Root transition — crossfade with subtle slide */
+  ::view-transition-old(root) {
+    animation: 300ms cubic-bezier(0.16, 1, 0.3, 1) both fade-out-slide;
+  }
+
+  ::view-transition-new(root) {
+    animation: 500ms cubic-bezier(0.16, 1, 0.3, 1) both fade-in-slide;
+  }
+
+  @keyframes fade-out-slide {
+    to {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes fade-in-slide {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  /* Navbar stays fixed during transition */
+  .navbar-fixed {
+    view-transition-name: navbar;
+  }
+
+  ::view-transition-old(navbar),
+  ::view-transition-new(navbar) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
+
 /* Reduced motion: disable all scroll-driven animations */
 @media (prefers-reduced-motion: reduce) {
   .parallax-slow,
@@ -226,5 +333,10 @@ section {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms !important;
   }
 }
