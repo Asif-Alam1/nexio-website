@@ -50,9 +50,9 @@ export default function HeroSection() {
       className="relative min-h-dvh flex flex-col justify-center px-6 md:px-12 pt-28 md:pt-40 pb-20"
     >
       {/* Ambient Blobs */}
-      <div ref={blob1Ref} className="absolute top-[10%] right-[15%] -z-10 parallax-slow">
+      {/* <div ref={blob1Ref} className="absolute top-[10%] right-[15%] -z-10 parallax-slow">
         <AmbientBlob color="rgba(249,115,22,0.10)" size="384px" />
-      </div>
+      </div> */}
       <div ref={blob2Ref} className="absolute bottom-[20%] left-[10%] -z-10 parallax-medium">
         <AmbientBlob color="rgba(37,99,235,0.10)" size="500px" delay={-5} />
       </div>
