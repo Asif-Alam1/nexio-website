@@ -201,17 +201,7 @@ const useCanvasCursor = () => {
       }
     });
     window.addEventListener("blur", () => {
-      if (ctx) ctx.running = false;
-    });
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        if (ctx) ctx.running = false;
-      } else {
-        if (ctx && !ctx.running) {
-          ctx.running = true;
-          render();
-        }
-      }
+      if (ctx) ctx.running = true;
     });
     resizeCanvas();
   };
