@@ -387,7 +387,7 @@ export const metadata: Metadata = {
     template: "%s | Nexio Labs",
   },
   description:
-    "Lebanon's digital agency building high-performance websites, mobile apps, e-commerce stores, AI chatbots & automations. From idea to launch in weeks. Get a free consultation.",
+    "Lebanon's digital agency building websites, mobile apps, e-commerce stores, AI chatbots & automations. From idea to launch in weeks.",
   keywords: [
     "web development Lebanon",
     "mobile app development Lebanon",
