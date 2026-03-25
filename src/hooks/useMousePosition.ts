@@ -1,25 +1,28 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
+// Lightweight hook for touch detection only (used by CustomCursor)
+export function useIsTouch() {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
+  return isTouch;
+}
+
+// State-based position hook for effects that don't need frame-perfect accuracy (e.g. Hero orb parallax)
 export function useMousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isTouch, setIsTouch] = useState(false);
-  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
     const handleMouseMove = (e: MouseEvent) => {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(() => {
-        setPosition({ x: e.clientX, y: e.clientY });
-      });
+      setPosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return { position, isTouch };
