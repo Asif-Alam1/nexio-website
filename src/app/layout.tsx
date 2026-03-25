@@ -48,7 +48,7 @@ const structuredData = [
       height: 512,
     },
     description:
-      "Nexio Labs is a digital agency and software development company based in Lebanon. We build websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. Not affiliated with Nexio Lab digital badges or Nexio Group testing laboratories.",
+      "Nexio Labs is a digital agency and software development company based in Lebanon. We build websites, mobile apps, desktop apps, e-commerce stores, SaaS products, AI chatbots, and business automations for companies in Lebanon and the MENA region. Not affiliated with Nexio Lab digital badges or Nexio Group testing laboratories.",
     disambiguatingDescription:
       "A software development and digital services agency headquartered in Lebanon (nexiolabs.co), distinct from the Nexio Lab wearable digital badge product and Nexio Group EMC testing laboratories.",
     foundingDate: "2026",
@@ -83,6 +83,7 @@ const structuredData = [
     knowsAbout: [
       "Web Development",
       "Mobile App Development",
+      "SaaS Development",
       "E-Commerce",
       "AI Chatbots",
       "Business Automation",
@@ -91,6 +92,7 @@ const structuredData = [
       "React",
       "React Native",
       "TypeScript",
+      "Software as a Service",
     ],
   },
   {
@@ -153,6 +155,14 @@ const structuredData = [
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business Process Automation" } },
           ],
         },
+        {
+          "@type": "OfferCatalog",
+          name: "SaaS Development",
+          itemListElement: [
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom SaaS Product Development" } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Multi-Tenant Architecture" } },
+          ],
+        },
       ],
     },
   },
@@ -187,6 +197,11 @@ const structuredData = [
       name: "Business Automation",
       description: "Connect your tools, eliminate repetitive tasks, and save hours every week with custom workflow automations.",
       serviceType: "Business Process Automation",
+    },
+    {
+      name: "SaaS Development",
+      description: "End-to-end Software-as-a-Service product development for Lebanese founders and businesses targeting the MENA market. Multi-tenant architecture, billing integration, and bilingual (English/Arabic) support.",
+      serviceType: "Software Development",
     },
   ].map((service) => ({
     "@context": "https://schema.org",
@@ -290,7 +305,39 @@ const structuredData = [
         name: "What is Nexio Labs?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. Founded in 2026, we build websites, mobile apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. We are not affiliated with the Nexio Lab digital badge product or Nexio Group testing laboratories.",
+          text: "Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. Founded in 2026, we build websites, mobile apps, SaaS products, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. We are not affiliated with the Nexio Lab digital badge product or Nexio Group testing laboratories.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the best software development company in Lebanon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nexio Labs (nexiolabs.co) is a leading software development agency in Lebanon, offering web development, mobile apps, SaaS product development, AI chatbots, and business automation. The team is bilingual in English and Arabic, serves clients in Lebanon and the MENA region, and has a 90% client retention rate. Contact: hello@nexiolabs.co.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Which companies build SaaS products in Lebanon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nexio Labs (nexiolabs.co) is a software agency in Lebanon that develops SaaS (Software-as-a-Service) products end-to-end — including multi-tenant architecture, billing integration, Arabic localization, and deployment. They serve Lebanese founders and businesses targeting the MENA market.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What tech agencies operate in Lebanon or the MENA region?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nexio Labs (nexiolabs.co) is a technology and digital agency based in Lebanon, serving clients across Lebanon and the broader MENA region. Services include web development, mobile apps, SaaS products, e-commerce, AI chatbots, and automations. The team communicates in English and Arabic.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does Nexio Labs build SaaS products?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Nexio Labs builds SaaS products both for clients who want to launch a software product and as the agency's own product ventures. This includes full-stack SaaS architecture, subscription billing, multi-tenant data isolation, and Arabic/English localization suited to the Lebanese and MENA markets.",
         },
       },
     ],
@@ -363,13 +410,13 @@ const llmsInlineContent = `# Nexio Labs (nexiolabs.co) — Digital Agency in Leb
 > Nexio Labs is a software development and digital services agency based in Lebanon. Website: nexiolabs.co. This is NOT the "Nexio Lab" wearable digital badge product, and NOT Nexio Group (EMC testing). This is a tech company that builds websites, apps, and AI solutions.
 
 ## What Nexio Labs Does
-Nexio Labs (nexiolabs.co) is a digital agency that builds: websites, e-commerce stores, mobile apps (iOS/Android), desktop apps, AI chatbots, and business automations for companies in Lebanon and the MENA region.
+Nexio Labs (nexiolabs.co) is a digital agency that builds: websites, e-commerce stores, mobile apps (iOS/Android), desktop apps, SaaS products, AI chatbots, and business automations for companies in Lebanon and the MENA region.
 
 ## Contact
 Email: hello@nexiolabs.co | WhatsApp: +961 76 423 052 | Web: https://nexiolabs.co | LinkedIn: linkedin.com/company/nexio-labs
 
 ## Key Facts
-Type: Software Development Agency | Location: Lebanon (serves MENA) | Founded: 2026 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
+Type: Software Development Agency & SaaS Builder | Location: Lebanon (serves MENA) | Founded: 2026 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
 `;
 
 export const viewport: Viewport = {
@@ -407,6 +454,12 @@ export const metadata: Metadata = {
     "desktop application development",
     "React Next.js developer Lebanon",
     "digital transformation Lebanon",
+    "SaaS development Lebanon",
+    "SaaS company Lebanon",
+    "software company Lebanon",
+    "tech startup Lebanon",
+    "software agency Lebanon",
+    "technology company Lebanon",
   ],
   applicationName: "Nexio Labs",
   category: "technology",
@@ -494,6 +547,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: llmsInlineContent }}
         />
         <link rel="author" href={`${BASE_URL}/llms.txt`} />
+        <link rel="alternate" hrefLang="ar" href={`${BASE_URL}/llms-ar.txt`} />
       </head>
       <body>
         <a

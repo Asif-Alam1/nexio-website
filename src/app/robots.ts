@@ -12,32 +12,52 @@ export default function robots(): MetadataRoute.Robots {
       // AI search/retrieval crawlers — ALLOW (these serve real-time AI search results)
       {
         userAgent: "ChatGPT-User",
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
         disallow: ["/api/"],
       },
       {
         userAgent: "OAI-SearchBot",
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
         disallow: ["/api/"],
       },
       {
         userAgent: "PerplexityBot",
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
         disallow: ["/api/"],
       },
       {
         userAgent: "Perplexity-User",
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
         disallow: ["/api/"],
       },
       {
         userAgent: "Claude-User",
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
         disallow: ["/api/"],
       },
       {
         userAgent: "Applebot",
-        allow: ["/", "/llms.txt", "/llms-full.txt"],
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "YouBot",
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "Amazonbot",
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "Meta-ExternalAgent",
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "cohere-ai",
+        allow: ["/", "/llms.txt", "/llms-full.txt", "/blog/"],
         disallow: ["/api/"],
       },
       // Google AI — allow for AI Overviews
@@ -45,19 +65,23 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "Google-Extended",
         allow: "/",
       },
-      // AI training crawlers — BLOCK (prevent content entering training datasets)
+      // AI training crawlers — allow blog + llms files so future model versions learn about us
       {
         userAgent: "GPTBot",
-        disallow: "/",
+        allow: ["/blog/", "/llms.txt", "/llms-full.txt", "/llms-ar.txt"],
+        disallow: ["/", "/api/"],
       },
       {
         userAgent: "ClaudeBot",
-        disallow: "/",
+        allow: ["/blog/", "/llms.txt", "/llms-full.txt", "/llms-ar.txt"],
+        disallow: ["/", "/api/"],
       },
       {
         userAgent: "anthropic-ai",
-        disallow: "/",
+        allow: ["/blog/", "/llms.txt", "/llms-full.txt", "/llms-ar.txt"],
+        disallow: ["/", "/api/"],
       },
+      // Generic training scrapers — still block (low quality, no LLM benefit)
       {
         userAgent: "CCBot",
         disallow: "/",
