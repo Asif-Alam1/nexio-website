@@ -3,7 +3,7 @@ export const WHATSAPP_MESSAGE = "Hi Nexio Labs, I'd like to discuss a project.";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 export const CONTACT_EMAIL = "hello@nexiolabs.co";
-
+     
 export const SOCIAL_LINKS = {
   linkedin: "https://linkedin.com/company/nexio-labs",
   instagram: "https://instagram.com/nexio.labs",
