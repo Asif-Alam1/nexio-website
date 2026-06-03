@@ -33,6 +33,9 @@ const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-su
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
   const formRef = useRef<HTMLFormElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -40,6 +43,16 @@ export default function ContactForm() {
       formRef.current?.reset();
     }
   }, [state.success]);
+
+  // After a failed submit, move focus to the first field with an error so
+  // keyboard and screen-reader users are taken straight to what needs fixing.
+  useEffect(() => {
+    const fe = state.fieldErrors;
+    if (!fe) return;
+    if (fe.name) nameRef.current?.focus();
+    else if (fe.email) emailRef.current?.focus();
+    else if (fe.message) messageRef.current?.focus();
+  }, [state]);
 
   const copyEmail = useCallback(async () => {
     try {
@@ -151,7 +164,7 @@ export default function ContactForm() {
                 {/* Global error */}
                 {state.error && (
                   <div
-                    className="text-sm text-red-500 mb-8 border border-red-500/30 px-4 py-3"
+                    className="text-sm text-red-400 mb-8 border border-red-500/30 px-4 py-3"
                     role="alert"
                   >
                     {state.error}
@@ -164,21 +177,24 @@ export default function ContactForm() {
                     Name
                   </label>
                   <input
+                    ref={nameRef}
                     id="contact-name"
                     name="name"
                     type="text"
                     required
+                    maxLength={100}
                     placeholder="Your full name"
                     className={cn(
                       inputStyles,
                       state.fieldErrors?.name && inputErrorStyles
                     )}
+                    aria-invalid={state.fieldErrors?.name ? true : undefined}
                     aria-describedby={
                       state.fieldErrors?.name ? "name-error" : undefined
                     }
                   />
                   {state.fieldErrors?.name && (
-                    <p id="name-error" className="mt-2 text-sm text-red-500">
+                    <p id="name-error" role="alert" className="mt-2 text-sm text-red-400">
                       {state.fieldErrors.name}
                     </p>
                   )}
@@ -190,21 +206,24 @@ export default function ContactForm() {
                     Email
                   </label>
                   <input
+                    ref={emailRef}
                     id="contact-email"
                     name="email"
                     type="email"
                     required
+                    maxLength={254}
                     placeholder="you@company.com"
                     className={cn(
                       inputStyles,
                       state.fieldErrors?.email && inputErrorStyles
                     )}
+                    aria-invalid={state.fieldErrors?.email ? true : undefined}
                     aria-describedby={
                       state.fieldErrors?.email ? "email-error" : undefined
                     }
                   />
                   {state.fieldErrors?.email && (
-                    <p id="email-error" className="mt-2 text-sm text-red-500">
+                    <p id="email-error" role="alert" className="mt-2 text-sm text-red-400">
                       {state.fieldErrors.email}
                     </p>
                   )}
@@ -216,21 +235,24 @@ export default function ContactForm() {
                     Message
                   </label>
                   <textarea
+                    ref={messageRef}
                     id="contact-message"
                     name="message"
                     required
+                    maxLength={5000}
                     placeholder="Tell us about your project..."
                     className={cn(
                       inputStyles,
                       "min-h-[120px] resize-y",
                       state.fieldErrors?.message && inputErrorStyles
                     )}
+                    aria-invalid={state.fieldErrors?.message ? true : undefined}
                     aria-describedby={
                       state.fieldErrors?.message ? "message-error" : undefined
                     }
                   />
                   {state.fieldErrors?.message && (
-                    <p id="message-error" className="mt-2 text-sm text-red-500">
+                    <p id="message-error" role="alert" className="mt-2 text-sm text-red-400">
                       {state.fieldErrors.message}
                     </p>
                   )}

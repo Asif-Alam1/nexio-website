@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { SOCIAL_LINKS, CONTACT_EMAIL, WHATSAPP_URL } from "@/lib/constants";
 
@@ -18,12 +16,12 @@ export default function Footer() {
           </div>
         </ScrollReveal>
 
-        {/* 3-column link grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 lg:gap-24">
+        {/* Link grid */}
+        <div className="grid grid-cols-2 gap-8 md:gap-16 lg:gap-24">
           {/* Social */}
           <ScrollReveal delay={0.1}>
             <div className="flex flex-col gap-8">
-              <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline">
+              <span className="font-label text-[11px] uppercase tracking-[0.3em] text-on-surface-variant">
                 Social
               </span>
               <div className="flex flex-col gap-4">
@@ -31,7 +29,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:text-primary focus-visible:text-primary transition-all duration-300 hover-underline"
                 >
                   Instagram
                 </a>
@@ -39,7 +37,7 @@ export default function Footer() {
                   href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:text-primary focus-visible:text-primary transition-all duration-300 hover-underline"
                 >
                   LinkedIn
                 </a>
@@ -50,13 +48,13 @@ export default function Footer() {
           {/* Contact */}
           <ScrollReveal delay={0.2}>
             <div className="flex flex-col gap-8">
-              <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline">
+              <span className="font-label text-[11px] uppercase tracking-[0.3em] text-on-surface-variant">
                 Contact
               </span>
               <div className="flex flex-col gap-4">
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:text-primary focus-visible:text-primary transition-all duration-300 hover-underline"
                 >
                   Email
                 </a>
@@ -64,7 +62,7 @@ export default function Footer() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
+                  className="font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:text-primary focus-visible:text-primary transition-all duration-300 hover-underline"
                 >
                   WhatsApp
                 </a>
@@ -72,35 +70,13 @@ export default function Footer() {
             </div>
           </ScrollReveal>
 
-          {/* Legal */}
-          <ScrollReveal delay={0.3}>
-            <div className="flex flex-col gap-8">
-              <span className="font-label text-[11px] uppercase tracking-[0.3em] text-outline">
-                Legal
-              </span>
-              <div className="flex flex-col gap-4">
-                <Link
-                  href="/privacy"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
-                >
-                  Privacy
-                </Link>
-                <Link
-                  href="/terms"
-                  className="font-label text-[11px] uppercase tracking-widest text-on-surface/40 hover:text-primary transition-all duration-300 hover-underline"
-                >
-                  Terms
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
         </div>
       </div>
 
       {/* Bottom bar */}
       <ScrollReveal delay={0.4}>
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-        <p className="font-label text-[11px] text-on-surface/30 uppercase tracking-[0.3em]">
+        <p className="font-label text-[11px] text-on-surface-variant uppercase tracking-[0.3em]">
           &copy;{new Date().getFullYear()} NEXIO LABS. ALL RIGHTS RESERVED.
         </p>
         </div>

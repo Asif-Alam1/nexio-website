@@ -14,6 +14,8 @@ export default function Navbar() {
   const [darkTint, setDarkTint] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const prevScrollY = useRef(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   // Hide/reveal on scroll direction + track scroll position for bg opacity
   useEffect(() => {
@@ -61,6 +63,49 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
+  // Dialog semantics for the mobile overlay: focus the first item on open,
+  // trap Tab within it, close on Escape, and restore focus to the trigger.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const getFocusable = () =>
+      Array.from(
+        overlay.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+
+    getFocusable()[0]?.focus();
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+        return;
+      }
+      if (e.key === "Tab") {
+        const focusable = getFocusable();
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      hamburgerRef.current?.focus();
+    };
+  }, [mobileMenuOpen]);
+
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
 
   const handleLogoClick = useCallback(
@@ -85,7 +130,7 @@ export default function Navbar() {
       <nav
         className={[
           "fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex justify-between items-center mx-auto max-w-6xl w-[calc(100%-4rem)]",
-          "glass-panel transition-[transform,background-color,backdrop-filter] duration-500",
+          "glass-panel transition-[transform,background-color] duration-500",
           "h-16 px-8 max-md:h-14 max-md:px-6",
           "navbar-fixed",
           darkTint ? "bg-black/20" : scrolled ? "bg-surface/60 backdrop-blur-xl" : "bg-surface/40 backdrop-blur-md",
@@ -117,7 +162,7 @@ export default function Navbar() {
                 "font-label uppercase tracking-widest text-[11px] transition-all duration-300 flex items-center gap-2 hover-underline",
                 isActive(item.href)
                   ? "text-primary"
-                  : "text-on-surface/60 hover:text-on-surface",
+                  : "text-on-surface/80 hover:text-on-surface",
               ].join(" ")}
               aria-current={isActive(item.href) ? "page" : undefined}
             >
@@ -141,10 +186,12 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
+          ref={hamburgerRef}
           className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[5px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-label="Toggle navigation menu"
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={mobileMenuOpen}
+          aria-haspopup="dialog"
         >
           <span
             className={[
@@ -171,6 +218,10 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            ref={overlayRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
             className="fixed inset-0 bg-surface-dim z-[200] flex flex-col items-center px-8 pt-28 pb-12 md:hidden entry-animate"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -199,8 +250,9 @@ export default function Navbar() {
                       "font-headline text-4xl italic transition-colors",
                       isActive(item.href)
                         ? "text-primary"
-                        : "text-on-surface/60 hover:text-on-surface",
+                        : "text-on-surface/80 hover:text-on-surface",
                     ].join(" ")}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
                     {item.label}
                   </Link>

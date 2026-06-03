@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, prefersReducedMotion } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
 import KineticText from "@/components/ui/KineticText";
@@ -22,7 +22,7 @@ export default function ServicesHero() {
 
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || prefersReducedMotion()) return;
 
       const tl = gsap.timeline({ defaults: { ease: EASE.smooth } });
 
@@ -105,7 +105,8 @@ export default function ServicesHero() {
               fallback={
                 <Image
                   src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80"
-                  alt="Abstract fluid visual"
+                  alt=""
+                  aria-hidden="true"
                   fill
                   loading="lazy"
                   sizes="(max-width: 1024px) 0px, 40vw"
@@ -130,7 +131,7 @@ export default function ServicesHero() {
             <div className="flex items-center gap-8">
               <Link
                 href="/contact"
-                className="font-label text-[11px] tracking-widest uppercase text-primary hover-underline transition-colors"
+                className="font-label text-[11px] tracking-widest uppercase text-primary hover-underline focus-visible:underline transition-colors"
               >
                 Discuss Your Project &rarr;
               </Link>

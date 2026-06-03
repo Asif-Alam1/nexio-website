@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/utils";
 
 import GlassPanel from "@/components/ui/GlassPanel";
 
@@ -41,6 +42,11 @@ export default function TeamGallery() {
       const cards = sectionRef.current.querySelectorAll(".team-card");
       if (!cards.length) return;
 
+      if (prefersReducedMotion()) {
+        gsap.set(cards, { y: 0, opacity: 1, scale: 1 });
+        return;
+      }
+
       gsap.set(cards, { y: 80, opacity: 0, scale: 0.95 });
 
       ScrollTrigger.batch(cards, {
@@ -75,12 +81,15 @@ export default function TeamGallery() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-40 gap-12">
           <div className="relative">
-            <h2 className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none">
+            <span
+              aria-hidden="true"
+              className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none"
+            >
               THE FACULTY
-            </h2>
-            <h3 className="font-headline italic text-4xl md:text-9xl relative z-10">
+            </span>
+            <h2 className="font-headline italic text-4xl md:text-9xl relative z-10">
               Collaborators
-            </h3>
+            </h2>
           </div>
           <div className="max-w-xs border-l border-white/10 pl-8 mb-4">
             <p className="font-body text-on-surface-variant text-sm leading-relaxed">
@@ -96,9 +105,9 @@ export default function TeamGallery() {
           <div className="team-card col-span-12 md:col-span-6 lg:col-span-5 relative group">
             <div className="relative">
               {/* Giant name behind card */}
-              <h4 className="hidden md:block absolute -bottom-16 -right-12 font-headline italic text-[8vw] leading-none text-white/10 group-hover:text-primary/20 transition-all duration-1000 select-none pointer-events-none z-20">
+              <span aria-hidden="true" className="hidden md:block absolute -bottom-16 -right-12 font-headline italic text-[8vw] leading-none text-white/10 group-hover:text-primary/20 transition-all duration-1000 select-none pointer-events-none z-20">
                 {team[0].firstName}
-              </h4>
+              </span>
 
               {/* Tactical Card */}
               <GlassPanel className="p-2 relative z-10 overflow-hidden">
@@ -116,9 +125,9 @@ export default function TeamGallery() {
             </div>
 
             <div className="mt-12">
-              <h5 className="font-headline text-4xl italic mb-2">
+              <h3 className="font-headline text-4xl italic mb-2">
                 {team[0].name}
-              </h5>
+              </h3>
               <span className="font-label text-[11px] uppercase tracking-[0.4em] text-primary">
                 {team[0].role}
               </span>
@@ -129,12 +138,13 @@ export default function TeamGallery() {
           <div className="team-card col-span-12 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5 relative group md:-mt-32">
             <div className="relative">
               {/* Vertical ghost text */}
-              <h4
+              <span
+                aria-hidden="true"
                 className="hidden md:block absolute -top-24 -left-20 font-headline italic text-[10vw] leading-none text-white/5 group-hover:text-secondary/10 transition-all duration-1000 select-none pointer-events-none z-20"
                 style={{ writingMode: "vertical-rl" }}
               >
                 {team[1].firstName}
-              </h4>
+              </span>
 
               <GlassPanel className="p-2 relative z-10 overflow-hidden">
                 <div className="aspect-[3/4] overflow-hidden relative">
@@ -153,10 +163,10 @@ export default function TeamGallery() {
             </div>
 
             <div className="mt-12 md:text-right">
-              <h5 className="font-headline text-4xl italic mb-2">
+              <h3 className="font-headline text-4xl italic mb-2">
                 {team[1].name}
-              </h5>
-              <span className="font-label text-[11px] uppercase tracking-[0.4em] text-secondary">
+              </h3>
+              <span className="font-label text-[11px] uppercase tracking-[0.4em] text-secondary-bright">
                 {team[1].role}
               </span>
             </div>
@@ -178,9 +188,12 @@ export default function TeamGallery() {
 
               {/* Text */}
               <div className="flex-1 space-y-6">
-                <h4 className="font-headline italic text-5xl md:text-6xl leading-tight">
+                <h3 className="font-headline italic text-5xl md:text-6xl leading-tight">
                   Karl <br /> Abou Jaoude
-                </h4>
+                </h3>
+                <span className="block font-label text-[11px] uppercase tracking-[0.4em] text-primary">
+                  {team[2].role}
+                </span>
                 <div className="h-px w-12 bg-primary" />
                 <p className="font-body text-on-surface-variant text-sm leading-relaxed">
                   {team[2].bio}
@@ -188,9 +201,9 @@ export default function TeamGallery() {
               </div>
 
               {/* Background ghost text */}
-              <h4 className="hidden md:block absolute -right-20 top-1/2 -translate-y-1/2 font-headline italic text-[15vw] leading-none text-white/5 select-none pointer-events-none -z-10">
+              <span aria-hidden="true" className="hidden md:block absolute -right-20 top-1/2 -translate-y-1/2 font-headline italic text-[15vw] leading-none text-white/5 select-none pointer-events-none -z-10">
                 KAJ
-              </h4>
+              </span>
             </GlassPanel>
           </div>
         </div>

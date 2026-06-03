@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import MagneticButton from "@/components/ui/MagneticButton";
 import AmbientBlob from "@/components/ui/AmbientBlob";
 
 import BlueprintGrid from "@/components/ui/BlueprintGrid";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | Nexio Labs",
+};
 
 export default function NotFound() {
   return (
@@ -37,16 +42,16 @@ export default function NotFound() {
         >
           404
         </h1>
-        <p className="font-body text-lg text-on-surface/60 mt-6 mb-4 max-w-md">
+        <p className="font-body text-lg text-on-surface/80 mt-6 mb-4 max-w-md">
           This page wandered off the grid.
         </p>
         <MagneticButton variant="gradient" href="/">
           Return Home
         </MagneticButton>
         <div className="mt-12 flex flex-wrap gap-6 justify-center">
-          <Link href="/services" className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors">Our Services</Link>
-          <Link href="/about" className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors">About Us</Link>
-          <Link href="/contact" className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors">Get In Touch</Link>
+          <Link href="/services" className="font-label text-[11px] uppercase tracking-widest text-on-surface/80 hover:text-on-surface focus-visible:text-on-surface hover-underline transition-colors">Our Services</Link>
+          <Link href="/about" className="font-label text-[11px] uppercase tracking-widest text-on-surface/80 hover:text-on-surface focus-visible:text-on-surface hover-underline transition-colors">About Us</Link>
+          <Link href="/contact" className="font-label text-[11px] uppercase tracking-widest text-on-surface/80 hover:text-on-surface focus-visible:text-on-surface hover-underline transition-colors">Get In Touch</Link>
         </div>
       </div>
     </div>

@@ -2,18 +2,18 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/utils";
 
 export default function ServicesCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const buttonRef = useRef<HTMLAnchorElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || prefersReducedMotion()) return;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -29,29 +29,14 @@ export default function ServicesCTA() {
         y: 60,
         duration: 0.8,
       }).from(
-        buttonRef.current,
+        circleRef.current,
         {
           opacity: 0,
           scale: 0.8,
-          duration: 0.8,
+          duration: 1,
         },
         "-=0.3"
       );
-
-      // Circle CTA scales up on scroll
-      if (circleRef.current) {
-        gsap.from(circleRef.current, {
-          scale: 0.8,
-          opacity: 0,
-          duration: 1,
-          ease: EASE.smooth,
-          scrollTrigger: {
-            trigger: circleRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-      }
     },
     { scope: sectionRef }
   );
@@ -83,11 +68,11 @@ export default function ServicesCTA() {
         {/* Circular CTA button */}
         <div ref={circleRef}>
         <Link
-          ref={buttonRef}
           href="/contact"
-          className="group relative"
+          aria-label="Initiate a project — contact Nexio Labs"
+          className="group relative block focus-visible:outline-none"
         >
-          <div className="w-48 h-48 md:w-64 md:h-64 border border-white/10 rounded-full flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-all duration-700 bg-surface/40 backdrop-blur-xl">
+          <div className="w-48 h-48 md:w-64 md:h-64 border border-white/10 rounded-full flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 group-focus-visible:border-primary group-focus-visible:bg-primary/10 transition-all duration-700 bg-surface/40 backdrop-blur-xl">
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-[1.2]" />
             <span className="absolute font-label uppercase tracking-[0.5em] text-[11px] text-white group-hover:text-primary transition-colors duration-500">
               Contact

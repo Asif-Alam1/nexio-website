@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
+import { cn, prefersReducedMotion } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, STAGGER } from "@/lib/animations";
 import KineticText from "@/components/ui/KineticText";
@@ -79,6 +79,12 @@ export default function CapabilitiesSection() {
       const cards = gridRef.current.querySelectorAll(".capability-card");
       if (!cards.length) return;
 
+      const prefersReduced = prefersReducedMotion();
+      if (prefersReduced) {
+        gsap.set(cards, { y: 0, opacity: 1 });
+        return;
+      }
+
       gsap.set(cards, { y: 60, opacity: 0 });
 
       ScrollTrigger.create({
@@ -97,10 +103,7 @@ export default function CapabilitiesSection() {
       });
 
       // Clip-path viewport reveal — section expands from a smaller frame
-      const prefersReduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (!prefersReduced && sectionRef.current) {
+      if (sectionRef.current) {
         gsap.fromTo(
           sectionRef.current,
           { clipPath: "inset(5% 3% 5% 3%)" },
@@ -121,7 +124,7 @@ export default function CapabilitiesSection() {
   );
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-40 px-6 md:px-12">
+    <section id="services" ref={sectionRef} className="py-20 md:py-40 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-32 gap-12">

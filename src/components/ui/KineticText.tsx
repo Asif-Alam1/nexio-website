@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, prefersReducedMotion } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
 import SplitText from "./SplitText";
@@ -30,6 +30,12 @@ export default function KineticText({
 
       const chars = containerRef.current.querySelectorAll(".split-char");
       if (!chars.length) return;
+
+      if (prefersReducedMotion()) {
+        gsap.set(chars, { y: "0%", opacity: 1 });
+        setAnimationDone(true);
+        return;
+      }
 
       gsap.set(chars, { y: "100%", opacity: 0 });
       gsap.to(chars, {

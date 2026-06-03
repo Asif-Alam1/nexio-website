@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/utils";
 import KineticText from "@/components/ui/KineticText";
 import { useMagneticChars } from "@/hooks/useMagneticChars";
 
@@ -16,7 +17,7 @@ export default function AboutHero() {
 
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || prefersReducedMotion()) return;
 
       const tl = gsap.timeline({ defaults: { ease: EASE.smooth } });
 
@@ -52,7 +53,7 @@ export default function AboutHero() {
       <div className="relative z-10 text-center max-w-[1200px]">
         <span
           ref={labelRef}
-          className="font-label text-secondary tracking-[0.5em] uppercase text-xs mb-8 block"
+          className="font-label text-secondary-bright tracking-[0.5em] uppercase text-xs mb-8 block"
         >
           Est. 2024 &mdash; Beirut, Lebanon
         </span>
@@ -71,16 +72,11 @@ export default function AboutHero() {
           </KineticText>
         </h1>
 
-        <div
-          ref={descRef}
-          className="mt-12 flex flex-col md:flex-row items-center justify-between gap-10"
-        >
+        <div ref={descRef} className="mt-12 flex justify-center">
           <p className="font-body text-lg text-on-surface-variant max-w-md text-left leading-relaxed">
             We are a distributed lab of curators, engineers, and dreamers
             redefining the digital frontier through intentional craftsmanship.
           </p>
-
-        
         </div>
       </div>
     </section>

@@ -56,6 +56,7 @@ export default function ScrollTextReveal({
 
   return (
     <Tag
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- polymorphic Tag ref
       ref={containerRef as any}
       className={cn("scroll-text-reveal", className)}
     >

@@ -87,6 +87,10 @@ const useCanvasCursor = () => {
   let lines: any[] = [];
   let lastMoveTime = 0;
   let idleTimeout: ReturnType<typeof setTimeout> | null = null;
+  let rafId: number | null = null;
+  // Stored handler references so every listener can be removed on cleanup.
+  let moveHandler: ((e: any) => void) | null = null;
+  let touchStartHandler: ((e: any) => void) | null = null;
   const IDLE_DELAY = 2000;
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const E = {
@@ -127,26 +131,26 @@ const useCanvasCursor = () => {
       for (var i = 0; i < E.trails; i++)
         lines.push(new (Line as any)({ spring: 0.4 + (i / E.trails) * 0.025 }));
     }
-    function c(e: any) {
-      e.touches
-        ? ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
-        : ((pos.x = e.clientX), (pos.y = e.clientY));
-      e.preventDefault();
+    moveHandler = function (ev: any) {
+      ev.touches
+        ? ((pos.x = ev.touches[0].pageX), (pos.y = ev.touches[0].pageY))
+        : ((pos.x = ev.clientX), (pos.y = ev.clientY));
       resumeIfIdle();
-    }
-    function l(e: any) {
-      if (e.touches.length === 1) {
-        pos.x = e.touches[0].pageX;
-        pos.y = e.touches[0].pageY;
+    };
+    touchStartHandler = function (ev: any) {
+      if (ev.touches.length === 1) {
+        pos.x = ev.touches[0].pageX;
+        pos.y = ev.touches[0].pageY;
       }
       resumeIfIdle();
-    }
+    };
     document.removeEventListener("mousemove", onMousemove);
     document.removeEventListener("touchstart", onMousemove);
-    document.addEventListener("mousemove", c);
-    document.addEventListener("touchmove", c);
-    document.addEventListener("touchstart", l);
-    c(e);
+    document.addEventListener("mousemove", moveHandler);
+    // passive: don't preventDefault — that would block scrolling on touch devices
+    document.addEventListener("touchmove", moveHandler, { passive: true });
+    document.addEventListener("touchstart", touchStartHandler);
+    moveHandler(e);
     o();
     render();
   }
@@ -163,7 +167,25 @@ const useCanvasCursor = () => {
         lines[i].draw();
       }
       ctx.frame++;
-      window.requestAnimationFrame(render);
+      rafId = window.requestAnimationFrame(render);
+    }
+  }
+
+  function handleFocus() {
+    if (ctx && !ctx.running) {
+      ctx.running = true;
+      render();
+    }
+  }
+  function handleBlur() {
+    if (ctx) ctx.running = false;
+  }
+  function handleVisibility() {
+    if (document.hidden) {
+      if (ctx) ctx.running = false;
+    } else if (ctx && !ctx.running) {
+      ctx.running = true;
+      render();
     }
   }
 
@@ -195,25 +217,9 @@ const useCanvasCursor = () => {
     document.addEventListener("touchstart", onMousemove);
     document.body.addEventListener("orientationchange", resizeCanvas);
     window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("focus", () => {
-      if (ctx && !ctx.running) {
-        ctx.running = true;
-        render();
-      }
-    });
-    window.addEventListener("blur", () => {
-      if (ctx) ctx.running = false;
-    });
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        if (ctx) ctx.running = false;
-      } else {
-        if (ctx && !ctx.running) {
-          ctx.running = true;
-          render();
-        }
-      }
-    });
+    window.addEventListener("focus", handleFocus);
+    window.addEventListener("blur", handleBlur);
+    document.addEventListener("visibilitychange", handleVisibility);
     resizeCanvas();
   };
 
@@ -231,6 +237,22 @@ const useCanvasCursor = () => {
     return () => {
       if (ctx) ctx.running = false;
       if (idleTimeout) clearTimeout(idleTimeout);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+
+      document.removeEventListener("mousemove", onMousemove);
+      document.removeEventListener("touchstart", onMousemove);
+      if (moveHandler) {
+        document.removeEventListener("mousemove", moveHandler);
+        document.removeEventListener("touchmove", moveHandler);
+      }
+      if (touchStartHandler) {
+        document.removeEventListener("touchstart", touchStartHandler);
+      }
+      document.body.removeEventListener("orientationchange", resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("blur", handleBlur);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 };

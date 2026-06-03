@@ -64,7 +64,9 @@ export default function CustomCursor() {
 
   if (isTouch) return null;
 
-  const size = isClicking ? 8 : isHovering ? 40 : 20;
+  // Fixed base size; animate `scale` (compositor-only) instead of width/height.
+  const BASE = 40;
+  const scale = isClicking ? 8 / BASE : isHovering ? 1 : 20 / BASE;
 
   return (
     <>
@@ -82,14 +84,15 @@ export default function CustomCursor() {
         style={{
           x: springX,
           y: springY,
+          width: BASE,
+          height: BASE,
           translateX: "-50%",
           translateY: "-50%",
           mixBlendMode: "difference",
           backgroundColor: "#F97316",
         }}
         animate={{
-          width: size,
-          height: size,
+          scale,
           opacity: isClicking ? 0.6 : isHovering ? 0.8 : 1,
         }}
         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}

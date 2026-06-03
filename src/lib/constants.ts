@@ -1,3 +1,5 @@
+export const BASE_URL = "https://nexiolabs.co";
+
 export const WHATSAPP_NUMBER = "+96176423052";
 export const WHATSAPP_MESSAGE = "Hi Nexio Labs, I'd like to discuss a project.";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "")}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;

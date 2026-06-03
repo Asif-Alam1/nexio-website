@@ -4,15 +4,24 @@ import Link from "next/link";
 import AboutHero from "@/components/about/AboutHero";
 import MagneticButton from "@/components/ui/MagneticButton";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { BASE_URL } from "@/lib/constants";
 
 const NarrativeSection = dynamic(() => import("@/components/about/NarrativeSection"));
 const PhilosophyScroller = dynamic(() => import("@/components/about/PhilosophyScroller"));
 const TeamGallery = dynamic(() => import("@/components/about/TeamGallery"));
 
+const description =
+  "Meet the curators, engineers, and dreamers behind Nexio Labs. Born in Beirut, building for the world.";
+
 export const metadata: Metadata = {
   title: "The Collective | Nexio Labs",
-  description:
-    "Meet the curators, engineers, and dreamers behind Nexio Labs. Born in Beirut, building for the world.",
+  description,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "The Collective | Nexio Labs",
+    description,
+    url: `${BASE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {
@@ -32,7 +41,7 @@ export default function AboutPage() {
               Ready to build the{" "}
               <span
                 style={{
-                  WebkitTextStroke: "1px currentColor",
+                  WebkitTextStroke: "2px currentColor",
                   color: "transparent",
                 }}
               >
@@ -47,7 +56,7 @@ export default function AboutPage() {
               </MagneticButton>
               <Link
                 href="/services"
-                className="font-label text-xs uppercase tracking-[0.2em] text-on-surface hover:text-secondary transition-colors border-b border-outline/20 pb-2"
+                className="font-label text-xs uppercase tracking-[0.2em] text-on-surface hover:text-secondary-bright focus-visible:text-secondary-bright transition-colors border-b border-outline/20 pb-2"
               >
                 View Our Services
               </Link>

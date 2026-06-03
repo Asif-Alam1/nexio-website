@@ -28,7 +28,7 @@ export default function ContactHero() {
       </div>
 
       <div className="relative z-10">
-        <p className="font-label text-secondary uppercase tracking-[0.5em] text-xs mb-8">
+        <p className="font-label text-secondary-bright uppercase tracking-[0.5em] text-xs mb-8">
           Get In Touch
         </p>
 
@@ -46,7 +46,7 @@ export default function ContactHero() {
           <p className="text-on-surface-variant mt-8 text-body-lg max-w-md mx-auto">
             Currently accepting projects for Q3 2026
           </p>
-          <p className="text-on-surface-variant/60 font-label text-[11px] uppercase tracking-widest mt-6">
+          <p className="text-on-surface-variant font-label text-[11px] uppercase tracking-widest mt-6">
             No commitment required — just a conversation
           </p>
         </ScrollReveal>

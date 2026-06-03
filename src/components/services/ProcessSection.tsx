@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/utils";
 import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
 
 const processSteps = [
@@ -49,6 +49,11 @@ export default function ProcessSection() {
 
       const steps = stepsRef.current.querySelectorAll("[data-process-step]");
 
+      if (prefersReducedMotion()) {
+        gsap.set(steps, { opacity: 1, y: 0 });
+        return;
+      }
+
       gsap.set(steps, { opacity: 0, y: 40 });
 
       ScrollTrigger.batch(steps, {
@@ -66,10 +71,7 @@ export default function ProcessSection() {
       });
 
       // Center-slit clip-path reveal — white section splits open from center
-      const prefersReduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (!prefersReduced && sectionRef.current) {
+      if (sectionRef.current) {
         gsap.fromTo(
           sectionRef.current,
           { clipPath: "inset(0 50% 0 50%)" },

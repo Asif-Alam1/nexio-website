@@ -1,19 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa6";
 import { WHATSAPP_URL } from "@/lib/constants";
 
 export default function FloatingWhatsApp() {
   const [isContactVisible, setIsContactVisible] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setPrefersReducedMotion(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    );
-  }, []);
+  const prefersReducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
     const contact = document.getElementById("contact");

@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { cn } from "@/lib/utils";
 
 const values = [
   {
@@ -33,10 +35,11 @@ const values = [
 export default function PhilosophyScroller() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion() ?? false;
 
   useGSAP(
     () => {
-      if (!sectionRef.current || !trackRef.current) return;
+      if (reduced || !sectionRef.current || !trackRef.current) return;
 
       const track = trackRef.current;
       const totalScrollWidth = track.scrollWidth - track.clientWidth;
@@ -58,44 +61,53 @@ export default function PhilosophyScroller() {
 
       // Cards are visible during horizontal scroll — no entrance animation needed
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [reduced] }
   );
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden">
       {/* Header - fixed at top of pinned section */}
       <div className="px-6 md:px-10 pt-40 pb-20">
-        <span className="font-label text-xs tracking-[0.4em] uppercase text-outline mb-4 block">
+        <span className="font-label text-xs tracking-[0.4em] uppercase text-on-surface-variant mb-4 block">
           Our Philosophy
         </span>
-        <h3 className="font-headline text-4xl italic text-on-surface">
+        <h2 className="font-headline text-4xl italic text-on-surface">
           Core Mandates
-        </h3>
+        </h2>
       </div>
 
-      {/* Horizontal scroll track */}
+      {/* Horizontal scroll track — stacks vertically when motion is reduced */}
       <div
         ref={trackRef}
-        className="flex gap-10 md:gap-20 px-6 md:px-10 pb-40 will-change-transform"
+        className={cn(
+          "px-6 md:px-10 pb-40",
+          reduced
+            ? "flex flex-col gap-16"
+            : "flex gap-10 md:gap-20 will-change-transform"
+        )}
       >
         {values.map((value) => (
           <div
             key={value.number}
-            className="philosophy-card flex-none w-[80vw] md:w-[40vw] group"
+            className={cn(
+              "philosophy-card group",
+              reduced ? "w-full" : "flex-none w-[80vw] md:w-[40vw]"
+            )}
           >
             <div className={`border-l ${value.borderColor} pl-10`}>
               <span
+                aria-hidden="true"
                 className={`font-headline text-6xl md:text-8xl block mb-8 transition-colors duration-500 ${value.hoverColor}`}
                 style={{
-                  WebkitTextStroke: "1px rgba(226, 232, 240, 0.3)",
+                  WebkitTextStroke: "1.5px rgba(226, 232, 240, 0.55)",
                   color: "transparent",
                 }}
               >
                 {value.number}
               </span>
-              <h4 className="font-headline text-4xl mb-6 italic">
+              <h3 className="font-headline text-4xl mb-6 italic">
                 {value.title}
-              </h4>
+              </h3>
               <p className="font-body text-on-surface-variant text-lg max-w-sm">
                 {value.description}
               </p>

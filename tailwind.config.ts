@@ -25,6 +25,9 @@ const config: Config = {
         secondary: {
           DEFAULT: "#2563EB",
           dim: "#1D4ED8",
+          // Lighter blue for small text labels — #2563EB fails WCAG AA on dark
+          // surfaces at label sizes; this passes (~8:1) while staying on-brand.
+          bright: "#7AA5F5",
           glow: "rgba(37,99,235,0.15)",
         },
         "on-surface": {

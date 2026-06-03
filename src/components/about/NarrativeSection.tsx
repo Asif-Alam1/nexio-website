@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { EASE, DURATION } from "@/lib/animations";
-import ScrollReveal from "@/components/ui/ScrollReveal";
+import { prefersReducedMotion } from "@/lib/utils";
 import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
 
 export default function NarrativeSection() {
@@ -16,6 +16,13 @@ export default function NarrativeSection() {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
+
+      if (prefersReducedMotion()) {
+        if (imageRef.current) gsap.set(imageRef.current, { clipPath: "inset(0% 0 0 0)" });
+        if (headlineRef.current) gsap.set(headlineRef.current, { opacity: 1 });
+        if (statRef.current) gsap.set(statRef.current, { opacity: 1, y: 0 });
+        return;
+      }
 
       // Image reveal with clip-path
       if (imageRef.current) {

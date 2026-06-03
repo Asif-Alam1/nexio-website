@@ -4,7 +4,6 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
-import GrainOverlay from "@/components/layout/GrainOverlay";
 import CustomCursor from "@/components/layout/CustomCursor";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import Navbar from "@/components/layout/Navbar";
@@ -40,7 +39,7 @@ const BASE_URL = "https://nexiolabs.co";
 const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": ["Organization", "ITCompany"],
+    "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
     name: "Nexio Labs",
     legalName: "Nexio Labs",
@@ -63,7 +62,7 @@ const structuredData = [
     foundingDate: "2024",
     foundingLocation: {
       "@type": "Place",
-      name: "Lebanon",
+      name: "Beirut, Lebanon",
     },
     numberOfEmployees: {
       "@type": "QuantitativeValue",
@@ -72,7 +71,7 @@ const structuredData = [
     address: {
       "@type": "PostalAddress",
       addressCountry: "LB",
-      addressLocality: "Lebanon",
+      addressLocality: "Beirut",
     },
     areaServed: [
       { "@type": "Country", name: "Lebanon" },
@@ -129,7 +128,7 @@ const structuredData = [
     address: {
       "@type": "PostalAddress",
       addressCountry: "LB",
-      addressLocality: "Lebanon",
+      addressLocality: "Beirut",
     },
     priceRange: "$$",
     image: `${BASE_URL}/images/logo/nexio-monogram-blue-512.png`,
@@ -375,13 +374,7 @@ const structuredData = [
     about: { "@id": `${BASE_URL}/#organization` },
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: [
-        "#hero h1",
-        "#services h2",
-        "#services h3",
-        "#process h2",
-        "#contact h2",
-      ],
+      cssSelector: ["#hero h1", "#services h2", "#contact h2"],
     },
   },
 ];
@@ -537,7 +530,7 @@ export default function RootLayout({
           <CustomCursor />
           <ScrollProgress />
           <Navbar />
-          <main id="main-content">{children}</main>
+          <main id="main-content" tabIndex={-1} className="outline-none">{children}</main>
           <Footer />
           <FloatingWhatsApp />
         </SmoothScrollProvider>

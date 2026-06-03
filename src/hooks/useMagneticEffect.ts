@@ -47,6 +47,12 @@ export function useMagneticEffect(
   }, []);
 
   useEffect(() => {
+    // Skip the effect (and its global listener) for users who prefer reduced
+    // motion or are on a touch device — magnetic pull is a fine-pointer flourish.
+    const noMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    if (noMotion || coarsePointer) return;
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
       cancelAnimationFrame(rafRef.current);

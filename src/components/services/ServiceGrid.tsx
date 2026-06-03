@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
+import { cn, prefersReducedMotion } from "@/lib/utils";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE, STAGGER } from "@/lib/animations";
 
@@ -102,6 +102,11 @@ export default function ServiceGrid() {
       if (!gridRef.current) return;
 
       const cards = gridRef.current.querySelectorAll("[data-service-card]");
+
+      if (prefersReducedMotion()) {
+        gsap.set(cards, { opacity: 1, y: 0 });
+        return;
+      }
 
       gsap.set(cards, { opacity: 0, y: 60 });
 

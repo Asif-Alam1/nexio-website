@@ -3,8 +3,8 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/utils";
+import { gsap, useGSAP } from "@/lib/gsap";
 import KineticText from "@/components/ui/KineticText";
 
 import AmbientBlob from "@/components/ui/AmbientBlob";
@@ -16,7 +16,6 @@ import { useMagneticChars } from "@/hooks/useMagneticChars";
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
-  const blob1Ref = useRef<HTMLDivElement>(null);
   const blob2Ref = useRef<HTMLDivElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
 
@@ -24,9 +23,9 @@ export default function HeroSection() {
 
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || prefersReducedMotion()) return;
 
-      const targets = [blob1Ref.current, blob2Ref.current, visualRef.current].filter(Boolean);
+      const targets = [blob2Ref.current, visualRef.current].filter(Boolean);
 
       targets.forEach((el) => {
         gsap.to(el, {
@@ -46,13 +45,11 @@ export default function HeroSection() {
 
   return (
     <section
+      id="hero"
       ref={sectionRef}
       className="relative min-h-dvh flex flex-col justify-center px-6 md:px-12 pt-28 md:pt-40 pb-20"
     >
-      {/* Ambient Blobs */}
-      {/* <div ref={blob1Ref} className="absolute top-[10%] right-[15%] -z-10 parallax-slow">
-        <AmbientBlob color="rgba(249,115,22,0.10)" size="384px" />
-      </div> */}
+      {/* Ambient Blob */}
       <div ref={blob2Ref} className="absolute bottom-[20%] left-[10%] -z-10 parallax-medium">
         <AmbientBlob color="rgba(37,99,235,0.10)" size="500px" delay={-5} />
       </div>
@@ -68,7 +65,7 @@ export default function HeroSection() {
           </KineticText>
           <KineticText
             as="span"
-            className="block ml-[12vw] text-outline-variant/40"
+            className="block ml-[12vw] text-outline"
             delay={0.3}
           >
             The Future
@@ -89,12 +86,11 @@ export default function HeroSection() {
           fallback={
             <Image
               src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
-              alt="Abstract fluid visual"
+              alt=""
+              aria-hidden="true"
               fill
               className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
               sizes="(max-width: 1024px) 0px, 45vw"
-              priority
-              fetchPriority="high"
             />
           }
         />
@@ -113,7 +109,7 @@ export default function HeroSection() {
             </MagneticButton>
             <Link
               href="/services"
-              className="font-label text-[11px] uppercase tracking-widest text-on-surface/60 hover:text-on-surface hover-underline transition-colors"
+              className="font-label text-[11px] uppercase tracking-widest text-on-surface/80 hover:text-on-surface focus-visible:text-on-surface hover-underline transition-colors"
             >
               Explore Services
             </Link>

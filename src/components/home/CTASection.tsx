@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { EASE } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/utils";
 import { CONTACT_EMAIL } from "@/lib/constants";
 import BlueprintGrid from "@/components/ui/BlueprintGrid";
 import TextScramble from "@/components/ui/TextScramble";
@@ -15,6 +16,11 @@ export default function CTASection() {
   useGSAP(
     () => {
       if (!contentRef.current) return;
+
+      if (prefersReducedMotion()) {
+        gsap.set(contentRef.current, { y: 0, opacity: 1 });
+        return;
+      }
 
       gsap.set(contentRef.current, { y: 60, opacity: 0 });
 
@@ -55,6 +61,7 @@ export default function CTASection() {
 
   return (
     <section
+      id="contact"
       ref={sectionRef}
       className="py-24 md:py-80 px-6 md:px-12 text-center relative overflow-hidden"
     >
@@ -62,7 +69,7 @@ export default function CTASection() {
 
       <div ref={contentRef} className="relative z-10">
         {/* Status label */}
-        <span className="font-label text-secondary uppercase tracking-[0.6em] text-[11px] mb-12 block opacity-60">
+        <span className="font-label text-on-surface-variant uppercase tracking-[0.6em] text-[11px] mb-12 block">
           Status: Available for Q3 2026 Projects
         </span>
 
@@ -75,9 +82,9 @@ export default function CTASection() {
           <br />
           the{" "}
           <span
-            className="opacity-30"
+            className="text-on-surface/80"
             style={{
-              WebkitTextStroke: "1px currentColor",
+              WebkitTextStroke: "2px currentColor",
               WebkitTextFillColor: "transparent",
             }}
           >
@@ -89,7 +96,8 @@ export default function CTASection() {
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 group">
           <button
             onClick={handleCopyEmail}
-            className="text-2xl sm:text-4xl md:text-7xl font-headline italic hover:text-primary transition-all duration-700 font-extralight hover:font-bold cursor-pointer break-all md:break-normal"
+            aria-label={`Copy email address ${CONTACT_EMAIL} to clipboard`}
+            className="text-2xl sm:text-4xl md:text-7xl font-headline italic hover:text-primary focus-visible:text-primary transition-all duration-700 font-extralight hover:font-bold cursor-pointer break-all md:break-normal"
           >
             {copied ? (
               <TextScramble
@@ -102,8 +110,8 @@ export default function CTASection() {
           </button>
           <button
             onClick={handleCopyEmail}
-            className="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full group-hover:bg-primary group-hover:border-primary transition-all duration-500 cursor-pointer"
-            aria-label="Copy email"
+            className="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full group-hover:bg-primary group-hover:border-primary focus-visible:bg-primary focus-visible:border-primary transition-all duration-500 cursor-pointer"
+            aria-label={`Copy email address ${CONTACT_EMAIL} to clipboard`}
           >
             <svg
               width="14"
@@ -118,6 +126,10 @@ export default function CTASection() {
             </svg>
           </button>
         </div>
+
+        <span className="sr-only" role="status" aria-live="polite">
+          {copied ? "Email address copied to clipboard" : ""}
+        </span>
       </div>
 
       {/* Bottom gradient */}
