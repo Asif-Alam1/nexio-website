@@ -1,0 +1,69 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { cn, prefersReducedMotion } from "@/lib/utils";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { EASE } from "@/lib/animations";
+import SplitText from "./SplitText";
+
+interface KineticTextProps {
+  children: string;
+  className?: string;
+  animate?: boolean;
+  delay?: number;
+  as?: React.ElementType;
+}
+
+export default function KineticText({
+  children,
+  className,
+  animate = true,
+  delay = 0,
+  as: Tag = "span",
+}: KineticTextProps) {
+  const containerRef = useRef<HTMLSpanElement>(null);
+  const [animationDone, setAnimationDone] = useState(!animate);
+
+  useGSAP(
+    () => {
+      if (!animate || !containerRef.current) return;
+
+      const chars = containerRef.current.querySelectorAll(".split-char");
+      if (!chars.length) return;
+
+      if (prefersReducedMotion()) {
+        gsap.set(chars, { y: "0%", opacity: 1 });
+        setAnimationDone(true);
+        return;
+      }
+
+      gsap.set(chars, { y: "100%", opacity: 0 });
+      gsap.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.03,
+        ease: EASE.smooth,
+        delay,
+        onComplete: () => setAnimationDone(true),
+      });
+    },
+    { scope: containerRef, dependencies: [animate, delay, children] }
+  );
+
+  return (
+    <Tag
+      className={cn(
+        "font-headline italic kinetic-text inline-block",
+        !animationDone && "overflow-hidden",
+        "transition-[font-variation-settings] duration-[600ms] ease-in-out",
+        "py-[0.1em]",
+        className
+      )}
+    >
+      <SplitText ref={containerRef} type="chars">
+        {children}
+      </SplitText>
+    </Tag>
+  );
+}

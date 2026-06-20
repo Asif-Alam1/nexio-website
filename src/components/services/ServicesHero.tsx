@@ -1,0 +1,144 @@
+"use client";
+
+import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { cn, prefersReducedMotion } from "@/lib/utils";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { EASE, DURATION } from "@/lib/animations";
+import KineticText from "@/components/ui/KineticText";
+import BlueprintGrid from "@/components/ui/BlueprintGrid";
+import FluidBackground from "@/components/ui/FluidBackground";
+import { useMagneticChars } from "@/hooks/useMagneticChars";
+
+export default function ServicesHero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const shapeRef = useRef<HTMLDivElement>(null);
+
+  useMagneticChars(headlineRef, { strength: 12, radius: 200 });
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current || prefersReducedMotion()) return;
+
+      const tl = gsap.timeline({ defaults: { ease: EASE.smooth } });
+
+      tl.from(labelRef.current, {
+        opacity: 0,
+        x: -20,
+        duration: DURATION.entrance,
+        delay: 0.2,
+      })
+        .from(
+          subtitleRef.current,
+          {
+            opacity: 0,
+            y: 30,
+            duration: DURATION.entrance,
+          },
+          "-=0.3"
+        )
+        .from(
+          shapeRef.current,
+          {
+            opacity: 0,
+            scale: 0.8,
+            duration: DURATION.slow,
+          },
+          "-=0.5"
+        );
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center px-6 md:px-24 overflow-x-clip pt-24"
+    >
+      <BlueprintGrid />
+
+      <div className="z-10 relative w-full">
+        {/* Label */}
+        <div
+          ref={labelRef}
+          className="inline-flex items-center gap-4 mb-8"
+        >
+          <div className="h-px w-12 bg-primary" />
+          <p className="font-label text-primary uppercase tracking-[0.5em] text-[11px]">
+            Capabilities 2026
+          </p>
+        </div>
+
+        {/* Headline */}
+        <div ref={headlineRef} className="relative">
+          <h1
+            className="font-headline italic text-white leading-[0.95] tracking-[-0.06em] pr-[0.05em]"
+            style={{
+              fontSize: "clamp(3.5rem, 15vw, 14rem)",
+              mixBlendMode: "difference",
+            }}
+          >
+            <KineticText as="span" delay={0.1}>
+              OUR
+            </KineticText>
+            <br />
+            <KineticText as="span" delay={0.25}>
+              CRAFT
+            </KineticText>
+          </h1>
+
+          {/* Floating abstract shape */}
+          <div
+            ref={shapeRef}
+            className={cn(
+              "absolute -right-12 top-0 w-[40vw] h-[40vw]",
+              "pointer-events-none hidden lg:block opacity-80"
+            )}
+            style={{ animation: "subtle-float 10s ease-in-out infinite" }}
+          >
+            <FluidBackground
+              className="absolute inset-0 rounded-full"
+              fallback={
+                <Image
+                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80"
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                  className="object-cover opacity-80"
+                  style={{ filter: "blur(40px)" }}
+                />
+              }
+            />
+          </div>
+        </div>
+
+        {/* Subtitle row */}
+        <div className="grid grid-cols-12 mt-12">
+          <div
+            ref={subtitleRef}
+            className="col-start-1 md:col-start-7 col-span-12 md:col-span-5"
+          >
+            <p className="font-body text-xl md:text-2xl text-on-surface-variant leading-relaxed font-light mb-12">
+              We design and engineer websites, mobile apps, and AI-powered
+              systems for brands that refuse to settle for templates.
+            </p>
+            <div className="flex items-center gap-8">
+              <Link
+                href="/contact"
+                className="font-label text-[11px] tracking-widest uppercase text-primary hover-underline focus-visible:underline transition-colors"
+              >
+                Discuss Your Project &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

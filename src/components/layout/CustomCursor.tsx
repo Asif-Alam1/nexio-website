@@ -3,15 +3,19 @@
 import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 import { useMousePosition } from "@/hooks/useMousePosition";
+import useCanvasCursor from "@/hooks/useCanvasCursor";
 
 export default function CustomCursor() {
   const { position, isTouch } = useMousePosition();
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  const springConfig = { stiffness: 300, damping: 28, mass: 0.3 };
+  const springConfig = { stiffness: 250, damping: 24, mass: 0.5 };
   const springX = useSpring(position.x, springConfig);
   const springY = useSpring(position.y, springConfig);
+
+  // Activate canvas cursor trailing lines
+  useCanvasCursor();
 
   useEffect(() => {
     if (isTouch) return;
@@ -60,24 +64,39 @@ export default function CustomCursor() {
 
   if (isTouch) return null;
 
-  const size = isClicking ? 10 : isHovering ? 48 : 16;
+  // Fixed base size; animate `scale` (compositor-only) instead of width/height.
+  const BASE = 40;
+  const scale = isClicking ? 8 / BASE : isHovering ? 1 : 20 / BASE;
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full bg-blue"
-      style={{
-        x: springX,
-        y: springY,
-        translateX: "-50%",
-        translateY: "-50%",
-        mixBlendMode: "difference",
-      }}
-      animate={{
-        width: size,
-        height: size,
-        opacity: isClicking ? 0.6 : 1,
-      }}
-      transition={{ duration: 0.15 }}
-    />
+    <>
+      {/* Canvas for trailing line animations */}
+      <canvas
+        id="canvas-cursor"
+        className="pointer-events-none fixed inset-0 z-[9998] will-change-transform"
+        aria-hidden="true"
+      />
+
+      {/* Framer Motion circle cursor for hover states */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full"
+        aria-hidden="true"
+        style={{
+          x: springX,
+          y: springY,
+          width: BASE,
+          height: BASE,
+          translateX: "-50%",
+          translateY: "-50%",
+          mixBlendMode: "difference",
+          backgroundColor: "#F97316",
+        }}
+        animate={{
+          scale,
+          opacity: isClicking ? 0.6 : isHovering ? 0.8 : 1,
+        }}
+        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </>
   );
 }

@@ -1,29 +1,37 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Lora, DM_Mono } from "next/font/google";
+import { Outfit, Newsreader, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import CustomCursor from "@/components/layout/CustomCursor";
+import ScrollProgress from "@/components/layout/ScrollProgress";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
+import PageLoader from "@/components/layout/PageLoader";
+import ConsoleEasterEgg from "@/components/layout/ConsoleEasterEgg";
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-headline",
+  display: "swap",
+  axes: ["opsz"],
+  style: ["italic", "normal"],
+});
 
 const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-body",
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const lora = Lora({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-lora",
+  variable: "--font-label",
   display: "swap",
-  style: ["italic"],
-  weight: ["400"],
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  variable: "--font-dm-mono",
-  display: "swap",
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const BASE_URL = "https://nexiolabs.co";
@@ -31,7 +39,7 @@ const BASE_URL = "https://nexiolabs.co";
 const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": ["Organization", "ITCompany"],
+    "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
     name: "Nexio Labs",
     legalName: "Nexio Labs",
@@ -51,10 +59,10 @@ const structuredData = [
       "Nexio Labs is a digital agency and software development company based in Lebanon. We build websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. Not affiliated with Nexio Lab digital badges or Nexio Group testing laboratories.",
     disambiguatingDescription:
       "A software development and digital services agency headquartered in Lebanon (nexiolabs.co), distinct from the Nexio Lab wearable digital badge product and Nexio Group EMC testing laboratories.",
-    foundingDate: "2026",
+    foundingDate: "2024",
     foundingLocation: {
       "@type": "Place",
-      name: "Lebanon",
+      name: "Beirut, Lebanon",
     },
     numberOfEmployees: {
       "@type": "QuantitativeValue",
@@ -63,7 +71,7 @@ const structuredData = [
     address: {
       "@type": "PostalAddress",
       addressCountry: "LB",
-      addressLocality: "Lebanon",
+      addressLocality: "Beirut",
     },
     areaServed: [
       { "@type": "Country", name: "Lebanon" },
@@ -76,7 +84,7 @@ const structuredData = [
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@nexiolabs.co",
-      telephone: "+96176423052",
+      telephone: "+96181972024",
       contactType: "customer service",
       availableLanguage: ["English", "Arabic"],
     },
@@ -115,12 +123,12 @@ const structuredData = [
     "@id": `${BASE_URL}/#localbusiness`,
     name: "Nexio Labs",
     url: BASE_URL,
-    telephone: "+96176423052",
+    telephone: "+96181972024",
     email: "hello@nexiolabs.co",
     address: {
       "@type": "PostalAddress",
       addressCountry: "LB",
-      addressLocality: "Lebanon",
+      addressLocality: "Beirut",
     },
     priceRange: "$$",
     image: `${BASE_URL}/images/logo/nexio-monogram-blue-512.png`,
@@ -290,7 +298,7 @@ const structuredData = [
         name: "What is Nexio Labs?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. Founded in 2026, we build websites, mobile apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. We are not affiliated with the Nexio Lab digital badge product or Nexio Group testing laboratories.",
+          text: "Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. Founded in 2024, we build websites, mobile apps, e-commerce stores, AI chatbots, and business automations for companies in Lebanon and the MENA region. We are not affiliated with the Nexio Lab digital badge product or Nexio Group testing laboratories.",
         },
       },
     ],
@@ -299,15 +307,9 @@ const structuredData = [
   ...[
     {
       name: "Asif Alam",
-      jobTitle: "Co-Founder & Lead Engineer",
+      jobTitle: "Founder & Lead Engineer",
       description: "Writes the code, architects the systems, and makes sure every pixel works.",
       image: `${BASE_URL}/images/team/asif.jpeg`,
-    },
-    {
-      name: "Joseph Attieh",
-      jobTitle: "Co-Founder & Business Development",
-      description: "Finds the right clients, shapes the right projects, and makes sure every partnership creates real value.",
-      image: `${BASE_URL}/images/team/joseph.jpeg`,
     },
     {
       name: "Karl Abou Jaoude",
@@ -335,6 +337,24 @@ const structuredData = [
         name: "Home",
         item: BASE_URL,
       },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${BASE_URL}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "About",
+        item: `${BASE_URL}/about`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Contact",
+        item: `${BASE_URL}/contact`,
+      },
     ],
   },
   // Speakable — identifies the most quotable/citable content for AI and voice
@@ -348,13 +368,7 @@ const structuredData = [
     about: { "@id": `${BASE_URL}/#organization` },
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: [
-        "#hero h1",
-        "#services h2",
-        "#services h3",
-        "#process h2",
-        "#contact h2",
-      ],
+      cssSelector: ["#hero h1", "#services h2", "#contact h2"],
     },
   },
 ];
@@ -369,7 +383,7 @@ Nexio Labs (nexiolabs.co) is a digital agency that builds: websites, e-commerce 
 Email: hello@nexiolabs.co | WhatsApp: +961 76 423 052 | Web: https://nexiolabs.co | LinkedIn: linkedin.com/company/nexio-labs
 
 ## Key Facts
-Type: Software Development Agency | Location: Lebanon (serves MENA) | Founded: 2026 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
+Type: Software Development Agency | Location: Lebanon (serves MENA) | Founded: 2024 | Team: 3 | Languages: English, Arabic | Stack: Next.js, React, React Native, TypeScript
 `;
 
 export const viewport: Viewport = {
@@ -480,9 +494,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${lora.variable} ${dmMono.variable}`}
+      className={`${newsreader.variable} ${outfit.variable} ${spaceGrotesk.variable}`}
     >
       <head>
+         <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -495,14 +511,24 @@ export default function RootLayout({
         />
         <link rel="author" href={`${BASE_URL}/llms.txt`} />
       </head>
-      <body>
+      <body className="font-body bg-surface-dim text-on-surface antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-blue focus:text-white focus:px-4 focus:py-2 focus:rounded-button focus:outline-none"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:outline-none"
         >
           Skip to content
         </a>
-        {children}
+        <PageLoader />
+        <SmoothScrollProvider>
+
+          <CustomCursor />
+          <ScrollProgress />
+          <Navbar />
+          <main id="main-content" tabIndex={-1} className="outline-none">{children}</main>
+          <Footer />
+          <FloatingWhatsApp />
+        </SmoothScrollProvider>
+        <ConsoleEasterEgg />
         <Analytics />
         <SpeedInsights />
       </body>

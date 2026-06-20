@@ -1,0 +1,169 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { EASE, DURATION } from "@/lib/animations";
+import { prefersReducedMotion } from "@/lib/utils";
+
+import GlassPanel from "@/components/ui/GlassPanel";
+
+const team = [
+  {
+    name: "Asif Alam",
+    firstName: "ASIF",
+    role: "Founder & Lead Engineer",
+    image: "/images/team/asif.jpeg",
+    bio: "Writes the code, architects the systems, and makes sure every pixel works.",
+  },
+  {
+    name: "Karl Abou Jaoude",
+    firstName: "KARL",
+    role: "E-Commerce Expert",
+    image: "/images/team/karl.jpeg",
+    bio: "Turns online stores into revenue machines. Knows payments, inventory, and conversion inside out.",
+  },
+];
+
+export default function TeamGallery() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current) return;
+
+      const cards = sectionRef.current.querySelectorAll(".team-card");
+      if (!cards.length) return;
+
+      if (prefersReducedMotion()) {
+        gsap.set(cards, { y: 0, opacity: 1, scale: 1 });
+        return;
+      }
+
+      gsap.set(cards, { y: 80, opacity: 0, scale: 0.95 });
+
+      ScrollTrigger.batch(cards, {
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: DURATION.slow,
+            stagger: 0.15,
+            ease: EASE.smooth,
+          });
+        },
+        start: "top 85%",
+        once: true,
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      className="py-40 md:py-60 relative overflow-hidden"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+        backgroundSize: "50px 50px",
+      }}
+    >
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-40 gap-12">
+          <div className="relative">
+            <span
+              aria-hidden="true"
+              className="hidden md:block font-headline italic text-[8vw] leading-[0.75] tracking-tighter text-on-surface/5 absolute -top-16 -left-8 select-none pointer-events-none"
+            >
+              THE FACULTY
+            </span>
+            <h2 className="font-headline italic text-4xl md:text-9xl relative z-10">
+              Collaborators
+            </h2>
+          </div>
+          <div className="max-w-xs border-l border-white/10 pl-8 mb-4">
+            <p className="font-body text-on-surface-variant text-sm leading-relaxed">
+              A synthesis of engineering rigor and high-art aesthetic. Our team
+              is our architecture.
+            </p>
+          </div>
+        </div>
+
+        {/* Non-Linear Asymmetric Gallery */}
+        <div className="grid grid-cols-12 gap-y-20 md:gap-y-64">
+          {/* Member 01: Asif */}
+          <div className="team-card col-span-12 md:col-span-6 lg:col-span-5 relative group">
+            <div className="relative">
+              {/* Giant name behind card */}
+              <span aria-hidden="true" className="hidden md:block absolute -bottom-16 -right-12 font-headline italic text-[8vw] leading-none text-white/10 group-hover:text-primary/20 transition-all duration-1000 select-none pointer-events-none z-20">
+                {team[0].firstName}
+              </span>
+
+              {/* Tactical Card */}
+              <GlassPanel className="p-2 relative z-10 overflow-hidden">
+                <div className="aspect-[4/5] overflow-hidden relative">
+                  <Image
+                    src={team[0].image}
+                    alt={`${team[0].name}, ${team[0].role}`}
+                    fill
+                    className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                  />
+                </div>
+
+              </GlassPanel>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="font-headline text-4xl italic mb-2">
+                {team[0].name}
+              </h3>
+              <span className="font-label text-[11px] uppercase tracking-[0.4em] text-primary">
+                {team[0].role}
+              </span>
+            </div>
+          </div>
+
+          {/* Member 02: Karl (Central / Overlapping) */}
+          <div className="team-card col-span-12 md:col-start-3 md:col-span-7 lg:col-start-4 lg:col-span-6 relative group md:-mt-20">
+            <GlassPanel className="p-4 relative flex flex-col md:flex-row items-center gap-12">
+              {/* Image */}
+              <div className="w-full md:w-1/2 aspect-square overflow-hidden relative">
+                <Image
+                  src={team[1].image}
+                  alt={`${team[1].name}, ${team[1].role}`}
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 contrast-[1.2] brightness-[0.85] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+              </div>
+
+              {/* Text */}
+              <div className="flex-1 space-y-6">
+                <h3 className="font-headline italic text-5xl md:text-6xl leading-tight">
+                  Karl <br /> Abou Jaoude
+                </h3>
+                <span className="block font-label text-[11px] uppercase tracking-[0.4em] text-primary">
+                  {team[1].role}
+                </span>
+                <div className="h-px w-12 bg-primary" />
+                <p className="font-body text-on-surface-variant text-sm leading-relaxed">
+                  {team[1].bio}
+                </p>
+              </div>
+
+              {/* Background ghost text */}
+              <span aria-hidden="true" className="hidden md:block absolute -right-20 top-1/2 -translate-y-1/2 font-headline italic text-[15vw] leading-none text-white/5 select-none pointer-events-none -z-10">
+                KAJ
+              </span>
+            </GlassPanel>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

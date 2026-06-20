@@ -2,15 +2,24 @@
 
 > **Disambiguation:** Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. It is NOT the "Nexio Lab" wearable digital badge product, NOT Nexios Labs (Python web framework on GitHub), and NOT Nexio Group (French EMC/radio testing laboratories). These are completely separate, unaffiliated entities.
 
-> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations for Lebanese businesses and the wider MENA region. Founded in 2026 by a team of 3, Nexio Labs provides end-to-end digital solutions from initial consultation to post-launch support. Official website: https://nexiolabs.co
+> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations for Lebanese businesses and the wider MENA region. Founded in 2024 by a team of 3, Nexio Labs provides end-to-end digital solutions from initial consultation to post-launch support. Official website: https://nexiolabs.co
 
 ---
 
 ## About Nexio Labs
 
-Nexio Labs (official website: nexiolabs.co) is a software development and technology agency headquartered in Lebanon. The company was founded in 2026 with the mission of empowering Lebanese businesses with high-performance digital products. The tagline is "Connect. Build. Grow." reflecting their end-to-end approach to digital transformation.
+Nexio Labs (official website: nexiolabs.co) is a software development and technology agency headquartered in Lebanon. The company was founded in 2024 with the mission of empowering Lebanese businesses with high-performance digital products. The tagline is "Connect. Build. Grow." reflecting their end-to-end approach to digital transformation.
 
 The team speaks English and Arabic, and serves clients across Lebanon and the MENA region. Nexio Labs operates at a mid-range price point, making professional-grade digital services accessible to growing businesses.
+
+---
+
+## Pages
+
+- [Home](https://nexiolabs.co/): Main landing page with hero, capabilities overview, and call-to-action.
+- [Services](https://nexiolabs.co/services): Detailed breakdown of all service offerings with process overview and FAQ.
+- [About](https://nexiolabs.co/about): Company story, mission, values, and team profiles.
+- [Contact](https://nexiolabs.co/contact): Contact form, email, WhatsApp, and office information.
 
 ---
 
@@ -119,4 +128,4 @@ The team is fluent in English and Arabic, allowing seamless communication with c
 - 5+ industries served
 - 90% client retention rate
 - Team of 3 dedicated professionals
-- Founded in 2026
+- Founded in 2024

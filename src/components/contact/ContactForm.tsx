@@ -1,0 +1,280 @@
+"use client";
+
+import { useActionState, useRef, useEffect, useState, useCallback } from "react";
+import { submitContactForm } from "@/app/actions/contact";
+import { cn } from "@/lib/utils";
+import {
+  CONTACT_EMAIL,
+  WHATSAPP_NUMBER,
+  WHATSAPP_URL,
+  SOCIAL_LINKS,
+} from "@/lib/constants";
+import GlassPanel from "@/components/ui/GlassPanel";
+
+import MagneticButton from "@/components/ui/MagneticButton";
+import TextScramble from "@/components/ui/TextScramble";
+import KineticText from "@/components/ui/KineticText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+
+interface ContactFormState {
+  success: boolean;
+  error?: string;
+  fieldErrors?: Record<string, string>;
+}
+
+const initialState: ContactFormState = { success: false };
+
+// Input field styling
+const inputStyles =
+  "bg-transparent border-b border-outline/60 focus:border-secondary focus:shadow-[0_2px_8px_rgba(37,99,235,0.15)] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/50 transition-all duration-200";
+const inputErrorStyles = "border-red-500 focus:border-red-500 focus:shadow-[0_1px_0_0_#ef4444]";
+const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-surface";
+
+export default function ContactForm() {
+  const [state, formAction, isPending] = useActionState(submitContactForm, initialState);
+  const formRef = useRef<HTMLFormElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (state.success) {
+      formRef.current?.reset();
+    }
+  }, [state.success]);
+
+  // After a failed submit, move focus to the first field with an error so
+  // keyboard and screen-reader users are taken straight to what needs fixing.
+  useEffect(() => {
+    const fe = state.fieldErrors;
+    if (!fe) return;
+    if (fe.name) nameRef.current?.focus();
+    else if (fe.email) emailRef.current?.focus();
+    else if (fe.message) messageRef.current?.focus();
+  }, [state]);
+
+  const copyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback for older browsers
+      const el = document.createElement("textarea");
+      el.value = CONTACT_EMAIL;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, []);
+
+  return (
+    <section className="px-6 md:px-12 pb-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        {/* Left side - Contact Info (5 cols) */}
+        <div className="lg:col-span-5 space-y-0">
+          {/* Email block */}
+          <ScrollReveal delay={0}>
+            <div className="bg-surface-dim py-10 px-8">
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="font-headline italic text-2xl md:text-3xl text-on-surface hover:text-primary transition-colors duration-hover cursor-pointer text-left"
+              >
+                {copied ? (
+                  <TextScramble text="Copied to clipboard" trigger="mount" className="text-primary" />
+                ) : (
+                  CONTACT_EMAIL
+                )}
+              </button>
+            </div>
+          </ScrollReveal>
+
+          {/* WhatsApp block */}
+          <ScrollReveal delay={0.1}>
+            <div className="bg-surface-low py-10 px-8">
+              <p className="font-headline italic text-xl text-on-surface mb-4">
+                {WHATSAPP_NUMBER}
+              </p>
+              <MagneticButton variant="ghost" href={WHATSAPP_URL}>
+                Message on WhatsApp
+              </MagneticButton>
+            </div>
+          </ScrollReveal>
+
+          {/* Social block */}
+          <ScrollReveal delay={0.2}>
+            <div className="bg-surface-dim py-10 px-8">
+              <div className="space-y-3">
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors duration-hover"
+                >
+                  <TextScramble text="Instagram" trigger="hover" />
+                </a>
+                <a
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors duration-hover"
+                >
+                  <TextScramble text="LinkedIn" trigger="hover" />
+                </a>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Location block */}
+          <ScrollReveal delay={0.3}>
+            <div className="bg-surface-low py-10 px-8">
+              <p className="font-headline italic text-xl text-on-surface">
+                Beirut, Lebanon
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Right side - The Form (7 cols) */}
+        <ScrollReveal direction="right" className="lg:col-span-7">
+          <GlassPanel className="p-8 md:p-12 relative">
+            {/* Success state */}
+            {state.success ? (
+              <div className="flex flex-col items-center justify-center min-h-[400px] animate-[fadeIn_0.6s_ease-out]">
+                <h2 className="text-4xl text-on-surface mb-4">
+                  <KineticText as="span" delay={0.2}>Message Received.</KineticText>
+                </h2>
+              </div>
+            ) : (
+              <form ref={formRef} action={formAction} noValidate className="pt-8">
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="website"
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                {/* Global error */}
+                {state.error && (
+                  <div
+                    className="text-sm text-red-400 mb-8 border border-red-500/30 px-4 py-3"
+                    role="alert"
+                  >
+                    {state.error}
+                  </div>
+                )}
+
+                {/* Name field */}
+                <div className="mb-8">
+                  <label htmlFor="contact-name" className={labelStyles}>
+                    Name
+                  </label>
+                  <input
+                    ref={nameRef}
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    required
+                    maxLength={100}
+                    placeholder="Your full name"
+                    className={cn(
+                      inputStyles,
+                      state.fieldErrors?.name && inputErrorStyles
+                    )}
+                    aria-invalid={state.fieldErrors?.name ? true : undefined}
+                    aria-describedby={
+                      state.fieldErrors?.name ? "name-error" : undefined
+                    }
+                  />
+                  {state.fieldErrors?.name && (
+                    <p id="name-error" role="alert" className="mt-2 text-sm text-red-400">
+                      {state.fieldErrors.name}
+                    </p>
+                  )}
+                </div>
+
+                {/* Email field */}
+                <div className="mb-8">
+                  <label htmlFor="contact-email" className={labelStyles}>
+                    Email
+                  </label>
+                  <input
+                    ref={emailRef}
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    required
+                    maxLength={254}
+                    placeholder="you@company.com"
+                    className={cn(
+                      inputStyles,
+                      state.fieldErrors?.email && inputErrorStyles
+                    )}
+                    aria-invalid={state.fieldErrors?.email ? true : undefined}
+                    aria-describedby={
+                      state.fieldErrors?.email ? "email-error" : undefined
+                    }
+                  />
+                  {state.fieldErrors?.email && (
+                    <p id="email-error" role="alert" className="mt-2 text-sm text-red-400">
+                      {state.fieldErrors.email}
+                    </p>
+                  )}
+                </div>
+
+                {/* Message field */}
+                <div className="mb-10">
+                  <label htmlFor="contact-message" className={labelStyles}>
+                    Message
+                  </label>
+                  <textarea
+                    ref={messageRef}
+                    id="contact-message"
+                    name="message"
+                    required
+                    maxLength={5000}
+                    placeholder="Tell us about your project..."
+                    className={cn(
+                      inputStyles,
+                      "min-h-[120px] resize-y",
+                      state.fieldErrors?.message && inputErrorStyles
+                    )}
+                    aria-invalid={state.fieldErrors?.message ? true : undefined}
+                    aria-describedby={
+                      state.fieldErrors?.message ? "message-error" : undefined
+                    }
+                  />
+                  {state.fieldErrors?.message && (
+                    <p id="message-error" role="alert" className="mt-2 text-sm text-red-400">
+                      {state.fieldErrors.message}
+                    </p>
+                  )}
+                </div>
+
+                <div aria-live="polite" className="sr-only">
+                  {isPending ? "Sending your message..." : ""}
+                </div>
+
+                <MagneticButton
+                  variant="gradient"
+                  type="submit"
+                  disabled={isPending}
+                  className="w-full"
+                >
+                  {isPending ? "SENDING..." : "SEND MESSAGE"}
+                </MagneticButton>
+              </form>
+            )}
+          </GlassPanel>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}

@@ -1,53 +1,57 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { NAV_ITEMS, WHATSAPP_URL } from "@/lib/constants";
-import Logo from "@/components/ui/Logo";
+import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { NAV_ITEMS } from "@/lib/constants";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [hidden, setHidden] = useState(false);
+  const [darkTint, setDarkTint] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const prevScrollY = useRef(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
+  // Hide/reveal on scroll direction + track scroll position for bg opacity
   useEffect(() => {
-    const hero = document.getElementById("hero");
-    if (!hero) {
-      setIsScrolled(true);
-      return;
-    }
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > 100 && currentY > prevScrollY.current) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      setScrolled(currentY > 50);
+      prevScrollY.current = currentY;
+    };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsScrolled(!entry.isIntersecting);
-      },
-      { threshold: 0, rootMargin: "-64px 0px 0px 0px" }
-    );
-
-    observer.observe(hero);
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Track active section for nav indicator
+  // Context-aware: watch for data-navbar-theme="light" sections
   useEffect(() => {
-    const sections = NAV_ITEMS.map((item) =>
-      document.querySelector(item.href)
-    ).filter(Boolean) as Element[];
+    const sections = document.querySelectorAll('[data-navbar-theme="light"]');
+    if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(`#${entry.target.id}`);
-          }
-        });
+        const isAnyLight = entries.some((e) => e.isIntersecting);
+        setDarkTint(isAnyLight);
       },
-      { threshold: 0.3, rootMargin: "-64px 0px -40% 0px" }
+      { threshold: 0.1, rootMargin: "-80px 0px 0px 0px" }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -59,144 +63,226 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      const top =
-        target.getBoundingClientRect().top + window.scrollY - 64;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+  // Dialog semantics for the mobile overlay: focus the first item on open,
+  // trap Tab within it, close on Escape, and restore focus to the trigger.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const getFocusable = () =>
+      Array.from(
+        overlay.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+
+    getFocusable()[0]?.focus();
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+        return;
+      }
+      if (e.key === "Tab") {
+        const focusable = getFocusable();
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      hamburgerRef.current?.focus();
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
+
+  const handleLogoClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      closeMobileMenu();
+      if (pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    },
+    [pathname, closeMobileMenu]
+  );
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
   return (
     <>
+      {/* Desktop + Mobile Bar */}
       <nav
         className={[
-          "fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300",
-          isScrolled
-            ? "bg-cloud/95 backdrop-blur-xl border-b border-border"
-            : "bg-transparent",
+          "fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex justify-between items-center mx-auto max-w-6xl w-[calc(100%-4rem)]",
+          "glass-panel transition-[transform,background-color] duration-500",
+          "h-16 px-8 max-md:h-14 max-md:px-6",
+          "navbar-fixed",
+          darkTint ? "bg-black/20" : scrolled ? "bg-surface/60 backdrop-blur-xl" : "bg-surface/40 backdrop-blur-md",
         ].join(" ")}
+        style={{
+          transform: hidden && !mobileMenuOpen
+            ? "translate(-50%, -120%)"
+            : "translate(-50%, 0%)",
+          transition: "transform 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
         aria-label="Main navigation"
       >
-        <div className="w-full max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, "#hero")}
-            className="flex-shrink-0"
-            aria-label="Nexio Labs — back to top"
-          >
-            <Logo
-              variant={isScrolled ? "dark" : "light"}
-              className="text-2xl hover:scale-105 transition-transform duration-200"
-            />
-          </a>
+        {/* Logo */}
+        <Link
+          href="/"
+          className="font-headline italic font-bold tracking-tighter text-xl select-none"
+          onClick={handleLogoClick}
+        >
+          NEXIO LABS
+        </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                aria-current={activeSection === item.href ? "true" : undefined}
-                className={[
-                  "font-display font-semibold text-sm transition-colors duration-hover relative",
-                  activeSection === item.href
-                    ? isScrolled
-                      ? "text-blue"
-                      : "text-white"
-                    : isScrolled
-                      ? "text-midnight/60 hover:text-midnight"
-                      : "text-white/50 hover:text-white",
-                ].join(" ")}
-              >
-                {item.label}
-                {activeSection === item.href && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blue rounded-full" />
-                )}
-              </a>
-            ))}
-
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-orange rounded-pill text-white font-display font-semibold text-sm py-2.5 px-5 transition-all duration-hover hover:brightness-90 active:translate-y-[1px]"
-            >
-              Book a Call
-            </a>
-          </div>
-
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[5px] rounded focus:outline-none focus:ring-2 focus:ring-blue"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            <span
-              className={[
-                "block h-[2px] w-6 transition-all duration-300",
-                isScrolled || mobileMenuOpen ? "bg-midnight" : "bg-white",
-                mobileMenuOpen ? "translate-y-[7px] rotate-45" : "",
-              ].join(" ")}
-            />
-            <span
-              className={[
-                "block h-[2px] w-6 transition-all duration-300",
-                isScrolled || mobileMenuOpen ? "bg-midnight" : "bg-white",
-                mobileMenuOpen ? "opacity-0" : "",
-              ].join(" ")}
-            />
-            <span
-              className={[
-                "block h-[2px] w-6 transition-all duration-300",
-                isScrolled || mobileMenuOpen ? "bg-midnight" : "bg-white",
-                mobileMenuOpen ? "-translate-y-[7px] -rotate-45" : "",
-              ].join(" ")}
-            />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile full-screen overlay */}
-      <div
-        aria-hidden={!mobileMenuOpen}
-        className={[
-          "fixed inset-0 z-40 bg-midnight flex flex-col items-center justify-center md:hidden transition-all duration-300",
-          mobileMenuOpen
-            ? "opacity-100 translate-x-0 pointer-events-auto"
-            : "opacity-0 translate-x-full pointer-events-none",
-        ].join(" ")}
-      >
-        <nav className="flex flex-col items-center gap-8 mb-12" aria-label="Mobile navigation">
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-12">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="font-display font-semibold text-2xl text-white hover:text-orange transition-colors duration-hover"
-              tabIndex={mobileMenuOpen ? 0 : -1}
+              className={[
+                "font-label uppercase tracking-widest text-[11px] transition-all duration-300 flex items-center gap-2 hover-underline",
+                isActive(item.href)
+                  ? "text-primary"
+                  : "text-on-surface/80 hover:text-on-surface",
+              ].join(" ")}
+              aria-current={isActive(item.href) ? "page" : undefined}
             >
+              <span
+                className={[
+                  "w-1 h-1 bg-primary rounded-full transition-transform duration-300",
+                  isActive(item.href) ? "scale-100" : "scale-0",
+                ].join(" ")}
+              />
               {item.label}
-            </a>
+            </Link>
           ))}
-        </nav>
+        </div>
 
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-orange rounded-pill text-white font-display font-semibold text-base py-2.5 px-8 transition-all duration-hover hover:brightness-90"
-          tabIndex={mobileMenuOpen ? 0 : -1}
+        {/* Desktop CTA */}
+        <div className="hidden md:block">
+          <MagneticButton variant="gradient" href="/contact">
+            Start a Project
+          </MagneticButton>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          ref={hamburgerRef}
+          className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[5px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-haspopup="dialog"
         >
-          Book a Call
-        </a>
-      </div>
+          <span
+            className={[
+              "block h-[2px] w-6 bg-on-surface transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+              mobileMenuOpen ? "translate-y-[7px] rotate-45" : "",
+            ].join(" ")}
+          />
+          <span
+            className={[
+              "block h-[2px] w-6 bg-on-surface transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+              mobileMenuOpen ? "opacity-0" : "",
+            ].join(" ")}
+          />
+          <span
+            className={[
+              "block h-[2px] w-6 bg-on-surface transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+              mobileMenuOpen ? "-translate-y-[7px] -rotate-45" : "",
+            ].join(" ")}
+          />
+        </button>
+      </nav>
+
+      {/* Mobile Full-Screen Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            ref={overlayRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            className="fixed inset-0 bg-surface-dim z-[200] flex flex-col items-center px-8 pt-28 pb-12 md:hidden entry-animate"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <nav
+              className="flex flex-col items-center gap-8 mb-12"
+              aria-label="Mobile navigation"
+            >
+              {NAV_ITEMS.map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: i * 0.1,
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className={[
+                      "font-headline text-4xl italic transition-colors",
+                      isActive(item.href)
+                        ? "text-primary"
+                        : "text-on-surface/80 hover:text-on-surface",
+                    ].join(" ")}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <MagneticButton
+                variant="gradient"
+                href="/contact"
+                onClick={closeMobileMenu}
+              >
+                Start a Project
+              </MagneticButton>
+            </motion.div>
+            <div className="mt-auto pt-12 border-t border-white/5 text-center">
+              <p className="font-body text-on-surface-variant text-sm mb-4">
+                Web development, mobile apps, and AI systems for ambitious brands.
+              </p>
+              <a href="mailto:hello@nexiolabs.co" className="font-label text-[11px] uppercase tracking-widest text-primary hover-underline">
+                hello@nexiolabs.co
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

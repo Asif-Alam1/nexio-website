@@ -2,7 +2,7 @@
 
 > **Disambiguation:** Nexio Labs (nexiolabs.co) is a software development and digital services agency based in Lebanon. It is NOT affiliated with the "Nexio Lab" wearable digital badge product, Nexios Labs (Python framework), or Nexio Group (EMC testing laboratories).
 
-> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations. Founded in 2026, the team of 3 serves Lebanese businesses and the wider MENA region. Official website: https://nexiolabs.co
+> Nexio Labs is a digital agency based in Lebanon that builds websites, mobile apps, desktop apps, e-commerce stores, AI chatbots, and business automations. Founded in 2024, the team of 3 serves Lebanese businesses and the wider MENA region. Official website: https://nexiolabs.co
 
 ## Services
 
@@ -12,6 +12,13 @@
 - [Desktop Apps](https://nexiolabs.co/#services): Cross-platform desktop applications for Windows, Mac, and Linux.
 - [AI Chatbots](https://nexiolabs.co/#services): Intelligent customer service chatbots that handle routine inquiries 24/7.
 - [Business Automation](https://nexiolabs.co/#services): Custom workflow automations that connect tools and eliminate repetitive tasks.
+
+## Pages
+
+- [Home](https://nexiolabs.co/): Main landing page with hero, capabilities overview, and call-to-action.
+- [Services](https://nexiolabs.co/services): Detailed breakdown of all service offerings with process overview and FAQ.
+- [About](https://nexiolabs.co/about): Company story, mission, values, and team profiles.
+- [Contact](https://nexiolabs.co/contact): Contact form, email, WhatsApp, and office information.
 
 ## Process
 
@@ -34,7 +41,7 @@ Nexio Labs follows a 5-step process: Connect (discovery call), Plan (scope and t
 ## Key Facts
 
 - Location: Lebanon (serves MENA region)
-- Founded: 2026
+- Founded: 2024
 - Team size: 3
 - Languages: English, Arabic
 - Technologies: Next.js, React, React Native, TypeScript, Node.js, AI/ML

@@ -1,0 +1,125 @@
+"use client";
+
+import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { prefersReducedMotion } from "@/lib/utils";
+import { gsap, useGSAP } from "@/lib/gsap";
+import KineticText from "@/components/ui/KineticText";
+
+import AmbientBlob from "@/components/ui/AmbientBlob";
+import ScrollTextReveal from "@/components/ui/ScrollTextReveal";
+import FluidBackground from "@/components/ui/FluidBackground";
+import MagneticButton from "@/components/ui/MagneticButton";
+import { useMagneticChars } from "@/hooks/useMagneticChars";
+
+export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const blob2Ref = useRef<HTMLDivElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
+
+  useMagneticChars(headlineRef, { strength: 12, radius: 200 });
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current || prefersReducedMotion()) return;
+
+      const targets = [blob2Ref.current, visualRef.current].filter(Boolean);
+
+      targets.forEach((el) => {
+        gsap.to(el, {
+          yPercent: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section
+      id="hero"
+      ref={sectionRef}
+      className="relative min-h-dvh flex flex-col justify-center px-6 md:px-12 pt-28 md:pt-40 pb-20"
+    >
+      {/* Ambient Blob */}
+      <div ref={blob2Ref} className="absolute bottom-[20%] left-[10%] -z-10 parallax-medium">
+        <AmbientBlob color="rgba(37,99,235,0.10)" size="500px" delay={-5} />
+      </div>
+
+      {/* Headline */}
+      <div ref={headlineRef} className="z-10 max-w-7xl">
+        <h1
+          className="font-headline italic kinetic-text"
+          style={{ fontSize: "clamp(3rem, 13vw, 12rem)" }}
+        >
+          <KineticText as="span" className="block text-on-surface" delay={0}>
+            Curating
+          </KineticText>
+          <KineticText
+            as="span"
+            className="block ml-[12vw] text-outline"
+            delay={0.3}
+          >
+            The Future
+          </KineticText>
+          <KineticText as="span" className="block text-primary" delay={0.6}>
+            of Code.
+          </KineticText>
+        </h1>
+      </div>
+
+      {/* Right side abstract visual (desktop only) */}
+      <div
+        ref={visualRef}
+        className="absolute right-[5%] top-[15%] w-[45vw] h-[70vh] z-0 pointer-events-none hidden lg:block parallax-fast"
+      >
+        <FluidBackground
+          className="absolute inset-0 opacity-70 mix-blend-screen"
+          fallback={
+            <Image
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80"
+              alt=""
+              aria-hidden="true"
+              fill
+              className="object-cover grayscale brightness-125 contrast-75 mix-blend-screen opacity-60"
+              sizes="(max-width: 1024px) 0px, 45vw"
+            />
+          }
+        />
+        <div className="absolute bottom-10 right-0 w-px h-32 bg-gradient-to-b from-primary/0 to-primary/40" />
+      </div>
+
+      {/* Bottom section: manifesto + CTAs + explore link */}
+      <div className="mt-12 md:mt-20 flex flex-col md:flex-row gap-10 md:gap-20 items-end w-full">
+        <div className="max-w-md">
+          <ScrollTextReveal className="font-body text-on-surface-variant text-lg leading-relaxed font-light">
+            We bridge the chasm between raw technical power and high-end craftsmanship. No templates. No shortcuts. Just intent.
+          </ScrollTextReveal>
+          <div className="flex items-center gap-8 mt-8">
+            <MagneticButton variant="gradient" href="/contact">
+              Start a Project
+            </MagneticButton>
+            <Link
+              href="/services"
+              className="font-label text-[11px] uppercase tracking-widest text-on-surface/80 hover:text-on-surface focus-visible:text-on-surface hover-underline transition-colors"
+            >
+              Explore Services
+            </Link>
+          </div>
+        </div>
+        <div className="flex-grow" />
+    
+      </div>
+
+
+    </section>
+  );
+}

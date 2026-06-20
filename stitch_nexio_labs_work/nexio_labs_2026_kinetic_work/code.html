@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Work 2026 | NEXIO LABS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,700;1,6..72,800&amp;family=Space+Grotesk:wght@400;500&amp;family=Homemade+Apple&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error": "#ffb4ab",
+              "tertiary-container": "#0d0d0d",
+              "primary-container": "#210400",
+              "surface-dim": "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container": "#201f1f",
+              "on-tertiary": "#313030",
+              "surface": "#131313",
+              "on-error-container": "#ffdad6",
+              "inverse-on-surface": "#313030",
+              "primary-fixed-dim": "#ffb59e",
+              "on-tertiary-fixed": "#1c1b1b",
+              "tertiary": "#c8c6c5",
+              "secondary-container": "#00e3fd",
+              "on-secondary-fixed-variant": "#004f58",
+              "on-surface": "#e5e2e1",
+              "on-background": "#e5e2e1",
+              "on-tertiary-fixed-variant": "#474746",
+              "error-container": "#93000a",
+              "surface-bright": "#3a3939",
+              "surface-variant": "#353534",
+              "surface-container-high": "#2a2a2a",
+              "secondary-fixed-dim": "#00daf3",
+              "surface-tint": "#ffb59e",
+              "surface-container-low": "#1c1b1b",
+              "primary": "#ffb59e",
+              "background": "#131313",
+              "on-secondary-fixed": "#001f24",
+              "on-surface-variant": "#c4c7c7",
+              "secondary-fixed": "#9cf0ff",
+              "on-primary-fixed-variant": "#852400",
+              "on-error": "#690005",
+              "inverse-primary": "#ae3200",
+              "primary-fixed": "#ffdbd0",
+              "inverse-surface": "#e5e2e1",
+              "on-primary-container": "#df4200",
+              "tertiary-fixed": "#e5e2e1",
+              "outline": "#8e9192",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed-dim": "#c8c6c5",
+              "on-primary": "#5e1700",
+              "on-secondary": "#00363d",
+              "on-tertiary-container": "#7c7a7a",
+              "secondary": "#bdf4ff",
+              "outline-variant": "#444748",
+              "on-secondary-container": "#00616d",
+              "on-primary-fixed": "#3a0b00"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"],
+              "handwritten": ["Homemade Apple", "cursive"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0e0e0e;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .liquid-mask {
+            mask-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 80%);
+            transition: mask-image 0.5s ease;
+        }
+        .cinematic-grade {
+            filter: contrast(1.1) saturate(0.8) brightness(0.9) sepia(0.1);
+        }
+        .project-card:hover .cinematic-grade {
+            filter: contrast(1) saturate(1) brightness(1) sepia(0);
+        }
+        .parallax-img {
+            transform: scale(1.15);
+            transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+        .project-card:hover .parallax-img {
+            transform: scale(1.05);
+        }
+        .hidden-ui {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover .hidden-ui {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .annotation-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 1.5s ease-out 0.2s;
+        }
+        .project-card:hover .annotation-path {
+            stroke-dashoffset: 0;
+        }
+        .nav-hidden {
+            transform: translateY(-120%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        body:hover .nav-hidden {
+            transform: translateY(0);
+        }
+        .cursor-follow {
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface selection:bg-secondary selection:text-on-secondary">
+<div class="grain-overlay"></div>
+<!-- Ultra-Minimalist Navigation -->
+<nav class="nav-hidden fixed top-0 left-0 right-0 z-[60] flex justify-between items-center px-12 h-24 bg-surface/30 backdrop-blur-3xl">
+<div class="text-2xl font-serif italic font-bold text-[#e5e2e1]">NEXIO LABS</div>
+<div class="flex items-center gap-10">
+<div class="hidden md:flex gap-10 items-center font-sans uppercase tracking-[0.2em] text-[10px]">
+<a class="text-[#ffb59e] border-b border-[#ffb59e] pb-1 transition-all duration-400" href="#">Work</a>
+<a class="text-[#e5e2e1] hover:text-[#bdf4ff] transition-all" href="#">Studio</a>
+<a class="text-[#e5e2e1] hover:text-[#bdf4ff] transition-all" href="#">Journal</a>
+<a class="text-[#e5e2e1] hover:text-[#bdf4ff] transition-all" href="#">Contact</a>
+</div>
+<button class="border border-outline/30 text-on-surface px-8 py-2.5 uppercase font-label text-[10px] tracking-widest hover:bg-white hover:text-black transition-all duration-500">
+                Inquire
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="min-h-screen flex flex-col justify-end px-10 pb-32 relative overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[160px] animate-pulse"></div>
+</div>
+<div class="max-w-7xl w-full relative z-10">
+<h1 class="font-headline italic text-[14vw] leading-[0.8] tracking-tighter mb-16">
+                2026 <br/>
+<span class="text-primary-fixed-dim">Manifesto</span>
+</h1>
+<div class="flex flex-col md:flex-row justify-between items-end gap-12">
+<div class="relative">
+<p class="font-body text-xl max-w-xl leading-relaxed opacity-60">
+                        Synthesizing machine intelligence with artisanal digital craft. We don't just build products; we curate legacies for the post-algorithmic era.
+                    </p>
+<div class="absolute -top-12 -right-12 font-handwritten text-secondary text-lg rotate-12 pointer-events-none">
+                        "The human touch matters more than ever"
+                    </div>
+</div>
+<div class="flex flex-col items-center gap-6">
+<span class="font-label text-[10px] tracking-[0.4em] uppercase opacity-30 vertical-rl">Begin the sequence</span>
+<div class="w-px h-24 bg-gradient-to-b from-transparent via-primary/40 to-transparent"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Work Gallery: Immersive Project Previews -->
+<main class="flex flex-col gap-0">
+<!-- Project 01: Vanta Capital -->
+<section class="project-card relative w-full h-[120vh] group overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="parallax-img cinematic-grade w-full h-full object-cover grayscale brightness-40 group-hover:grayscale-0 group-hover:brightness-75" data-alt="Abstract dark fluid 3D render with orange accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCETnYwNSTL64FFw02pqZk3uMS7GoWunnOnCGkyYn61Byoo0PvYNa9ALj7V24qvZKdgtmHivGk8CHdiyGjZjq8wjK6qT6OxoliHk-EUdVE28UMQT2LvOHZUID2MFOkrm0AP5d1_lLGa23JLoBXhSiGbC4CL199pyscewq0nfMa12jZcZzl5FlXKnOjMxPxkUYyJDxPUrEYeyriFfd6zv98kYT_YfCy9cxrk6Sf4TJkMzuCeGXI_2QLSd8DPHFKo1UNuq7u7lDkHPg"/>
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-10 md:px-24">
+<div class="mb-6 hidden-ui">
+<span class="font-label text-xs tracking-[0.5em] uppercase text-secondary">01 / Modular Finance</span>
+</div>
+<h2 class="font-headline italic text-8xl md:text-[12rem] leading-none mb-4 tracking-tighter transition-all duration-1000 group-hover:tracking-normal group-hover:scale-105">
+                    Vanta <br/>Capital
+                </h2>
+<!-- Curator Note -->
+<div class="absolute top-[20%] right-[15%] max-w-xs pointer-events-none hidden-ui delay-500">
+<svg class="absolute -left-12 -top-12 w-32 h-32 text-primary opacity-40" viewbox="0 0 100 100">
+<path class="annotation-path fill-none stroke-current stroke-1" d="M10,90 Q40,80 50,10 T90,20"></path>
+</svg>
+<p class="font-handwritten text-primary text-xl -rotate-3 leading-tight">
+                        Curator's Note: Notice the textural depth in the liquidity pools. We wanted it to feel physical.
+                    </p>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-end max-w-7xl w-full mt-12">
+<p class="font-body text-2xl max-w-md hidden-ui delay-200">
+                        A brutalist approach to wealth management. Transparent, bold, and unapologetically digital.
+                    </p>
+<button class="mt-12 md:mt-0 flex items-center gap-6 hidden-ui delay-300 group/btn">
+<span class="font-label uppercase tracking-[0.4em] text-xs border-b border-primary/40 text-primary pb-2 group-hover/btn:border-primary group-hover/btn:tracking-[0.6em] transition-all">Explore Case</span>
+<span class="material-symbols-outlined text-primary scale-125 transition-transform group-hover/btn:translate-x-4">east</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Project 02: Neural Arc -->
+<section class="project-card relative w-full h-[120vh] group overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="parallax-img cinematic-grade w-full h-full object-cover grayscale brightness-40 group-hover:grayscale-0 group-hover:brightness-75" data-alt="Technical high-end computer components macro shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBddDpFQrN3UAtP_H_6NTK_00GphjGT3pi_IHnoaGkACPsdPc6t75sMDYs_ori7XaWwjBPAXNFM2Jj0VJ5JBw2ihwHmtn74mKa8cxhJbnGZ_QcGyG9HFnNVhYzPDn4OmJcv61nVw19KIpg41NyhScxuPYA2o3xFCaxmsOb9gO9mAaF0-LGM_WOftDNnOsk_QjaE-mDHBGRb2ZkL2UVK_suTJmkSkyUKqbc-aP7vETO275zI-7T0r3CaSxunR8eOogvXxDTtGFqTWA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-10 md:px-24">
+<div class="mb-6 hidden-ui">
+<span class="font-label text-xs tracking-[0.5em] uppercase text-secondary">02 / AI Cognitive Design</span>
+</div>
+<h2 class="font-headline italic text-8xl md:text-[12rem] leading-none mb-4 tracking-tighter text-right md:text-left transition-all duration-1000 group-hover:tracking-normal group-hover:scale-105">
+                    Neural <br/>Arc
+                </h2>
+<!-- Curator Note -->
+<div class="absolute bottom-[20%] left-[10%] max-w-xs pointer-events-none hidden-ui delay-500">
+<p class="font-handwritten text-secondary text-xl rotate-2 leading-tight">
+                        Experiment 402: We evolved the typography using a neural feedback loop.
+                    </p>
+<svg class="absolute -right-16 -bottom-8 w-24 h-24 text-secondary opacity-40 rotate-180" viewbox="0 0 100 100">
+<path class="annotation-path fill-none stroke-current stroke-1" d="M10,90 C40,40 60,40 90,10"></path>
+</svg>
+</div>
+<div class="flex flex-col md:flex-row-reverse justify-between items-end max-w-7xl w-full mt-12">
+<p class="font-body text-2xl max-w-md text-right hidden-ui delay-200">
+                        Defining the visual language of cognitive computing through ethereal interfaces and kinetic typography.
+                    </p>
+<button class="mt-12 md:mt-0 flex items-center gap-6 hidden-ui delay-300 group/btn">
+<span class="font-label uppercase tracking-[0.4em] text-xs border-b border-primary/40 text-primary pb-2 group-hover/btn:border-primary group-hover/btn:tracking-[0.6em] transition-all">Deep Dive</span>
+<span class="material-symbols-outlined text-primary scale-125 transition-transform group-hover/btn:translate-x-4">east</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Project 03: Lumina Studio -->
+<section class="project-card relative w-full h-[120vh] group overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="parallax-img cinematic-grade w-full h-full object-cover grayscale brightness-40 group-hover:grayscale-0 group-hover:brightness-75" data-alt="Minimalist architectural lighting and concrete walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJjD9cq20Mnv5xUKGvq1FgmuMI0IJe4wyo2AIr9pqAH0ciqUJThbTKWuz789r-sbpIn3K3wyD0IDR35jnOAiCEezrQshAtX-dpKbGYYYfe4qxAepn5Sg45F9XunKHS5v-iKi4G9jGW27crWI_qUckl8X0HkZWcmbQndzYXiZhmABQ__TfFLxqkEo6wD_Yh2HIPYCmOmtL7owlqb3JOldbLPbuz8lRX0eDkLHEvTvt5odbH78ewWX01EGaa5m2gYS8cWdF6adFXIQ"/>
+<div class="absolute inset-0 bg-radial-gradient from-transparent to-black/80"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-10 md:px-24">
+<div class="mb-6 hidden-ui">
+<span class="font-label text-xs tracking-[0.5em] uppercase text-secondary">03 / Spatial Narrative</span>
+</div>
+<h2 class="font-headline italic text-8xl md:text-[12rem] leading-none mb-4 tracking-tighter transition-all duration-1000 group-hover:tracking-normal group-hover:scale-105">
+                    Lumina <br/>Studio
+                </h2>
+<!-- Curator Note -->
+<div class="absolute top-[10%] right-[20%] max-w-xs pointer-events-none hidden-ui delay-500">
+<p class="font-handwritten text-on-surface/60 text-lg -rotate-6 leading-tight">
+                        The shadow work here took 3 months to perfect. Absolute silence was the goal.
+                    </p>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-end max-w-7xl w-full mt-12">
+<p class="font-body text-2xl max-w-md hidden-ui delay-200">
+                        A digital sanctuary for minimalist furniture designers. Focusing on the space between the objects.
+                    </p>
+<button class="mt-12 md:mt-0 flex items-center gap-6 hidden-ui delay-300 group/btn">
+<span class="font-label uppercase tracking-[0.4em] text-xs border-b border-primary/40 text-primary pb-2 group-hover/btn:border-primary group-hover/btn:tracking-[0.6em] transition-all">View Sanctuary</span>
+<span class="material-symbols-outlined text-primary scale-125 transition-transform group-hover/btn:translate-x-4">east</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Capabilities (Bento) -->
+<section class="py-48 px-10 bg-[#0a0a0a]">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+<div class="md:col-span-4 mb-16 relative">
+<h3 class="font-headline italic text-7xl md:text-9xl mb-8 leading-tight">Core <br/>Systems</h3>
+<div class="absolute top-0 right-0 font-handwritten text-secondary text-2xl rotate-12 opacity-40">
+                    Hand-crafted protocols
+                </div>
+</div>
+<div class="group border border-white/5 p-12 flex flex-col justify-between aspect-[4/5] hover:bg-white/5 transition-colors">
+<span class="font-label text-xs text-secondary tracking-widest opacity-40">01</span>
+<h4 class="font-headline text-5xl italic leading-tight group-hover:text-primary transition-colors">Cognitive Branding</h4>
+<p class="font-body text-sm opacity-40 mt-4 group-hover:opacity-100 transition-opacity">Designing for both human and AI perception.</p>
+</div>
+<div class="group border border-white/5 p-12 flex flex-col justify-between aspect-[4/5] hover:bg-white/5 transition-colors">
+<span class="font-label text-xs text-secondary tracking-widest opacity-40">02</span>
+<h4 class="font-headline text-5xl italic leading-tight group-hover:text-primary transition-colors">Liquid Motion</h4>
+<p class="font-body text-sm opacity-40 mt-4 group-hover:opacity-100 transition-opacity">Physics-based transitions that react to touch.</p>
+</div>
+<div class="group border border-white/5 p-12 flex flex-col justify-between aspect-[4/5] hover:bg-white/5 transition-colors">
+<span class="font-label text-xs text-secondary tracking-widest opacity-40">03</span>
+<h4 class="font-headline text-5xl italic leading-tight group-hover:text-primary transition-colors">Ethereal Dev</h4>
+<p class="font-body text-sm opacity-40 mt-4 group-hover:opacity-100 transition-opacity">Hyper-performance with zero visual weight.</p>
+</div>
+<div class="group border border-white/5 p-12 flex flex-col justify-between aspect-[4/5] hover:bg-white/5 transition-colors">
+<span class="font-label text-xs text-secondary tracking-widest opacity-40">04</span>
+<h4 class="font-headline text-5xl italic leading-tight group-hover:text-primary transition-colors">Spatial UX</h4>
+<p class="font-body text-sm opacity-40 mt-4 group-hover:opacity-100 transition-opacity">Interfaces that live beyond the glass.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full pt-48 pb-12 px-10 flex flex-col gap-32 bg-black">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="text-[18vw] font-serif italic text-white/5 select-none pointer-events-none -ml-4 leading-[0.7]">NEXIO</div>
+<div class="grid grid-cols-2 gap-x-32 gap-y-16 mt-12 relative z-10">
+<div class="flex flex-col gap-6">
+<span class="font-label text-[10px] text-primary tracking-[0.5em] uppercase opacity-60">Protocols</span>
+<a class="font-mono text-sm text-[#e5e2e1]/60 hover:text-white transition-all underline decoration-primary/20 underline-offset-8" href="#">X / Twitter</a>
+<a class="font-mono text-sm text-[#e5e2e1]/60 hover:text-white transition-all underline decoration-primary/20 underline-offset-8" href="#">Instagram</a>
+<a class="font-mono text-sm text-[#e5e2e1]/60 hover:text-white transition-all underline decoration-primary/20 underline-offset-8" href="#">Lens</a>
+</div>
+<div class="flex flex-col gap-6">
+<span class="font-label text-[10px] text-primary tracking-[0.5em] uppercase opacity-60">Direct</span>
+<a class="font-mono text-sm text-[#e5e2e1]/60 hover:text-white transition-all underline decoration-primary/20 underline-offset-8" href="#">Signal</a>
+<a class="font-mono text-sm text-[#e5e2e1]/60 hover:text-white transition-all underline decoration-primary/20 underline-offset-8" href="#">Privacy Hub</a>
+<a class="font-mono text-sm text-[#e5e2e1]/60 hover:text-white transition-all underline decoration-primary/20 underline-offset-8" href="#">Secure Mail</a>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-12 pt-12 border-t border-white/5">
+<div class="font-mono text-[10px] tracking-widest text-[#e5e2e1]/30">
+                EST 2022. REDEFINED 2026. ALL RIGHTS RESERVED.
+            </div>
+<div class="flex items-center gap-16">
+<div class="flex flex-col items-end">
+<span class="font-label text-[10px] uppercase tracking-[0.5em] text-primary">Global Presence</span>
+<span class="font-mono text-[10px] opacity-30">NYC · LDN · TYO · BER</span>
+</div>
+<div class="flex items-center gap-4 bg-white/5 px-6 py-3 rounded-full border border-white/5">
+<div class="w-1 h-1 rounded-full bg-secondary-fixed-dim animate-ping"></div>
+<span class="font-label text-[9px] uppercase tracking-[0.2em]">Open for collaborations</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Liquid Cursor -->
+<div class="hidden md:block fixed top-0 left-0 pointer-events-none z-[100] w-12 h-12 border border-white/20 rounded-full cursor-follow" id="cursor"></div>
+<script>
+        // Simple liquid hover effect handler
+        const cards = document.querySelectorAll('.project-card');
+        const cursor = document.getElementById('cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            cursor.style.transform = `translate3d(${clientX - 24}px, ${clientY - 24}px, 0)`;
+            
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = ((clientX - rect.left) / rect.width) * 100;
+                const y = ((clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+
+        // Add subtle scale on hoverable elements
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('scale-150', 'bg-white/10'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('scale-150', 'bg-white/10'));
+        });
+    </script>
+</body></html>

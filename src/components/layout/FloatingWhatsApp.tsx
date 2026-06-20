@@ -1,19 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa6";
 import { WHATSAPP_URL } from "@/lib/constants";
 
 export default function FloatingWhatsApp() {
   const [isContactVisible, setIsContactVisible] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setPrefersReducedMotion(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    );
-  }, []);
+  const prefersReducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
     const contact = document.getElementById("contact");
@@ -36,7 +30,7 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green flex items-center justify-center shadow-[0_4px_14px_rgba(16,185,129,0.4)]"
+      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-none glass-panel flex items-center justify-center"
       animate={
         isContactVisible
           ? { opacity: 0, scale: 0.8 }
@@ -44,7 +38,7 @@ export default function FloatingWhatsApp() {
       }
       transition={{ duration: 0.2 }}
       style={{ pointerEvents: isContactVisible ? "none" : "auto" }}
-      whileHover={{ scale: isContactVisible ? 0.8 : 1.1 }}
+      whileHover={{ scale: isContactVisible ? 0.8 : 1.05 }}
     >
       <motion.div
         animate={
@@ -59,7 +53,7 @@ export default function FloatingWhatsApp() {
         }
         className="flex items-center justify-center"
       >
-        <FaWhatsapp className="text-white" size={24} />
+        <FaWhatsapp className="text-green" size={24} />
       </motion.div>
     </motion.a>
   );
