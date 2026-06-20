@@ -26,9 +26,9 @@ const initialState: ContactFormState = { success: false };
 
 // Input field styling
 const inputStyles =
-  "bg-transparent border-b border-outline/30 focus:border-secondary focus:shadow-[0_2px_8px_rgba(37,99,235,0.15)] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/40 transition-all duration-200";
+  "bg-transparent border-b border-outline/60 focus:border-secondary focus:shadow-[0_2px_8px_rgba(37,99,235,0.15)] outline-none py-4 w-full font-body text-on-surface placeholder:text-on-surface-variant/50 transition-all duration-200";
 const inputErrorStyles = "border-red-500 focus:border-red-500 focus:shadow-[0_1px_0_0_#ef4444]";
-const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-surface-variant";
+const labelStyles = "font-label text-[11px] uppercase tracking-widest text-on-surface";
 
 export default function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState);

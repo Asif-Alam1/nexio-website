@@ -70,7 +70,7 @@ export default function CTASection() {
       <div ref={contentRef} className="relative z-10">
         {/* Status label */}
         <span className="font-label text-on-surface-variant uppercase tracking-[0.6em] text-[11px] mb-12 block">
-          Status: Available for Q3 2026 Projects
+          Status: Now Accepting Projects
         </span>
 
         {/* Headline */}
@@ -118,7 +118,7 @@ export default function CTASection() {
               height="14"
               viewBox="0 0 14 14"
               fill="none"
-              className="group-hover:text-[#3a0b00] transition-colors duration-500"
+              className="group-hover:text-on-primary transition-colors duration-500"
               stroke="currentColor"
               strokeWidth="1.5"
             >

@@ -24,6 +24,7 @@ export default function AmbientBlob({
         backgroundColor: color,
         animation: "float 20s infinite alternate",
         animationDelay: `${delay}s`,
+        willChange: "transform",
       }}
       aria-hidden="true"
     />

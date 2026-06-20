@@ -38,6 +38,8 @@ const config: Config = {
           DEFAULT: "#64748B",
           variant: "#334155",
         },
+        "on-primary": "#3a0b00",
+        "on-secondary": "#001f24",
       },
       fontFamily: {
         headline: ["var(--font-headline)", "serif"],

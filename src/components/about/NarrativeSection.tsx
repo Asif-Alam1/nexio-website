@@ -128,7 +128,7 @@ export default function NarrativeSection() {
                 10
               </span>
               <span className="block font-label text-surface text-xs tracking-widest mt-2 uppercase">
-                Projects. Zero Compromises.
+                Projects Delivered. Zero Compromises.
               </span>
             </div>
           </div>

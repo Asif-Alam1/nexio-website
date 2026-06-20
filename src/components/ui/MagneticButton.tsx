@@ -22,7 +22,7 @@ const baseStyles =
 
 const variantStyles: Record<MagneticButtonVariant, string> = {
   gradient:
-    "text-white px-8 py-4 hover:scale-[1.02] gradient-animated",
+    "text-white px-8 py-4 gradient-animated",
   ghost:
     "border border-outline-variant px-8 py-4 text-on-surface hover:bg-white hover:text-surface-dim hover:border-white",
 };

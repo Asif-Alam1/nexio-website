@@ -12,16 +12,9 @@ const team = [
   {
     name: "Asif Alam",
     firstName: "ASIF",
-    role: "Co-Founder & Lead Engineer",
+    role: "Founder & Lead Engineer",
     image: "/images/team/asif.jpeg",
     bio: "Writes the code, architects the systems, and makes sure every pixel works.",
-  },
-  {
-    name: "Joseph Attieh",
-    firstName: "JOSEPH",
-    role: "Co-Founder & Business Development",
-    image: "/images/team/joseph.jpeg",
-    bio: "Finds the right clients, shapes the right projects, and makes sure every partnership creates real value.",
   },
   {
     name: "Karl Abou Jaoude",
@@ -134,52 +127,14 @@ export default function TeamGallery() {
             </div>
           </div>
 
-          {/* Member 02: Joseph (Shifted Right) */}
-          <div className="team-card col-span-12 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-5 relative group md:-mt-32">
-            <div className="relative">
-              {/* Vertical ghost text */}
-              <span
-                aria-hidden="true"
-                className="hidden md:block absolute -top-24 -left-20 font-headline italic text-[10vw] leading-none text-white/5 group-hover:text-secondary/10 transition-all duration-1000 select-none pointer-events-none z-20"
-                style={{ writingMode: "vertical-rl" }}
-              >
-                {team[1].firstName}
-              </span>
-
-              <GlassPanel className="p-2 relative z-10 overflow-hidden">
-                <div className="aspect-[3/4] overflow-hidden relative">
-                  <Image
-                    src={team[1].image}
-                    alt={`${team[1].name}, ${team[1].role}`}
-                    fill
-                    className="object-cover grayscale contrast-[1.2] brightness-[0.85] group-hover:grayscale-[0.2] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
-                  />
-                </div>
-
-                {/* Diagonal line accent */}
-                <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 -rotate-12 pointer-events-none" />
-              </GlassPanel>
-            </div>
-
-            <div className="mt-12 md:text-right">
-              <h3 className="font-headline text-4xl italic mb-2">
-                {team[1].name}
-              </h3>
-              <span className="font-label text-[11px] uppercase tracking-[0.4em] text-secondary-bright">
-                {team[1].role}
-              </span>
-            </div>
-          </div>
-
-          {/* Member 03: Karl (Central / Overlapping) */}
+          {/* Member 02: Karl (Central / Overlapping) */}
           <div className="team-card col-span-12 md:col-start-3 md:col-span-7 lg:col-start-4 lg:col-span-6 relative group md:-mt-20">
             <GlassPanel className="p-4 relative flex flex-col md:flex-row items-center gap-12">
               {/* Image */}
               <div className="w-full md:w-1/2 aspect-square overflow-hidden relative">
                 <Image
-                  src={team[2].image}
-                  alt={`${team[2].name}, ${team[2].role}`}
+                  src={team[1].image}
+                  alt={`${team[1].name}, ${team[1].role}`}
                   fill
                   className="object-cover grayscale group-hover:grayscale-0 contrast-[1.2] brightness-[0.85] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   sizes="(max-width: 768px) 100vw, 40vw"
@@ -192,11 +147,11 @@ export default function TeamGallery() {
                   Karl <br /> Abou Jaoude
                 </h3>
                 <span className="block font-label text-[11px] uppercase tracking-[0.4em] text-primary">
-                  {team[2].role}
+                  {team[1].role}
                 </span>
                 <div className="h-px w-12 bg-primary" />
                 <p className="font-body text-on-surface-variant text-sm leading-relaxed">
-                  {team[2].bio}
+                  {team[1].bio}
                 </p>
               </div>
 

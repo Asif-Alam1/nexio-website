@@ -84,7 +84,7 @@ const structuredData = [
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@nexiolabs.co",
-      telephone: "+96176423052",
+      telephone: "+96181972024",
       contactType: "customer service",
       availableLanguage: ["English", "Arabic"],
     },
@@ -123,7 +123,7 @@ const structuredData = [
     "@id": `${BASE_URL}/#localbusiness`,
     name: "Nexio Labs",
     url: BASE_URL,
-    telephone: "+96176423052",
+    telephone: "+96181972024",
     email: "hello@nexiolabs.co",
     address: {
       "@type": "PostalAddress",
@@ -307,15 +307,9 @@ const structuredData = [
   ...[
     {
       name: "Asif Alam",
-      jobTitle: "Co-Founder & Lead Engineer",
+      jobTitle: "Founder & Lead Engineer",
       description: "Writes the code, architects the systems, and makes sure every pixel works.",
       image: `${BASE_URL}/images/team/asif.jpeg`,
-    },
-    {
-      name: "Joseph Attieh",
-      jobTitle: "Co-Founder & Business Development",
-      description: "Finds the right clients, shapes the right projects, and makes sure every partnership creates real value.",
-      image: `${BASE_URL}/images/team/joseph.jpeg`,
     },
     {
       name: "Karl Abou Jaoude",
